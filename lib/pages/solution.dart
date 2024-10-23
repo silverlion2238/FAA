@@ -37,14 +37,31 @@ class SolutionPageState extends State<SolutionPage> {
         child: Scaffold(
           backgroundColor: Theme.of(context).colorScheme.surface,
           body: Center(
-            child: ListView(
-              shrinkWrap: true,
+            child: Column(
               children: [
-
-                //Actual  function
-                solutionFunction(context),
-
-                
+                Expanded(
+                    child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                      // Actual function
+                      solutionFunction(context),
+                      ],
+                    ),
+                    ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: FloatingActionButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Icon(
+                      Icons.exit_to_app,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  )
+                )
               ],
             ),
           ),
