@@ -5,48 +5,7 @@ import 'package:provider/provider.dart';
 
 
 
-ThemeData lightTheme = ThemeData(
-  useMaterial3: true,
-  brightness: Brightness.light,
 
-  appBarTheme: AppBarTheme(
-    backgroundColor: Color.fromARGB(255, 255, 0, 0),
-  ),
-
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    selectedItemColor: Color.fromARGB(255, 255, 0, 0)
-  ),
-
-  colorScheme: ColorScheme.light(
-    surface: Color.fromARGB(255, 255, 255, 255),
-    primary: Color.fromARGB(255, 255, 0, 0),
-    onPrimary: Color.fromARGB(255, 255, 255, 255),
-    secondary: Color.fromARGB(255, 0, 0, 0),
-    onSecondary: Color.fromARGB(255, 255, 0, 0),
-    surfaceTint: Colors.transparent,
-  ),    
-);
-
-ThemeData darkTheme = ThemeData(
-  useMaterial3: true,
-  brightness: Brightness.dark,
-  appBarTheme: AppBarTheme(
-    backgroundColor: Color.fromARGB(255, 176, 0, 0),
-  ),
-
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    selectedItemColor: Color.fromARGB(255, 255, 0, 0)
-  ),
-
-  colorScheme: ColorScheme.dark(
-    surface: Color.fromARGB(255, 54, 54, 54),
-    primary: Color.fromARGB(255, 176, 0, 0),
-    onPrimary: Color.fromARGB(255, 255, 255, 255),
-    secondary: Color.fromARGB(255, 255, 255, 255),
-    onSecondary: Color.fromARGB(255, 255, 0, 0),
-    surfaceTint: Colors.transparent,
-  ),
-);
 
 
 class SettingsPage extends StatefulWidget {

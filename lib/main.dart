@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_0_0_5/pages/chatbot.dart';
 import 'package:flutter_application_0_0_5/pages/data.dart';
 import 'package:flutter_application_0_0_5/pages/search.dart';
 import 'package:flutter_application_0_0_5/pages/result.dart';
@@ -110,6 +111,7 @@ class MyAppState extends State<MyApp> {
       ChecklistScreen(toResultTab: _onItemTapped), // Now you can use _onItemTapped
       ResultScreen(),
       SettingsPage(),
+      ChatScreen(),
     ];
   }
 
@@ -135,6 +137,7 @@ class MyAppState extends State<MyApp> {
             style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
           ),
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+    
         ),
 
 
@@ -144,26 +147,34 @@ class MyAppState extends State<MyApp> {
 
 
         bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.search), //, color: Theme.of(context).appBarTheme.foregroundColor
               label: 'Search',
             ),
 
             BottomNavigationBarItem(
               icon: Icon(Icons.more_horiz),
               label: 'Results',
-
             ),
+
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
               label: 'Settings',
             ),
+
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat),
+              label: 'Chatbot',
+            ),
           ],
 
           currentIndex: _selectedIndex,
-          selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
           onTap: _onItemTapped,
+          
+          selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+          unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+
         ),
       ),
     );
