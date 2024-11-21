@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/pages/chatbot.dart';
-import 'package:flutter_application_0_0_5/pages/data.dart';
+import 'package:flutter_application_0_0_5/data/data.dart';
 import 'package:flutter_application_0_0_5/pages/search.dart';
 import 'package:flutter_application_0_0_5/pages/result.dart';
 import 'package:flutter_application_0_0_5/pages/settings.dart';
@@ -46,6 +46,15 @@ class InjuryNotifier extends ChangeNotifier {
   List<Injury> _displayInjuries = injuries;
 
   List<Injury> get displayInjuries => _displayInjuries;
+
+  void whichInjury(String query) {
+
+    _displayInjuries = injuries.where((injury) => injury.getName().toLowerCase().contains(query.toLowerCase())).toList();
+
+    notifyListeners();
+
+  }
+
 
   void getResults ({
     required List<Injury> resultInjuries
@@ -103,7 +112,7 @@ class MyAppState extends State<MyApp> {
           ],
           supportedLocales: [
             Locale('en'),
-            Locale('es'),
+            Locale('sk'),
           ],
           themeMode: Provider.of<ThemeModel>(context).themeMode, // Get theme from provider
           theme: lightTheme,

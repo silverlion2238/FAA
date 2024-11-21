@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_application_0_0_5/main.dart';
 import 'package:flutter_application_0_0_5/pages/settings.dart';
-import 'package:flutter_application_0_0_5/pages/data.dart';
+import 'package:flutter_application_0_0_5/data/data.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
 
@@ -31,20 +31,20 @@ class _ChatScreenState extends State<ChatScreen> {
     });
 
     // Send message to Botpress API
-    var response = await http.post(
-      Uri.parse('https://chat.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509'), // Replace with your Botpress API URL
+    var response = await http.get(
+      Uri.parse('https://chat.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509/hello'), // Replace with your Botpress API URL
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{'message': message.text}),
+      //body: jsonEncode(<String, String>{'message': message.text}),
       
     );
 
     if (response.statusCode == 200) {
       // Parse the response and display the bot's reply
-      var data = jsonDecode(response.body);
-      //var data = response.body;
-      String botReply = data['response']['text'];
+      //var data = jsonDecode(response.body);
+      var data = response.body;
+      String botReply = data;// ['response']['text'];
       ChatMessage botMessage = ChatMessage(
         text: botReply,
         isUser: false,

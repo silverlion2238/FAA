@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/functions/special_functions.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
-import 'package:flutter_application_0_0_5/pages/data.dart';
+import 'package:flutter_application_0_0_5/data/data.dart';
 import 'package:flutter_application_0_0_5/pages/solution.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/main.dart';

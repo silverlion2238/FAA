@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/main.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
-import 'package:flutter_application_0_0_5/pages/data.dart';
+import 'package:flutter_application_0_0_5/data/data.dart';
 import 'package:flutter_application_0_0_5/pages/search.dart';
 import 'package:flutter_application_0_0_5/functions/results_functions.dart';
 import 'package:flutter_application_0_0_5/functions/other_functions.dart';
@@ -37,6 +37,20 @@ class ResultScreenState extends State<ResultScreen> {
     List<Injury> displayInjuries = context.watch<InjuryNotifier>().displayInjuries;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
+      appBar: AppBar(
+        title: TextField(
+          decoration: InputDecoration(
+        hintText: 'Search...',
+        //border: InputBorder.none,
+        hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+          ),
+          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+          onChanged: (query) {
+        context.read<InjuryNotifier>().whichInjury(query);
+          },
+        ),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+      ),
       body: ListView.builder(
         itemCount: displayInjuries.length,
         itemBuilder: (context,index) {
@@ -64,7 +78,9 @@ class ResultScreenState extends State<ResultScreen> {
         ),
         
 
-        onPressed: () => context.read<InjuryNotifier>().getResults(resultInjuries: injuries)
+        onPressed: () {
+          context.read<InjuryNotifier>().getResults(resultInjuries: injuries);
+        }
     )
     );
   }

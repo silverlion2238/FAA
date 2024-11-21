@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_0_0_5/data/language_data.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_application_0_0_5/models/language_model.dart';
 
 Widget specialFunction1(context) {
+  final locale = Provider.of<LanguageModel>(context).locale.languageCode;
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Column(
         children: [
           Text(
-            'Primary Text(question)',
+            translations[locale]!['primaryText']!,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontStyle: FontStyle.italic,
@@ -16,7 +20,7 @@ Widget specialFunction1(context) {
           ),
           SizedBox(height: 20,),
           Text(
-            'Description',
+            translations[locale]!['description']!,
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 20,),
