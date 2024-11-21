@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/main.dart';
+import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/pages/data.dart';
 import 'package:flutter_application_0_0_5/pages/search.dart';
 import 'package:flutter_application_0_0_5/functions/results_functions.dart';
 import 'package:flutter_application_0_0_5/functions/other_functions.dart';
 import 'package:flutter_application_0_0_5/pages/settings.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_application_0_0_5/data/language_data.dart';
 
 
 List<Injury> displayInjuries = injuries;
 
 
-void executeFunction(context,index) {
+void executeFunction(context, index) {
+  final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   Function functionBuffer = displayInjuries[index].getFunction();
-  openSolutionPage(context,functionBuffer);
+  openSolutionPage(context, functionBuffer);
 }
 
 
@@ -30,6 +33,7 @@ class ResultScreenState extends State<ResultScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Provider.of<LanguageModel>(context).locale.languageCode;
     List<Injury> displayInjuries = context.watch<InjuryNotifier>().displayInjuries;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,

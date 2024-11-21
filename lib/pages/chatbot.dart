@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_application_0_0_5/main.dart';
 import 'package:flutter_application_0_0_5/pages/settings.dart';
 import 'package:flutter_application_0_0_5/pages/data.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_application_0_0_5/data/language_data.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -16,6 +18,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _textController = TextEditingController();
 
   void _handleSubmitted(String text) async {
+    final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
     _textController.clear();
 
     ChatMessage message = ChatMessage(
@@ -58,6 +61,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Provider.of<LanguageModel>(context).locale.languageCode;
     return Scaffold(
       body: Column(
         children: <Widget>[

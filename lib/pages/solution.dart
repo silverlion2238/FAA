@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/main.dart';
+import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/pages/data.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_application_0_0_5/data/language_data.dart';
 
 class SolutionPage extends StatefulWidget {
 
@@ -28,6 +30,7 @@ class SolutionPageState extends State<SolutionPage> {
   
   @override
   Widget build(BuildContext context) {
+    final locale = Provider.of<LanguageModel>(context).locale.languageCode;
     return Padding(
       padding: const EdgeInsets.all(20.0),
       

@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/main.dart';
 import 'package:flutter_application_0_0_5/pages/data.dart';
 import 'package:provider/provider.dart';
-
-
-
-
-
+import 'package:flutter_application_0_0_5/models/language_model.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage ({super.key});
@@ -69,6 +65,32 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               );
             }
+          ),
+
+          ListTile(
+            title: Text('Language: '),
+          ),
+          Consumer<LanguageModel>(
+            builder: (context, languageModel, child) {
+              return DropdownButton<Locale>(
+                value: languageModel.locale,
+                items: [
+                  DropdownMenuItem(
+                    value: Locale('en'),
+                    child: Text('English'),
+                  ),
+                  DropdownMenuItem(
+                    value: Locale('es'),
+                    child: Text('Spanish'),
+                  ),
+                ],
+                onChanged: (Locale? newLocale) {
+                  if (newLocale != null) {
+                    languageModel.changeLanguage(newLocale);
+                  }
+                },
+              );
+            },
           ),
         ],
       )

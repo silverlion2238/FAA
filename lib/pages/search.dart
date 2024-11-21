@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/functions/special_functions.dart';
+import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/pages/data.dart';
 import 'package:flutter_application_0_0_5/pages/solution.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/main.dart';
 import 'package:flutter_application_0_0_5/functions/results_functions.dart';
 import 'package:flutter_application_0_0_5/functions/other_functions.dart';
+import 'package:flutter_application_0_0_5/data/language_data.dart';
 
 //variables
 List<Symptom> selectedSymptoms = [];
@@ -81,6 +83,7 @@ class ChecklistScreenState extends State<ChecklistScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Provider.of<LanguageModel>(context).locale.languageCode;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: ListView.builder(
@@ -111,7 +114,7 @@ class ChecklistScreenState extends State<ChecklistScreen> {
         
 
         onPressed: () {    
-
+          final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
 
 //============================================================================================//
 // Decision tree for result search
@@ -124,10 +127,10 @@ class ChecklistScreenState extends State<ChecklistScreen> {
             showDialog(
               context: context, 
               builder: (context) => AlertDialog(
-                title: Text('Wrong Input'),
-                content: Text('No results with these options'),
+                title: Text(translations[locale]!['wrongInput']!),
+                content: Text(translations[locale]!['noResults']!),
                 actions: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: Text('OK')),
+                  TextButton(onPressed: () => Navigator.pop(context), child: Text(translations[locale]!['ok']!)),
                 ],
               )
             );

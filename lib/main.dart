@@ -5,9 +5,9 @@ import 'package:flutter_application_0_0_5/pages/search.dart';
 import 'package:flutter_application_0_0_5/pages/result.dart';
 import 'package:flutter_application_0_0_5/pages/settings.dart';
 import 'package:provider/provider.dart';
-
-
-
+import 'package:flutter_application_0_0_5/models/language_model.dart';
+import 'package:flutter_application_0_0_5/data/language_data.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
 
@@ -15,24 +15,19 @@ void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
 
-
-
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeModel()),
         ChangeNotifierProvider(create: (context) => InjuryNotifier()),
+        ChangeNotifierProvider(create: (context) => LanguageModel()),
       ],
       child: MyApp(),
     ),
   );
 }
 
-
-
-
 //Change Notifiers
-
 
 //Theme Notifier
 class ThemeModel extends ChangeNotifier {
@@ -45,8 +40,6 @@ class ThemeModel extends ChangeNotifier {
     notifyListeners(); // Notify listeners to rebuild
   }
 }
-
-
 
 //syncing displayed injuries
 class InjuryNotifier extends ChangeNotifier {
@@ -62,33 +55,17 @@ class InjuryNotifier extends ChangeNotifier {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 //My App
 class MyApp extends StatefulWidget {
   @override
   MyAppState createState() => MyAppState();
-  
 }
-
-
 
 //State of My App
 class MyAppState extends State<MyApp> {
 
-
   //switching tabs 
   int _selectedIndex = 0; // To keep track of the selected tab
-
 
   void _onItemTapped(int index) {
     setState(() {
@@ -98,9 +75,6 @@ class MyAppState extends State<MyApp> {
 
   //passing _onItemTapped function
   late List<Widget> _widgetOptions;
-
-
-
 
   @override
   void initState() {
@@ -115,68 +89,64 @@ class MyAppState extends State<MyApp> {
     ];
   }
 
-
-
   //Material App
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      
-      themeMode: Provider.of<ThemeModel>(context).themeMode, // Get theme from provider
-      theme: lightTheme,
-      darkTheme: darkTheme,
-
-      home: Scaffold(
-
-
-        backgroundColor: Theme.of(context).colorScheme.surface,
-
-        appBar: AppBar(
-          title: Text(
-            'My App',
-            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-          ),
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-    
-        ),
-
-
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-
-
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search), //, color: Theme.of(context).appBarTheme.foregroundColor
-              label: 'Search',
-            ),
-
-            BottomNavigationBarItem(
-              icon: Icon(Icons.more_horiz),
-              label: 'Results',
-            ),
-
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
-              label: 'Chatbot',
-            ),
+    return Consumer<LanguageModel>(
+      builder: (context, languageModel, child) {
+        return MaterialApp(
+          locale: languageModel.locale,
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
           ],
-
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          
-          selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-          unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
-
-        ),
-      ),
+          supportedLocales: [
+            Locale('en'),
+            Locale('es'),
+          ],
+          themeMode: Provider.of<ThemeModel>(context).themeMode, // Get theme from provider
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          home: Scaffold(
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            appBar: AppBar(
+              title: Text(
+                'My App',
+                style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              ),
+              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            ),
+            body: Center(
+              child: _widgetOptions.elementAt(_selectedIndex),
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              items: <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.search), //, color: Theme.of(context).appBarTheme.foregroundColor
+                  label: 'Search',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.more_horiz),
+                  label: 'Results',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: 'Settings',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.chat),
+                  label: 'Chatbot',
+                ),
+              ],
+              currentIndex: _selectedIndex,
+              onTap: _onItemTapped,
+              selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+              unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+            ),
+          ),
+        );
+      },
     );
   }
 }
