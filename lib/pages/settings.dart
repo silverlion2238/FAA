@@ -8,7 +8,7 @@ import 'package:flutter_application_0_0_5/data/language_data.dart';
 class SettingsPage extends StatefulWidget {
   const SettingsPage ({super.key});
 
-  @override
+  @override 
   State<SettingsPage> createState() => _SettingsPageState();
 }
 

@@ -1,6 +1,10 @@
 import 'package:flutter_application_0_0_5/functions/results_functions.dart';
 import 'package:flutter_application_0_0_5/functions/other_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_0_0_5/models/language_model.dart';
+import 'package:flutter_application_0_0_5/data/language_data.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_application_0_0_5/functions/language_functions.dart';
 
 enum Symptom {
   coughing,
@@ -18,26 +22,26 @@ enum Symptom {
 
 
 
-  String get getName {
+  String getName() {
       switch (this) {
         case Symptom.coughing:
-          return 'Coughing';
+          return LanguageData().translate('Cough');
         case Symptom.sweating:
-          return 'Sweating';
+          return LanguageData().translate('Sweating');
         case Symptom.bleeding:
-          return 'Bleeding';
+          return LanguageData().translate('Bleeding');
         case Symptom.mildCut:
-          return 'Mild cut';
+          return LanguageData().translate('MildCut');
         case Symptom.severeCut:
-          return 'Severe cut';
+          return LanguageData().translate('SevereCut');
         case Symptom.cantMove:
-          return "Can't move";
+          return LanguageData().translate('CantMove');
         case Symptom.painInInjuredArea:
-          return 'Pain in injured area';
+          return LanguageData().translate('PainInArea');
         case Symptom.swelling:
-          return 'Swelling';
+          return LanguageData().translate('Swelling');
         case Symptom.bruise:
-          return 'Bruise';
+          return LanguageData().translate('Bruise');
       }
     }
 
@@ -123,60 +127,57 @@ class Injury {
 
 
 List<Injury> injuries = [
-  Injury(
-    "Common Cold",
-    "Description1",
-    "Result1!",
-    [Symptom.coughing, Symptom.sweating],
-    function2,
+    Injury(
+      LanguageData().translate('CommonCold'),
+      LanguageData().translate('CommonColdDesc'),
+      LanguageData().translate('CommonColdSolution'),
+      [Symptom.coughing, Symptom.sweating],
+      function2,
     ),
+    Injury(
+      LanguageData().translate('MildCut'),
+      LanguageData().translate('MildCutDesc'),
+      LanguageData().translate('MildCutSolution'),
+      [Symptom.bleeding, Symptom.mildCut],
+      function3,
+    ),
+    Injury(
+      LanguageData().translate('SevereCut'),
+      LanguageData().translate('SevereCutDesc'),
+      LanguageData().translate('SevereCutSolution'),
+      [Symptom.bleeding, Symptom.severeCut],
+      function2,
+    ),
+    Injury(
+      LanguageData().translate('Nosebleed'),
+      LanguageData().translate('NosebleedDesc'),
+      LanguageData().translate('NosebleedSolution'),
+      [Symptom.bleeding],
+      function3,
+    ),
+    Injury(
+      LanguageData().translate('Sprain'),
+      LanguageData().translate('SprainDesc'),
+      LanguageData().translate('SprainSolution'),
+      [Symptom.cantMove],
+      function2,
+    ),
+    Injury(
+      LanguageData().translate('Dislocation'),
+      LanguageData().translate('DislocationDesc'),
+      LanguageData().translate('DislocationSolution'),
+      [Symptom.painInInjuredArea, Symptom.cantMove, Symptom.swelling],
+      function3,
+    ),
+    Injury(
+      LanguageData().translate('BoneFracture'),
+      LanguageData().translate('BoneFractureDesc'),
+      LanguageData().translate('BoneFractureSolution'),
+      [Symptom.painInInjuredArea, Symptom.cantMove],
+      function3,
+    ),
+  ];
 
-  Injury(
-    "Mild Cut",
-    "Small bruise or cut with small blood loss",
-    "Disinfect and let it heal, if you have band aid you can use it",
-    [Symptom.bleeding, Symptom.mildCut],
-    function3,
-    ),
-
-  Injury(
-    "Severe Cut",
-    "Deep cut with intense bleeding",
-    "Apply pressure on the wound and try to bandage it to prevent blood loss",
-    [Symptom.bleeding, Symptom.severeCut,],
-    function2,
-    ),
-
-  Injury(
-    "Nouse Bleeding",
-    "Bleeding from nouse",
-    "Angle the head forward, if you can cool forehead and wait until it stops",
-    [Symptom.bleeding,],
-    function3,
-    ),
-    
-  Injury(
-    "Sprained leg",
-    "It is the most commonly occurring injury in sports, mainly in ball sports",
-    "Bandage the foot so it can't move freely, if the injured person has high boots, don't remove them, just tie the laces as thight as possible",
-    [Symptom.cantMove],
-    function2,
-    ),
-  Injury(
-    'Dislocation', 
-    'Bone is dislocated from the joint', 
-    'Try to put the bone to the right place', 
-    [Symptom.painInInjuredArea, Symptom.cantMove, Symptom.swelling],
-    function3,
-  ),
-  Injury(
-    'Bone fracture', 
-    'Broken bone', 
-    'Try to fix it in place', 
-    [Symptom.painInInjuredArea, Symptom.cantMove,], 
-    function3
-  )
-];
 
 
 

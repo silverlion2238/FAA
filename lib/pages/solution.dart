@@ -43,7 +43,7 @@ class SolutionPageState extends State<SolutionPage> {
             child: Column(
               children: [
                 Expanded(
-                    child: SizedBox(
+                  child: SizedBox(
                     width: double.infinity,
                     height: double.infinity,
                     child: ListView(
@@ -53,7 +53,7 @@ class SolutionPageState extends State<SolutionPage> {
                       solutionFunction(context),
                       ],
                     ),
-                    ),
+                  ),
                 ),
                 SizedBox(
                   width: double.infinity,

@@ -11,7 +11,7 @@ Widget function1(context) {
   return Text(
     translations[locale]!['placeholder1']!,
     textAlign: TextAlign.center,);
-}
+} 
 
 Widget function2(context) {
   final locale = Provider.of<LanguageModel>(context).locale.languageCode;

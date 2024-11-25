@@ -11,11 +11,12 @@ import 'package:flutter_application_0_0_5/data/language_data.dart';
 
 //variables
 List<Symptom> selectedSymptoms = [];
+//List<Injury> injuries = []; // Define the injuries variable
 
 
 
 //functions
-List<Injury> whichInjury(List<Symptom> appearedSymptoms) {  
+List<Injury> whichInjury(BuildContext context, List<Symptom> appearedSymptoms) {  
   return injuries.where((injuryTemp) {
     return appearedSymptoms.every((symptomTemp) => injuryTemp.symptoms.contains(symptomTemp));
   }).toList();
@@ -66,7 +67,7 @@ Function switchCase(List<Symptom> symptomList) {
 class ChecklistScreen extends StatefulWidget {
   final Function(int) toResultTab;
 
-  ChecklistScreen({required this.toResultTab});
+  const ChecklistScreen({required this.toResultTab, super.key});
 
   @override
   ChecklistScreenState createState() => ChecklistScreenState();
@@ -78,7 +79,6 @@ class ChecklistScreenState extends State<ChecklistScreen> {
 
   //opening of result page
   
-
   List<Symptom> items = Symptom.values;
 
   @override
@@ -90,16 +90,18 @@ class ChecklistScreenState extends State<ChecklistScreen> {
         itemCount: items.length,
         itemBuilder: (context, index) {
           return CheckboxListTile(
-            title: Text(items[index].getName),
+            title: Text(items[index].getName()),
             value: selectedSymptoms.contains(items[index]),
             onChanged: (value) {
-              setState(() {
-                if (value!) {
-                  selectedSymptoms.add(items[index]);
-                } else {
-                  selectedSymptoms.remove(items[index]);
-                }
-              });
+              if (value != null) {
+                setState(() {
+                  if (value) {
+                    selectedSymptoms.add(items[index]);
+                  } else {
+                    selectedSymptoms.remove(items[index]);
+                  }
+                });
+              }
             },
           );
         },
@@ -119,7 +121,7 @@ class ChecklistScreenState extends State<ChecklistScreen> {
 //============================================================================================//
 // Decision tree for result search
 
-          List<Injury>possibleInjuries = whichInjury(selectedSymptoms);
+          List<Injury>possibleInjuries = whichInjury(context, selectedSymptoms);
 
           if (possibleInjuries.isEmpty) {
 

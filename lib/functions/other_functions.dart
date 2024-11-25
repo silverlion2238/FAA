@@ -10,10 +10,13 @@ void openSolutionPage (context, resultFunction) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
     showModalBottomSheet(
       barrierColor: Theme.of(context).colorScheme.surface,
-      isScrollControlled: true,
+      //isScrollControlled: true,
       context: context, 
-      builder: (context) => SolutionPage(
-        solutionFunction: resultFunction
+      builder: (context) => Padding(
+        padding: const EdgeInsets.only(top: 0.0),
+        child: SolutionPage(
+          solutionFunction: resultFunction
+        ),
       )
     );
   }

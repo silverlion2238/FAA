@@ -10,4 +10,4 @@ class LanguageModel extends ChangeNotifier {
     _locale = newLocale;
     notifyListeners();
   }
-}
+} 

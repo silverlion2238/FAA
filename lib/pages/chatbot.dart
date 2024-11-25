@@ -97,7 +97,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
 
 
-      await Future.delayed(Duration(seconds: 5));
       String botReply = jsonDecode(post.body)['message']['payload']['text'];
 
 
