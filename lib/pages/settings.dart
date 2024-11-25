@@ -105,7 +105,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           height: 24,
                         ),
                         const SizedBox(width: 8),
-                        Text('Slovak')
+                        Text('Slovak (Slovensky)')
                         ],
                       )
                     ),

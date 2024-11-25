@@ -8,24 +8,44 @@ import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_application_0_0_5/pages/chatbot.dart';
+import 'package:flutter_application_0_0_5/functions/http_functions.dart';
+
 
 void main() async {
-
-  //Firebase
-  //WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
-
+  String userKey = await createUser();
+  String conversationID = await createConversation(userKey);
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeModel()),
         ChangeNotifierProvider(create: (context) => InjuryNotifier()),
         ChangeNotifierProvider(create: (context) => LanguageModel()),
+        ChangeNotifierProvider(create: (context) => DataProvider()),
       ],
       child: MyApp(),
     ),
   );
+
+  //Firebase
+  //WidgetsFlutterBinding.ensureInitialized();
+  //await Firebase.initializeApp();
 }
+
+
+
+class DataProvider with ChangeNotifier {
+  String? userKey;
+  String? conversationID;
+
+  Future<void> fetchData() async {
+    userKey = await createUser();
+    conversationID = await createConversation(userKey);
+    notifyListeners(); // Update widgets that depend on this data
+  }
+}
+
+
 
 //Change Notifiers
 
@@ -65,14 +85,17 @@ class InjuryNotifier extends ChangeNotifier {
 }
 
 //My App
-class MyApp extends StatefulWidget {
+class MyApp extends StatefulWidget {  
   @override
+  
   MyAppState createState() => MyAppState();
 }
 
 //State of My App
 class MyAppState extends State<MyApp> {
+  
 
+  
   //switching tabs 
   int _selectedIndex = 0; // To keep track of the selected tab
 
@@ -88,7 +111,6 @@ class MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
     // Initialize _widgetOptions here, after the instance is created
     _widgetOptions = <Widget>[
       ChecklistScreen(toResultTab: _onItemTapped), // Now you can use _onItemTapped
@@ -101,6 +123,7 @@ class MyAppState extends State<MyApp> {
   //Material App
   @override
   Widget build(BuildContext context) {
+    
     return Consumer<LanguageModel>(
       builder: (context, languageModel, child) {
         return MaterialApp(
@@ -126,9 +149,7 @@ class MyAppState extends State<MyApp> {
               ),
               backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             ),
-            body: Center(
-              child: _widgetOptions.elementAt(_selectedIndex),
-            ),
+            body: _widgetOptions.elementAt(_selectedIndex),
             bottomNavigationBar: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
