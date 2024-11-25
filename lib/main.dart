@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_application_0_0_5/pages/chatbot.dart';
 import 'package:flutter_application_0_0_5/functions/http_functions.dart';
 
 
@@ -34,14 +33,19 @@ void main() async {
 
 
 
-class DataProvider with ChangeNotifier {
+class DataProvider with ChangeNotifier{
   String? userKey;
   String? conversationID;
 
-  Future<void> fetchData() async {
+  DataProvider() {
+    _initializeData();
+  }
+
+  Future<void> _initializeData() async {
     userKey = await createUser();
     conversationID = await createConversation(userKey);
     notifyListeners(); // Update widgets that depend on this data
+
   }
 }
 

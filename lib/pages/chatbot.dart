@@ -35,12 +35,12 @@ class _ChatScreenState extends State<ChatScreen> {
     final dataProvider = Provider.of<DataProvider>(context);
     userKey = dataProvider.userKey ?? '';
     conversationID = dataProvider.conversationID ?? '';
-    if (userKey.isEmpty || conversationID.isEmpty) {
-      // Fetch the data
-      dataProvider.fetchData();
-    }
-    userKey = dataProvider.userKey ?? '';
-    conversationID = dataProvider.conversationID ?? '';
+    dataProvider.addListener(() {
+      setState(() {
+      userKey = dataProvider.userKey ?? '';
+      conversationID = dataProvider.conversationID ?? '';
+      });
+    });
   }
   
 
@@ -58,6 +58,8 @@ class _ChatScreenState extends State<ChatScreen> {
       final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
         _textController.clear();
 
+
+
       ChatMessage message = ChatMessage(
         text: text,
         isUser: true,
@@ -67,7 +69,7 @@ class _ChatScreenState extends State<ChatScreen> {
         _messages.insert(0, message);
         }
       );
-      print('User key: $userKey');
+
       // Send message to Botpress API
       var post = await http.post(
         Uri.parse('https://chat.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509/messages'), // Replace with your Botpress API URL
@@ -85,44 +87,65 @@ class _ChatScreenState extends State<ChatScreen> {
       );
       if (post.statusCode == 200) {
         // Botpress API call successful
-        print('Message sent to Botpress');
+        //print('Message sent to Botpress');
       } else {
         // Handle error
         print('Failed to send message to Botpress: ${post.statusCode}');
         print('Response body: ${post.body}');
       }
-      var response = await http.get(
-        Uri.parse('https://chat.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509/conversations/$conversationID/messages'), // Replace with your Botpress API URL
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'x-user-key': userKey,
-        },
-      );
-    if (response.statusCode == 200) {
-      // Parse the response and display the bot's reply
-      Map<String, dynamic> data;
-      try {
-        data = jsonDecode(response.body);
-      } catch (e) {
-        print('Error decoding response body: $e');
-        return;
+
+
+
+
+      await Future.delayed(Duration(seconds: 5));
+      String botReply = jsonDecode(post.body)['message']['payload']['text'];
+
+
+      while (botReply == jsonDecode(post.body)['message']['payload']['text']){
+        var response = await http.get(
+          Uri.parse('https://chat.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509/conversations/$conversationID/messages'), // Replace with your Botpress API URL
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-user-key': userKey,
+          },
+        );
+        if (response.statusCode == 200) {
+          // Parse the response and display the bot's reply
+          Map<String, dynamic> data;
+          print('Response body: ${response.body}');
+          try {
+            data = jsonDecode(response.body);
+          } catch (e) {
+            print('Error decoding response body: $e');
+            return;
+          }
+
+
+          print(response.body);
+          print(response.request);
+          botReply = data['messages'][0]['payload']['text'];
+
+
+          // Check if the bot's reply is the same as the user's message
+          if (botReply == jsonDecode(post.body)['message']['payload']['text']) {
+            await Future.delayed(Duration(seconds: 1));
+          } else {
+            ChatMessage botMessage = ChatMessage(
+              text: botReply,
+              isUser: false,
+            );
+            setState(() {
+              _messages.insert(0, botMessage);
+              }
+            );
+          }
+        } else {
+          // Handle error
+          print('Failed to get messages from Botpress: ${response.statusCode}');
+          print('Response body: ${response.body}');
+        }
       }
-      print(response.body);
-      print(response.request);
-      String botReply = data['messages'][0]['payload']['text'];
-      ChatMessage botMessage = ChatMessage(
-        text: botReply,
-        isUser: false,
-      );
-      setState(() {
-        _messages.insert(0, botMessage);
-      });
-    } else {
-      // Handle error
-      print('Failed to get response from Botpress: ${response.statusCode}');
-      print('Response body: ${response.body}');
     }
-  }
   
 
   @override
