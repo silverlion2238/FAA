@@ -20,7 +20,7 @@ Future<String> createUser() async {
     // User created successfully, extract the user key from the response
     final responseBody = response.body; 
     userKey = jsonDecode(responseBody)['key'];
-    print('User key: $userKey');
+    //print('User key: $userKey');
     return userKey;
   } else {
     // Handle errors
@@ -51,7 +51,7 @@ Future<String> createConversation(userKey) async {
   if (response.statusCode == 200) {
     // conversation created successfully, extract the conversation id from the response
     conversationID = jsonDecode(response.body)['conversation']['id']; 
-    print('ConversationID: $conversationID');
+    //print('ConversationID: $conversationID');
     return conversationID;
   } else {
     // Handle errors

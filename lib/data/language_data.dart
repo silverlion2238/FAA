@@ -1,3 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_application_0_0_5/models/language_model.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_application_0_0_5/data/data.dart';
+
+
 const Map<String, Map<String, String>> translations = {
   'en': {
     'appTitle': 'My App',

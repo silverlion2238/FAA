@@ -90,7 +90,7 @@ class ChecklistScreenState extends State<ChecklistScreen> {
         itemCount: items.length,
         itemBuilder: (context, index) {
           return CheckboxListTile(
-            title: Text(items[index].getName()),
+            title: Text(items[index].getName(context)),
             value: selectedSymptoms.contains(items[index]),
             onChanged: (value) {
               if (value != null) {

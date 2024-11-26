@@ -22,26 +22,26 @@ enum Symptom {
 
 
 
-  String getName() {
+  String getName(context) {
       switch (this) {
         case Symptom.coughing:
-          return LanguageData().translate('Cough');
+          return LanguageData().updateTranslation('Cough', context);
         case Symptom.sweating:
-          return LanguageData().translate('Sweating');
+          return LanguageData().updateTranslation('Sweating', context);
         case Symptom.bleeding:
-          return LanguageData().translate('Bleeding');
+          return LanguageData().updateTranslation('Bleeding', context);
         case Symptom.mildCut:
-          return LanguageData().translate('MildCut');
+          return LanguageData().updateTranslation('MildCut', context);
         case Symptom.severeCut:
-          return LanguageData().translate('SevereCut');
+          return LanguageData().updateTranslation('SevereCut', context);
         case Symptom.cantMove:
-          return LanguageData().translate('CantMove');
+          return LanguageData().updateTranslation('CantMove', context);
         case Symptom.painInInjuredArea:
-          return LanguageData().translate('PainInArea');
+          return LanguageData().updateTranslation('PainInArea', context);
         case Symptom.swelling:
-          return LanguageData().translate('Swelling');
+          return LanguageData().updateTranslation('Swelling', context);
         case Symptom.bruise:
-          return LanguageData().translate('Bruise');
+          return LanguageData().updateTranslation('Bruise', context);
       }
     }
 
@@ -156,13 +156,6 @@ List<Injury> injuries = [
       function3,
     ),
     Injury(
-      LanguageData().translate('Sprain'),
-      LanguageData().translate('SprainDesc'),
-      LanguageData().translate('SprainSolution'),
-      [Symptom.cantMove],
-      function2,
-    ),
-    Injury(
       LanguageData().translate('Dislocation'),
       LanguageData().translate('DislocationDesc'),
       LanguageData().translate('DislocationSolution'),
@@ -178,7 +171,52 @@ List<Injury> injuries = [
     ),
   ];
 
-
+void updateInjuries(context) {
+    injuries = [
+      Injury(
+        LanguageData().updateTranslation('CommonCold', context),
+        LanguageData().updateTranslation('CommonColdDesc', context),
+        LanguageData().updateTranslation('CommonColdSolution', context),
+        [Symptom.coughing, Symptom.sweating],
+        function2,
+      ),
+      Injury(
+        LanguageData().updateTranslation('MildCut', context),
+        LanguageData().updateTranslation('MildCutDesc', context),
+        LanguageData().updateTranslation('MildCutSolution', context),
+        [Symptom.bleeding, Symptom.mildCut],
+        function3,
+      ),
+      Injury(
+        LanguageData().updateTranslation('SevereCut', context),
+        LanguageData().updateTranslation('SevereCutDesc', context),
+        LanguageData().updateTranslation('SevereCutSolution', context),
+        [Symptom.bleeding, Symptom.severeCut],
+        function2,
+      ),
+      Injury(
+        LanguageData().updateTranslation('Nosebleed', context),
+        LanguageData().updateTranslation('NosebleedDesc', context),
+        LanguageData().updateTranslation('NosebleedSolution', context),
+        [Symptom.bleeding],
+        function3,
+      ),
+      Injury(
+        LanguageData().updateTranslation('Dislocation', context),
+        LanguageData().updateTranslation('DislocationDesc', context),
+        LanguageData().updateTranslation('DislocationSolution', context),
+        [Symptom.painInInjuredArea, Symptom.cantMove, Symptom.swelling],
+        function3,
+      ),
+      Injury(
+        LanguageData().updateTranslation('BoneFracture', context),
+        LanguageData().updateTranslation('BoneFractureDesc', context),
+        LanguageData().updateTranslation('BoneFractureSolution', context),
+        [Symptom.painInInjuredArea, Symptom.cantMove],
+        function3,
+      ),
+    ];
+  }
 
 
 

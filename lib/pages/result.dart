@@ -80,6 +80,10 @@ class ResultScreenState extends State<ResultScreen> {
 
         onPressed: () {
           context.read<InjuryNotifier>().getResults(resultInjuries: injuries);
+          /*print('injuries: ${injuries.print(name)}');
+          for (var injury in injuries) {
+            print(injury.getName());
+          }*/
         }
     )
     );

@@ -14,4 +14,14 @@ class LanguageData {
       return 'Translation not found';
     }
   }
+
+  String updateTranslation(String key,context) {
+    final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+    if (translations[locale] != null && translations[locale]![key] != null) {
+      return translations[locale]![key]!;
+    } else {
+      return 'Translation not found';
+    }
+  }
 }
+

@@ -72,6 +72,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ListTile(
             title: Text(translations[locale]?['Language: '] ?? 'Language: '),
           ),
+
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
@@ -113,6 +114,8 @@ class _SettingsPageState extends State<SettingsPage> {
                   onChanged: (Locale? newLocale) {
                     if (newLocale != null) {
                     languageModel.changeLanguage(newLocale);
+                    updateInjuries(context);
+                    context.read<InjuryNotifier>().getResults(resultInjuries: injuries);
                       }
                     },
                   );
