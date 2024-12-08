@@ -62,7 +62,7 @@ class ResultScreenState extends State<ResultScreen> {
 
             child:ListTile(
               title: Text(displayInjuries[index].getName()),
-              subtitle: Text(displayInjuries[index].getDescription()),
+              //subtitle: Text(displayInjuries[index].getDescription()),
             ),
 
           );

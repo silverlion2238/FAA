@@ -21,58 +21,91 @@ class _SettingsPageState extends State<SettingsPage> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       body:Column(
         children: <Widget>[
-
+          
+          // Theme selection title
           ListTile(
             title: Text(translations[locale]!['App Theme: ']!),
           ),
 
-
+          // Theme selection
           Consumer<ThemeModel>(
             builder: (context, themeModel, child) {
-              return RadioListTile<ThemeMode>(
-                title: Text(translations[locale]?['System'] ?? 'System'),
-                value: ThemeMode.system,
-                groupValue: themeModel.themeMode,  
-                onChanged: (ThemeMode? value) {
-                  themeModel.toggleTheme(value!);
-                },
+              return Column(
+                children: [
+                  RadioListTile<String>(
+                    title: Text(translations[locale]?['System'] ?? 'System'),
+                    value: 'system',
+                    groupValue: themeModel.themeMode.toString(),
+                    onChanged: (String? value) {
+                      themeModel.toggleTheme(ThemeMode.system);
+                    },
+                  ),
+                  RadioListTile<String>(
+                    title: Text(translations[locale]?['Red Light'] ?? 'Red Light'),
+                    value: 'red_light',
+                    groupValue: themeModel.themeMode.toString(),
+                    onChanged: (String? value) {
+                      themeModel.toggleTheme(ThemeMode.light);
+                      Provider.of<ThemeNotifier>(context, listen: false).setTheme(redLightTheme, redDarkTheme);
+                    },
+                  ),
+                  RadioListTile<String>(
+                    title: Text(translations[locale]?['Red Dark'] ?? 'Red Dark'),
+                    value: 'red_dark',
+                    groupValue: themeModel.themeMode.toString(),
+                    onChanged: (String? value) {
+                      themeModel.toggleTheme(ThemeMode.dark);
+                      Provider.of<ThemeNotifier>(context, listen: false).setTheme(redLightTheme, redDarkTheme);
+                    },
+                  ),
+                  RadioListTile<String>(
+                    title: Text(translations[locale]?['Green Light'] ?? 'Green Light'),
+                    value: 'green_light',
+                    groupValue: themeModel.themeMode.toString(),
+                    onChanged: (String? value) {
+                      themeModel.toggleTheme(ThemeMode.light);
+                      Provider.of<ThemeNotifier>(context, listen: false).setTheme(greenLightTheme, greenDarkTheme);
+                    },
+                  ),
+                  RadioListTile<String>(
+                    title: Text(translations[locale]?['Green Dark'] ?? 'Green Dark'),
+                    value: 'green_dark',
+                    groupValue: themeModel.themeMode.toString(),
+                    onChanged: (String? value) {
+                      themeModel.toggleTheme(ThemeMode.dark);
+                      Provider.of<ThemeNotifier>(context, listen: false).setTheme(greenLightTheme, greenDarkTheme);
+                    },
+                  ),
+                  RadioListTile<String>(
+                    title: Text(translations[locale]?['Blue Light'] ?? 'Blue Light'),
+                    value: 'blue_light',
+                    groupValue: themeModel.themeMode.toString(),
+                    onChanged: (String? value) {
+                      themeModel.toggleTheme(ThemeMode.light);
+                      Provider.of<ThemeNotifier>(context, listen: false).setTheme(blueLightTheme, blueDarkTheme);
+                    },
+                  ),
+                  RadioListTile<String>(
+                    title: Text(translations[locale]?['Blue Dark'] ?? 'Blue Dark'),
+                    value: 'blue_dark',
+                    groupValue: themeModel.themeMode.toString(),
+                    onChanged: (String? value) {
+                      themeModel.toggleTheme(ThemeMode.dark);
+                      Provider.of<ThemeNotifier>(context, listen: false).setTheme(blueLightTheme, blueDarkTheme);
+                    },
+                  ),
+                ],
               );
             }
           ),
-          
-            
-          Consumer<ThemeModel>(
-            builder: (context, themeModel, child) {
-              return RadioListTile<ThemeMode>(
-                title: Text(translations[locale]?['Light'] ?? 'Light'),
-                value: ThemeMode.light,
-                groupValue: themeModel.themeMode,  
-                onChanged: (ThemeMode? value) {
-                  themeModel.toggleTheme(value!);
-                },
-              );
-            },
-          ),
-          
-          
-          
-          Consumer<ThemeModel>(
-            builder: (context, themeModel, child) {
-              return RadioListTile<ThemeMode>(
-                title: Text(translations[locale]?['Dark'] ?? 'Dark'),
-                value: ThemeMode.dark,
-                groupValue: themeModel.themeMode,  
-                onChanged: (ThemeMode? value) {
-                  themeModel.toggleTheme(value!);
-                },
-              );
-            }
-          ),
 
+
+          // Language selection title
           ListTile(
             title: Text(translations[locale]?['Language: '] ?? 'Language: '),
           ),
 
+          // Language selection
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
@@ -114,7 +147,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   onChanged: (Locale? newLocale) {
                     if (newLocale != null) {
                     languageModel.changeLanguage(newLocale);
-                    updateInjuries(context);
+                    restoreInjuries(context);
                     context.read<InjuryNotifier>().getResults(resultInjuries: injuries);
                       }
                     },

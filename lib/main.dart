@@ -9,15 +9,18 @@ import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_application_0_0_5/functions/http_functions.dart';
+import 'package:flutter_application_0_0_5/pages/main_page.dart';
 
 
 void main() async {
-  String userKey = await createUser();
-  String conversationID = await createConversation(userKey);
+  WidgetsFlutterBinding.ensureInitialized();
+
+  
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeModel()),
+        ChangeNotifierProvider(create: (_) => ThemeNotifier()),
         ChangeNotifierProvider(create: (context) => InjuryNotifier()),
         ChangeNotifierProvider(create: (context) => LanguageModel()),
         ChangeNotifierProvider(create: (context) => DataProvider()),
@@ -37,14 +40,13 @@ class DataProvider with ChangeNotifier{
   String? userKey;
   String? conversationID;
 
-  DataProvider() {
-    _initializeData();
-  }
 
-  Future<void> _initializeData() async {
+
+  Future<List<String?>> initializeData() async {
     userKey = await createUser();
     conversationID = await createConversation(userKey);
-    notifyListeners(); // Update widgets that depend on this data
+    notifyListeners();
+    return [userKey,conversationID]; // Update widgets that depend on this data
 
   }
 }
@@ -64,6 +66,21 @@ class ThemeModel extends ChangeNotifier {
     notifyListeners(); // Notify listeners to rebuild
   }
 }
+
+class ThemeNotifier extends ChangeNotifier {
+  ThemeData _currentLightTheme = redLightTheme;
+  ThemeData _currentDarkTheme = redDarkTheme;
+
+  ThemeData get currentLightTheme => _currentLightTheme;
+  ThemeData get currentDarkTheme => _currentDarkTheme;
+
+  void setTheme(ThemeData theme, ThemeData darkTheme) {
+    _currentLightTheme = theme;
+    _currentDarkTheme = darkTheme;
+    notifyListeners();
+  }
+}
+
 
 //syncing displayed injuries
 class InjuryNotifier extends ChangeNotifier {
@@ -101,7 +118,7 @@ class MyAppState extends State<MyApp> {
 
   
   //switching tabs 
-  int _selectedIndex = 0; // To keep track of the selected tab
+  int _selectedIndex = 2; // To keep track of the selected tab
 
   void _onItemTapped(int index) {
     setState(() {
@@ -119,8 +136,9 @@ class MyAppState extends State<MyApp> {
     _widgetOptions = <Widget>[
       ChecklistScreen(toResultTab: _onItemTapped), // Now you can use _onItemTapped
       ResultScreen(),
-      SettingsPage(),
+      MainPage(toResultTab: _onItemTapped,),
       ChatScreen(),
+      SettingsPage(),
     ];
   }
 
@@ -142,13 +160,13 @@ class MyAppState extends State<MyApp> {
             Locale('sk'),
           ],
           themeMode: Provider.of<ThemeModel>(context).themeMode, // Get theme from provider
-          theme: lightTheme,
-          darkTheme: darkTheme,
+          theme: Provider.of<ThemeNotifier>(context).currentLightTheme,
+          darkTheme: Provider.of<ThemeNotifier>(context).currentDarkTheme,
           home: Scaffold(
             backgroundColor: Theme.of(context).colorScheme.surface,
             appBar: AppBar(
               title: Text(
-                'My App',
+                'Prvá pomoc pre školákov',
                 style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
               ),
               backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
@@ -165,12 +183,16 @@ class MyAppState extends State<MyApp> {
                   label: 'Results',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: 'Settings',
+                  icon: Icon(Icons.home),
+                  label: 'Main',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.chat),
                   label: 'Chatbot',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: 'Settings',
                 ),
               ],
               currentIndex: _selectedIndex,

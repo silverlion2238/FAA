@@ -4,16 +4,21 @@ import 'dart:convert';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:provider/provider.dart'; 
 import 'package:flutter_application_0_0_5/main.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 
 Future<String> createUser() async {
   String userKey = '';
+  // Check for internet connection
+  
+  // Check for internet connection
+  
   final response = await http.post(
     Uri.parse('https://chat.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509/users'), // Webhook URL
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{
-    }),
+    body: jsonEncode(<String, String>{}),
   ); 
 
   if (response.statusCode == 200) {
@@ -27,8 +32,9 @@ Future<String> createUser() async {
     print('Failed to create user: ${response.statusCode}'); 
     return '';
   }
-}//https://webhook.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509
+}
 
+//https://webhook.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509
 
 
 
@@ -62,3 +68,14 @@ Future<String> createConversation(userKey) async {
   }
 }
 
+Future<String> checkConnectivity() async {
+  var connectivityResult = await (Connectivity().checkConnectivity());
+  if (connectivityResult[0] == ConnectivityResult.none) {
+    print('No internet connection');
+    final response = await Future.value('');
+    return 'connectionError';
+  } else {
+    print('connected');
+    return 'connected';
+  }
+}

@@ -126,7 +126,7 @@ class Injury {
 
 
 
-List<Injury> injuries = [
+List<Injury> origInjuries = [
     Injury(
       LanguageData().translate('CommonCold'),
       LanguageData().translate('CommonColdDesc'),
@@ -171,51 +171,10 @@ List<Injury> injuries = [
     ),
   ];
 
-void updateInjuries(context) {
-    injuries = [
-      Injury(
-        LanguageData().updateTranslation('CommonCold', context),
-        LanguageData().updateTranslation('CommonColdDesc', context),
-        LanguageData().updateTranslation('CommonColdSolution', context),
-        [Symptom.coughing, Symptom.sweating],
-        function2,
-      ),
-      Injury(
-        LanguageData().updateTranslation('MildCut', context),
-        LanguageData().updateTranslation('MildCutDesc', context),
-        LanguageData().updateTranslation('MildCutSolution', context),
-        [Symptom.bleeding, Symptom.mildCut],
-        function3,
-      ),
-      Injury(
-        LanguageData().updateTranslation('SevereCut', context),
-        LanguageData().updateTranslation('SevereCutDesc', context),
-        LanguageData().updateTranslation('SevereCutSolution', context),
-        [Symptom.bleeding, Symptom.severeCut],
-        function2,
-      ),
-      Injury(
-        LanguageData().updateTranslation('Nosebleed', context),
-        LanguageData().updateTranslation('NosebleedDesc', context),
-        LanguageData().updateTranslation('NosebleedSolution', context),
-        [Symptom.bleeding],
-        function3,
-      ),
-      Injury(
-        LanguageData().updateTranslation('Dislocation', context),
-        LanguageData().updateTranslation('DislocationDesc', context),
-        LanguageData().updateTranslation('DislocationSolution', context),
-        [Symptom.painInInjuredArea, Symptom.cantMove, Symptom.swelling],
-        function3,
-      ),
-      Injury(
-        LanguageData().updateTranslation('BoneFracture', context),
-        LanguageData().updateTranslation('BoneFractureDesc', context),
-        LanguageData().updateTranslation('BoneFractureSolution', context),
-        [Symptom.painInInjuredArea, Symptom.cantMove],
-        function3,
-      ),
-    ];
+List<Injury> injuries = origInjuries;
+
+void restoreInjuries(context) {
+    injuries = origInjuries;
   }
 
 
@@ -226,52 +185,140 @@ void updateInjuries(context) {
 
 
 
-ThemeData lightTheme = ThemeData(
+ThemeData redLightTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.light,
 
   appBarTheme: AppBarTheme(
-    backgroundColor: Color.fromARGB(255, 255, 0, 0),
+    backgroundColor: Color(0xFFC2000B),
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
 
-    selectedItemColor: Color.fromARGB(255, 255, 0, 0),
-    unselectedItemColor: Color.fromARGB(255, 54, 54, 54),
+    selectedItemColor: Color(0xFFC2000B),
+    unselectedItemColor: Color.fromARGB(255, 80, 80, 80),
     
   ),
 
   colorScheme: ColorScheme.light(
     surface: Color.fromARGB(255, 255, 255, 255),
-    primary: Color.fromARGB(255, 255, 0, 0),
+    primary: Color(0xFFC2000B),
     onPrimary: Color.fromARGB(255, 255, 255, 255),
     secondary: Color.fromARGB(255, 0, 0, 0),
-    onSecondary: Color.fromARGB(255, 255, 0, 0),
-    surfaceTint: Colors.transparent,
+    onSecondary: Color(0xFFC2000B),
+    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    onSurface: Color.fromARGB(255, 0, 0, 0),
   ),    
 );
 
-ThemeData darkTheme = ThemeData(
+ThemeData redDarkTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.dark,
 
 
   appBarTheme: AppBarTheme(
-    backgroundColor: Color.fromARGB(255, 176, 0, 0),
+    //backgroundColor: Color.fromARGB(255, 71, 4, 4),
+    backgroundColor: Color(0xFFC2000B),
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
 
-    selectedItemColor: Color.fromARGB(255, 255, 0, 0),
+    selectedItemColor: Color(0xFFC2000B),
     unselectedItemColor: Color.fromARGB(255, 255, 255, 255),
   ),
 
   colorScheme: ColorScheme.dark(
-    surface: Color.fromARGB(255, 54, 54, 54),
-    primary: Color.fromARGB(255, 176, 0, 0),
+    surface: Color.fromARGB(255, 80, 80, 80),
+    primary: Color(0xFFC2000B),
     onPrimary: Color.fromARGB(255, 255, 255, 255),
     secondary: Color.fromARGB(255, 255, 255, 255),
-    onSecondary: Color.fromARGB(255, 255, 0, 0),
-    surfaceTint: Colors.transparent,
+    onSecondary: Color(0xFFC2000B),
+    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    onSurface: Color.fromARGB(255, 255, 255, 255)
+    
+  ),
+);
+
+ThemeData greenLightTheme = ThemeData(
+  useMaterial3: true,
+  brightness: Brightness.light,
+  appBarTheme: AppBarTheme(
+    backgroundColor: Color(0xFF12491D),
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor: Color(0xFF12491D),
+    unselectedItemColor: Color.fromARGB(255, 80, 80, 80),
+  ),
+  colorScheme: ColorScheme.light(
+    surface: Color.fromARGB(255, 255, 255, 255),
+    primary: Color(0xFF12491D),
+    onPrimary: Color.fromARGB(255, 255, 255, 255),
+    secondary: Color.fromARGB(255, 0, 0, 0),
+    onSecondary: Color(0xFF12491D),
+    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    onSurface: Color.fromARGB(255, 0, 0, 0),
+  ),
+);
+
+ThemeData greenDarkTheme = ThemeData(
+  useMaterial3: true,
+  brightness: Brightness.dark,
+  appBarTheme: AppBarTheme(
+    backgroundColor: Color(0xFF12491D),
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor: Color(0xFF12491D),
+    unselectedItemColor: Color.fromARGB(255, 255, 255, 255),
+  ),
+  colorScheme: ColorScheme.dark(
+    surface: Color.fromARGB(255, 80, 80, 80),
+    primary: Color(0xFF12491D),
+    onPrimary: Color.fromARGB(255, 255, 255, 255),
+    secondary: Color.fromARGB(255, 255, 255, 255),
+    onSecondary: Color(0xFF12491D),
+    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    onSurface: Color.fromARGB(255, 255, 255, 255),
+  ),
+);
+
+ThemeData blueLightTheme = ThemeData(
+  useMaterial3: true,
+  brightness: Brightness.light,
+  appBarTheme: AppBarTheme(
+    backgroundColor: Colors.blue[900],
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor: Colors.blue[900]!,
+    unselectedItemColor: Color.fromARGB(255, 80, 80, 80),
+  ),
+  colorScheme: ColorScheme.light(
+    surface: Color.fromARGB(255, 255, 255, 255),
+    primary: Colors.blue[900]!,
+    onPrimary: Color.fromARGB(255, 255, 255, 255),
+    secondary: Color.fromARGB(255, 0, 0, 0),
+    onSecondary: Colors.blue[900]!,
+    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    onSurface: Color.fromARGB(255, 0, 0, 0),
+  ),
+);
+
+ThemeData blueDarkTheme = ThemeData(
+  useMaterial3: true,
+  brightness: Brightness.dark,
+  appBarTheme: AppBarTheme(
+    backgroundColor: Colors.blue[900]!,
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor: Colors.blue[900]!,
+    unselectedItemColor: Color.fromARGB(255, 255, 255, 255),
+  ),
+  colorScheme: ColorScheme.dark(
+    surface: Color.fromARGB(255, 80, 80, 80),
+    primary: Colors.blue[900]!,
+    onPrimary: Color.fromARGB(255, 255, 255, 255),
+    secondary: Color.fromARGB(255, 255, 255, 255),
+    onSecondary: Colors.blue[900]!,
+    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    onSurface: Color.fromARGB(255, 255, 255, 255),
   ),
 );

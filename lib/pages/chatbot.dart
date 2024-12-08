@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:http/http.dart' as http;
@@ -7,7 +9,7 @@ import 'package:flutter_application_0_0_5/pages/settings.dart';
 import 'package:flutter_application_0_0_5/data/data.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
-
+import 'package:flutter_application_0_0_5/functions/http_functions.dart';
 
 
 class ChatScreen extends StatefulWidget {
@@ -20,28 +22,47 @@ class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
 
-  late String userKey;
-  late String conversationID;
-  
-  @override
-  void initState() {
-    super.initState();
+  List tempList = [];
+  String userKey = '';
+  String conversationID = '';
+  bool isConnected = false;
+
+  Future<bool> _checkConnection() async {
+    String checkConnection = await checkConnectivity();
+    
+    if (checkConnection == 'connected') {
+      print('data initialized');
+      isConnected = true;
+      return true;
+    } else {
+      print('cant access internet');
+      return false;
+    }
+  }
+ 
+  void _initializeData() async {
+    tempList = await DataProvider().initializeData();
+    userKey = tempList[0];
+    conversationID = tempList[1];
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Access the provider and get the data
-    final dataProvider = Provider.of<DataProvider>(context);
-    userKey = dataProvider.userKey ?? '';
-    conversationID = dataProvider.conversationID ?? '';
-    dataProvider.addListener(() {
-      setState(() {
-      userKey = dataProvider.userKey ?? '';
-      conversationID = dataProvider.conversationID ?? '';
-      });
-    });
+  void initState() {
+    super.initState();
+    
+    _checkConnection().then(
+      (isConnected) {
+        if (isConnected) {
+          print('initializing data');
+          _initializeData();
+        } else {
+          print('initialization aborted');
+        }
+      }
+    );
   }
+
+
   
 
 
@@ -54,7 +75,7 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   */
 
-    void _handleSubmitted(String text, userKey,conversationID) async {
+    void _handleSubmitted(String text,) async {
       final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
         _textController.clear();
 
@@ -69,6 +90,11 @@ class _ChatScreenState extends State<ChatScreen> {
         _messages.insert(0, message);
         }
       );
+
+
+      //check internet connection
+      
+
 
       // Send message to Botpress API
       var post = await http.post(
@@ -165,14 +191,14 @@ class _ChatScreenState extends State<ChatScreen> {
           Divider(height: 1.0),
           Container(
             decoration: BoxDecoration(color: Theme.of(context).cardColor),
-            child: _buildTextComposer(),
+            child: _buildTextComposer(locale),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildTextComposer() {
+  Widget _buildTextComposer(String locale) {
     return IconTheme(
       data: IconThemeData(color: Theme.of(context).colorScheme.secondary),
       child: Container(
@@ -182,7 +208,22 @@ class _ChatScreenState extends State<ChatScreen> {
             Flexible(
               child: TextField(
                 controller: _textController,
-                onSubmitted: (text) => _handleSubmitted(text, userKey, conversationID),
+                onSubmitted: (text) {
+                  if (isConnected) {
+                  _handleSubmitted(text);
+                    } else {
+                    showDialog(
+                      context: context, 
+                      builder: (context) => AlertDialog(
+                        title: Text(translations[locale]!['wrongInput']!),
+                        content: Text(translations[locale]!['noResults']!),
+                        actions: [
+                          TextButton(onPressed: () => Navigator.pop(context), child: Text(translations[locale]!['ok']!)),
+                        ],
+                      )
+                    );
+                  }
+                },
                 decoration:
                     InputDecoration.collapsed(hintText: "Send a message"),
               ),
@@ -191,7 +232,22 @@ class _ChatScreenState extends State<ChatScreen> {
               margin: EdgeInsets.symmetric(horizontal: 4.0),
               child: IconButton(
                 icon: Icon(Icons.send),
-                onPressed: () => _handleSubmitted(_textController.text, userKey, conversationID),
+                onPressed: () {
+                  if (isConnected) {
+                    _handleSubmitted(_textController.text);
+                  } else {
+                    showDialog(
+                      context: context, 
+                      builder: (context) => AlertDialog(
+                        title: Text(translations[locale]!['wrongInput']!),
+                        content: Text(translations[locale]!['noResults']!),
+                        actions: [
+                          TextButton(onPressed: () => Navigator.pop(context), child: Text(translations[locale]!['ok']!)),
+                        ],
+                      )
+                    );
+                  }
+                },
               ),
             ),
           ],
