@@ -27,12 +27,17 @@ List<Injury> whichInjury(BuildContext context, List<Symptom> appearedSymptoms) {
 
 //special cases of undecidable outcome check and execution
 Function switchCase(List<Symptom> symptomList) {
-  if (symptomList.contains(Symptom.painInInjuredArea) | symptomList.contains(Symptom.cantMove)) {
-    return specialFunction1;
-  } else {
+
+
+  //special case 1
+  switch (symptomList) {
+    case List<Symptom> symptoms when symptoms.contains(Symptom.pain) || symptoms.contains(Symptom.immobility):
+      return specialFunction1;
+    default:
       return nullFunction;
-  }       
-}
+  }
+}       
+
 
 
 

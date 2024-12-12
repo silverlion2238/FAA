@@ -6,6 +6,7 @@ import 'package:flutter_application_0_0_5/data/language_data.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/functions/language_functions.dart';
 
+/* Old Data
 enum Symptom {
   coughing,
   sweating,
@@ -48,14 +49,80 @@ enum Symptom {
 
 
 @override
-String toString() =>  name;
+String toString() =>  name; 
 }
+*/
 
+// Correct Data
+enum Symptom {
+  bleeding,
+  blister,
+  crackingSound,
+  foaming,
+  immobility,
+  laboredBreathing,
+  nausea,
+  nosebleed,
+  numbness,
+  pain,
+  rBreathing,
+  rHeartbeat,
+  reddening,  
+  slurredSpeech,
+  swelling,
+  twitching,
+  unresponsive,
+  wheezing; 
+
+  String getName(context) {
+    switch (this) {
+      case Symptom.bleeding:
+        return LanguageData().updateTranslation('Bleeding', context);
+      case Symptom.blister:
+        return LanguageData().updateTranslation('Blister', context);
+      case Symptom.crackingSound:
+        return LanguageData().updateTranslation('CrackingSound', context);
+      case Symptom.foaming:
+        return LanguageData().updateTranslation('Foaming', context);
+      case Symptom.immobility:
+        return LanguageData().updateTranslation('Immobility', context);
+      case Symptom.laboredBreathing:
+        return LanguageData().updateTranslation('LaboredBreath', context);
+      case Symptom.nausea:
+        return LanguageData().updateTranslation('Nausea', context);
+      case Symptom.nosebleed:
+        return LanguageData().updateTranslation('Nosebleed', context);
+      case Symptom.numbness:
+        return LanguageData().updateTranslation('Numbness', context);
+      case Symptom.pain:
+        return LanguageData().updateTranslation('Pain', context);
+      case Symptom.rBreathing:
+        return LanguageData().updateTranslation('RapidBreath', context);
+      case Symptom.rHeartbeat:
+        return LanguageData().updateTranslation('RapidPulse', context);
+      case Symptom.reddening:
+        return LanguageData().updateTranslation('Reddening', context);
+      case Symptom.slurredSpeech:
+        return LanguageData().updateTranslation('SlurredSpeech', context);
+      case Symptom.swelling:
+        return LanguageData().updateTranslation('Swelling', context);
+      case Symptom.twitching:
+        return LanguageData().updateTranslation('Twitching', context);
+      case Symptom.unresponsive:
+        return LanguageData().updateTranslation('Unresponsive', context);
+      case Symptom.wheezing:
+        return LanguageData().updateTranslation('Wheezing', context);
+    }
+  }
+
+  @override
+  String toString() => name;
+}
 
 
 class Injury {
   String name = "";
-  String description = "";
+  String description = ""; 
   String solution = "";
   List<Symptom> symptoms = [];
   Function result = nullFunction;
@@ -125,51 +192,120 @@ class Injury {
 
 
 
-
+/* old Injuries
 List<Injury> origInjuries = [
     Injury(
       LanguageData().translate('CommonCold'),
       LanguageData().translate('CommonColdDesc'),
       LanguageData().translate('CommonColdSolution'),
       [Symptom.coughing, Symptom.sweating],
-      function2,
+      functionCCold,
     ),
     Injury(
       LanguageData().translate('MildCut'),
       LanguageData().translate('MildCutDesc'),
       LanguageData().translate('MildCutSolution'),
       [Symptom.bleeding, Symptom.mildCut],
-      function3,
+      functionMCut,
     ),
     Injury(
       LanguageData().translate('SevereCut'),
       LanguageData().translate('SevereCutDesc'),
       LanguageData().translate('SevereCutSolution'),
       [Symptom.bleeding, Symptom.severeCut],
-      function2,
+      functionSCut,
     ),
     Injury(
       LanguageData().translate('Nosebleed'),
       LanguageData().translate('NosebleedDesc'),
       LanguageData().translate('NosebleedSolution'),
       [Symptom.bleeding],
-      function3,
+      functionNBleed,
     ),
     Injury(
       LanguageData().translate('Dislocation'),
       LanguageData().translate('DislocationDesc'),
       LanguageData().translate('DislocationSolution'),
       [Symptom.painInInjuredArea, Symptom.cantMove, Symptom.swelling],
-      function3,
+      functionDislocation,
     ),
     Injury(
       LanguageData().translate('BoneFracture'),
       LanguageData().translate('BoneFractureDesc'),
       LanguageData().translate('BoneFractureSolution'),
       [Symptom.painInInjuredArea, Symptom.cantMove],
-      function3,
+      functionFracture,
     ),
   ];
+*/
+
+
+// Correct Injuries
+List<Injury> origInjuries = [
+  Injury(
+    LanguageData().translate('Burns'), // Popálenina
+    LanguageData().translate('BurnsDesc'), 
+    LanguageData().translate('BurnsSolution'), 
+    [Symptom.pain, Symptom.reddening, Symptom.blister], 
+    functionBurns,
+  ),
+  Injury(
+    LanguageData().translate('ChemicalBurns'), // Poleptanie
+    LanguageData().translate('ChemicalBurnsDesc'),
+    LanguageData().translate('ChemicalBurnsSolution'),
+    [Symptom.pain, Symptom.reddening],
+    functionCBurn,
+  ),
+  Injury(
+    LanguageData().translate('Fracture'), // Zlomenina
+    LanguageData().translate('FractureDesc'),
+    LanguageData().translate('FractureSolution'),
+    [Symptom.pain, Symptom.immobility, Symptom.crackingSound, Symptom.swelling],
+    functionFracture,
+  ),
+  Injury(
+    LanguageData().translate('Dislocation'), // Vykĺbenina
+    LanguageData().translate('DislocationDesc'),
+    LanguageData().translate('DislocationSolution'),
+    [Symptom.pain, Symptom.immobility, Symptom.swelling], 
+    functionDislocation,
+  ),
+  Injury(
+    LanguageData().translate('Nosebleed'), // Krvácanie z nosa
+    LanguageData().translate('NosebleedDesc'),
+    LanguageData().translate('NosebleedSolution'),
+    [Symptom.nosebleed],
+    functionNBleed,
+  ),
+  Injury(
+    LanguageData().translate('Hypervent'), // Hyperventilácia
+    LanguageData().translate('HyperventDesc'),
+    LanguageData().translate('HyperventSolution'),
+    [Symptom.rBreathing, Symptom.rHeartbeat, Symptom.nausea, Symptom.numbness],
+    functionHypervent,
+  ),
+  Injury(
+    LanguageData().translate('Unconscious'), // Bezvedomie
+    LanguageData().translate('UnconsciousDesc'),
+    LanguageData().translate('UnconsciousSolution'),
+    [Symptom.unresponsive], 
+    functionUnconscious,
+  ),
+  Injury(
+    LanguageData().translate('Epilepsy'), 
+    LanguageData().translate('EpilepsyDesc'),
+    LanguageData().translate('EpilepsySolution'),
+    [Symptom.foaming, Symptom.twitching],
+    functionEpilepsy,
+  ),
+  Injury(
+    LanguageData().translate('AsthmaAttack'), // Astmatický záchvat
+    LanguageData().translate('AsthmaAttackDesc'), 
+    LanguageData().translate('AsthmaAttackSolution'), 
+    [Symptom.laboredBreathing, Symptom.wheezing, Symptom.slurredSpeech], 
+    functionAsthmaAtt,
+  ),
+];
 
 List<Injury> injuries = origInjuries;
 
