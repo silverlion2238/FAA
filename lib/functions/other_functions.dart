@@ -4,26 +4,29 @@ import 'package:flutter_application_0_0_5/pages/solution.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
 import 'package:provider/provider.dart';
 
-
-
-void openSolutionPage (context, resultFunction) {
+void openSolutionPage(context, resultFunction, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
-    showModalBottomSheet(
-      barrierColor: Theme.of(context).colorScheme.surface,
-      //isScrollControlled: true,
-      context: context, 
-      builder: (context) => Padding(
-        padding: const EdgeInsets.only(top: 0.0),
-        child: SolutionPage(
-          solutionFunction: resultFunction
+  if (pageNum == 1) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SolutionPage(
+          solutionFunction: resultFunction,
         ),
-      )
+      ),
+    );
+  } else {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SolutionPage(
+          solutionFunction: resultFunction,
+          pageNum: pageNum,
+        ),
+      ),
     );
   }
-
-
-
+}
 
 
 void nullFunction() {}
-

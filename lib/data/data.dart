@@ -289,7 +289,7 @@ List<Injury> origInjuries = [
     LanguageData().translate('UnconsciousDesc'),
     LanguageData().translate('UnconsciousSolution'),
     [Symptom.unresponsive], 
-    functionUnconscious,
+    functionUnconsciousB,          //<===========================    REPLACE WITH UNCONSCIOUS FUNCTION
   ),
   Injury(
     LanguageData().translate('Epilepsy'), 
@@ -342,7 +342,7 @@ ThemeData redLightTheme = ThemeData(
     onPrimary: Color.fromARGB(255, 255, 255, 255),
     secondary: Color.fromARGB(255, 0, 0, 0),
     onSecondary: Color(0xFFC2000B),
-    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    surfaceTint: Color.fromARGB(255, 255, 255, 255),
     onSurface: Color.fromARGB(255, 0, 0, 0),
   ),    
 );
@@ -391,7 +391,7 @@ ThemeData greenLightTheme = ThemeData(
     onPrimary: Color.fromARGB(255, 255, 255, 255),
     secondary: Color.fromARGB(255, 0, 0, 0),
     onSecondary: Color(0xFF12491D),
-    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    surfaceTint: Color.fromARGB(255, 255, 255, 255),
     onSurface: Color.fromARGB(255, 0, 0, 0),
   ),
 );
@@ -433,7 +433,7 @@ ThemeData blueLightTheme = ThemeData(
     onPrimary: Color.fromARGB(255, 255, 255, 255),
     secondary: Color.fromARGB(255, 0, 0, 0),
     onSecondary: Colors.blue[900]!,
-    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    surfaceTint: Color.fromARGB(255, 255, 255, 255),
     onSurface: Color.fromARGB(255, 0, 0, 0),
   ),
 );

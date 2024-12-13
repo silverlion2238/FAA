@@ -8,8 +8,10 @@ import 'package:flutter_application_0_0_5/data/language_data.dart';
 class SolutionPage extends StatefulWidget {
 
   final Function solutionFunction;
+  final int pageNum;
 
-  SolutionPage({required this.solutionFunction});
+  SolutionPage({required this.solutionFunction, this.pageNum = 1});
+  
 
 
   @override
@@ -32,12 +34,21 @@ class SolutionPageState extends State<SolutionPage> {
   Widget build(BuildContext context) {
     final locale = Provider.of<LanguageModel>(context).locale.languageCode;
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(10.0),
       
       child: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+              },
+            ),
+          ),
           backgroundColor: Theme.of(context).colorScheme.surface,
           body: Center(
             child: Column(
@@ -46,25 +57,21 @@ class SolutionPageState extends State<SolutionPage> {
                   child: SizedBox(
                     width: double.infinity,
                     height: double.infinity,
-                    child: ListView(
-                      shrinkWrap: true,
+                    child: Column(
+                      //shrinkWrap: true,
                       children: [
-                      // Actual function
-                      solutionFunction(context),
+                        // Add Hero widget with a unique tag
+                        Hero(
+                          tag: 'solutionHero_${UniqueKey().toString()}',
+                          child: Material(
+                            type: MaterialType.transparency,
+                            child: solutionFunction(context, pageNum: widget.pageNum),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: FloatingActionButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Icon(
-                      Icons.exit_to_app,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                  )
-                )
               ],
             ),
           ),

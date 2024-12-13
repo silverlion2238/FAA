@@ -55,44 +55,75 @@ const Map<String, Map<String, String>> translations = {
     'Unresponsive': 'Unconsciousness',
     'Wheezing': 'Wheezing',
 
+    //'Nosebleed': 'Nosebleed',
+    'NosebleedDesc': 'A nosebleed is a common problem characterized by bleeding from the nose. Nosebleeds can be caused by dry air, allergies, infection, or trauma. Nosebleeds are characterized by bleeding from the nose, headache, and dizziness.',
+    'NosebleedSolution1': '1. Sit the affected person with their head tilted forward',
+    'NosebleedSolution2': '2. Pinch the soft part of the nose just below the bony bridge for at least 10 minutes without interruption',
+    'NosebleedSolution3': '3. Loosen clothing around the neck',
+    'NosebleedSolution4': '4. Ask the affected person to breathe through their mouth',
+    'NosebleedSolution5': '5. Advise the affected person not to blow their nose, cough, or swallow',
+    'NosebleedSolution6': '6. After stopping the bleeding, the affected person should remain calm for 4 hours and avoid drinking hot beverages (if bleeding lasts more than 30 minutes, call for medical help)',
+
     'Burns': 'Burns',
     'BurnsDesc': 'Burns are injuries to the skin that are caused by heat, chemicals, electricity, or radiation. Burns are characterized by redness, blistering, and pain. Burns are classified into three categories: first-degree burns, second-degree burns, and third-degree burns.',
-    'BurnsSolution': 'To treat burns, it is recommended to cool the burn with cool water and cover it with a clean bandage. It is important to avoid breaking the blisters and to seek medical attention if the burn is severe.',
+    
+    'BurnsSolution1': '1. For burns larger than the palm, arrange transport to the hospital',
+    'BurnsSolution2': '2. Otherwise, immediately cool the area with cold water for at least 10 minutes',
+    'BurnsSolution3': '3. Remove jewelry or clothing from the wound',
+    'BurnsSolution4': '4. After cooling, cover the wound with a bandage or clean cloth',
 
     'ChemicalBurns' : 'Chemical Burns',
     'ChemicalBurnsDesc': 'Chemical burns are injuries to the skin that are caused by exposure to chemicals. Chemical burns are characterized by redness, blistering, and pain. Chemical burns are classified into three categories: first-degree burns, second-degree burns, and third-degree burns.',
-    'ChemicalBurnsSolution': 'To treat chemical burns, it is recommended to remove the chemical from the skin and rinse the affected area with water. It is important to avoid rubbing the skin and to seek medical attention if the burn is severe.',
+    
+    'ChemicalBurnsSolution1': '1. For powdered chemicals, remove them dry first',
+    'ChemicalBurnsSolution2': '2. Rinse liquid chemicals with a stream of clean water for 20 minutes',
+    'ChemicalBurnsSolution3': '3. If clothing is affected, remove it while rinsing',
+    'ChemicalBurnsSolution4': '4. If eyes are affected, rinse them with plenty of water',
+    'ChemicalBurnsSolution5': '5. If a chemical is ingested, do not induce vomiting, rinse the mouth repeatedly and then give the person 2 dc of water to drink sip by sip',
+    'ChemicalBurnsSolution6': '6. Arrange transport to the hospital',
 
     'Fracture': 'Fracture',
     'FractureDesc': 'A fracture is a bone injury that is characterized by a break or crack in the bone. Fractures are often caused by a sudden movement or trauma. Fractures are characterized by pain, swelling, and limited movement.',
-    'FractureSolution': 'To treat fractures, it is recommended to immobilize the affected area and seek medical attention. The affected area should also be wrapped with an elastic bandage and kept still.',
+    'FractureSolution1': '1. Create support on the injured limb by placing hands above and below the fracture site',
+    'FractureSolution2': '2. Immobilize so that one joint below and one joint above the fracture is immobilized',
+    'FractureSolution3': '3. Place the broken upper limb in a sling made of a triangular scarf or immobilize it in the sleeve of clothing (a broken collarbone is treated the same way)',
+    'FractureSolution4': '4. For severe deformity, use various types of padding to immobilize (pillows, blankets, ...)',
+    'FractureSolution5': '5. Call an ambulance or go to the emergency room',
 
     'Dislocation': 'Dislocation',
     'DislocationDesc': 'A dislocation is a joint injury that is characterized by the displacement of the joint head from the joint socket. Dislocations are often caused by a sudden movement or fall. Dislocations are characterized by pain, swelling, and limited movement.',
-    'DislocationSolution': 'To treat dislocations, it is recommended to apply ice to the affected area to reduce swelling and pain. The affected area should also be wrapped with an elastic bandage and kept still.',
-
-    //'Nosebleed': 'Nosebleed',
-    'NosebleedDesc': 'A nosebleed is a common problem that is characterized by bleeding from the nose. Nosebleeds can be caused by dry air, allergies, infection, or trauma. Nosebleeds are characterized by bleeding from the nose, headache, and dizziness.',
-    'NosebleedSolution': 'To stop a nosebleed, it is recommended to tilt the head forward and pinch the nose shut. The nose should be pinched for 10-15 minutes to stop the bleeding. It is also important to avoid blowing the nose and to remain calm.',
+    'DislocationSolution1': '1. Place the affected person in the most comfortable position',
+    'DislocationSolution2': '2. Stabilize the limb (support with a pillow)',
+    'DislocationSolution3': '3. If possible, immobilize with a sling or bandage',
+    'DislocationSolution4': '4. Allow the affected person to support the dislocated part themselves',
+    'DislocationSolution5': '5. Arrange transport to the hospital',
 
     'Hypervent': 'Hyperventilation',
-    'HyperventDesc': 'Hyperventilation is a breathing disorder that is characterized by rapid or deep breathing. Hyperventilation is often caused by anxiety, stress, or panic. Hyperventilation is characterized by rapid breathing, dizziness, and tingling in the hands and feet.',
-    'HyperventSolution': 'To treat hyperventilation, it is recommended to breathe into a paper bag to increase carbon dioxide levels in the blood. It is also important to practice relaxation techniques and seek medical attention if symptoms persist.',
+    'HyperventDesc': 'Hyperventilation is a breathing disorder characterized by rapid or deep breathing. Hyperventilation is often caused by anxiety, stress, or panic. Hyperventilation is characterized by rapid breathing, dizziness, and tingling in the hands and feet.',
+    'HyperventSolution1': '1. Calm the person, if in a busy environment, take them to a quiet room',
+    'HyperventSolution2': '2. Loosen tight clothing and seat the person in a comfortable position',
+    'HyperventSolution3': '3. Help the affected person calm their breathing (breathe together with them)',
 
     'Unconscious': 'Unconsciousness',
-    'UnconsciousDesc': 'Unconsciousness is a state of being unaware of one\'s surroundings and unable to respond to stimuli. Unconsciousness is often caused by head injury, stroke, or drug overdose. Unconsciousness is characterized by unresponsiveness, shallow breathing, and pale skin.',
-    'UnconsciousSolution': 'To treat unconsciousness, it is recommended to check for breathing and pulse and to place the person in the recovery position. It is also important to seek medical attention immediately.',
+    'UnconsciousDesc': 'Unconsciousness is a state where a person is unable to perceive their surroundings and respond to stimuli. Unconsciousness is often caused by head injury, stroke, or drug overdose. Unconsciousness is characterized by unresponsiveness, shallow breathing, and pale skin.',
+    'UnconsciousSolution1': '1. Place the affected person in a recovery position',
+    'UnconsciousSolution2': '2. Call an ambulance (155)',
+    'UnconsciousSolution3': '3. Repeatedly check for breathing and consciousness',
 
     'Epilepsy': 'Epileptic Seizure',
-    'EpilepsyDesc': 'Epilepsy is a neurological disorder that is characterized by recurrent seizures. Epilepsy is often caused by abnormal brain activity. Epilepsy is characterized by loss of consciousness, convulsions, and muscle spasms.',
-    'EpilepsySolution': 'To treat epilepsy, it is recommended to protect the person from injury and to stay with the person until the seizure stops. It is also important to seek medical attention if the seizure lasts longer than five minutes.',
+    'EpilepsyDesc': 'Epilepsy is a neurological disorder characterized by recurrent seizures. Epilepsy is often caused by unusual brain activity. Epilepsy is characterized by loss of consciousness, convulsions, and muscle spasms.',
+    'EpilepsySolution1': '1. Prevent the person from injuring themselves (remove dangerous objects from their surroundings)',
+    'EpilepsySolution2': '2. Place a soft material (jacket, pillow, ...) or hands under the person\'s head',
+    'EpilepsySolution3': '3. After the convulsions subside, check the person for injuries',
+    'EpilepsySolution4': '4. If the person is unknown to you or is having a seizure for the first time, call an ambulance (155)',
 
     'AsthmaAttack': 'Asthma Attack',
-    'AsthmaAttackDesc': 'Asthma is a chronic respiratory condition that is characterized by inflammation of the airways. Asthma attacks are often triggered by allergens, exercise, or stress. Asthma attacks are characterized by wheezing, coughing, and shortness of breath.',
-    'AsthmaAttackSolution': 'To treat asthma attacks, it is recommended to use a rescue inhaler to open the airways and to sit up straight and remain calm. It is also important to seek medical attention if symptoms do not improve.',
-
-
-
+    'AsthmaAttackDesc': 'An asthma attack is a chronic respiratory condition characterized by inflammation of the airways. Asthma attacks are often caused by allergens, exercise, or stress. Asthma attacks are characterized by wheezing, coughing, and shortness of breath.',
+    'AsthmaAttackSolution1': '1. Help the affected person use their inhaler',
+    'AsthmaAttackSolution2': '2. Encourage the person to breathe slowly and seat them in a comfortable position',
+    'AsthmaAttackSolution3': '3. If the attack does not stop after a few minutes, use the inhaler again',
+    'AsthmaAttackSolution4': '4. If nothing helps, call an ambulance',
+    'AsthmaAttackSolution5': '5. While waiting, monitor vital signs',
 
     /*Old Data
     'Cough': 'Cough',
@@ -191,39 +222,89 @@ const Map<String, Map<String, String>> translations = {
 
     'Burns': 'Popáleniny',
     'BurnsDesc': 'Popáleniny sú poranenia kože, ktoré sú spôsobené teplom, chemikáliami, elektrinou alebo žiarením. Popáleniny sa prejavujú červenaním, tvorbou pľuzgierov a bolesťou. Popáleniny sa klasifikujú do troch kategórií: popáleniny prvého stupňa, popáleniny druhého stupňa a popáleniny tretieho stupňa.',
-    'BurnsSolution': 'Na liečbu popálenín sa odporúča chladiť popáleninu studenou vodou a zakryť ju čistou obväzom. Dôležité je tiež zabrániť prasknutiu pľuzgierov a vyhľadať lekársku pomoc, ak je popálenina vážna.',
+    
+    'BurnsSolution1': '1. Pri popálenine väčšej ako dlaň zariaďte odvoz do nemocnice',
+    'BurnsSolution2': '2. Inak okamžite chlaďte miesto studenou vodou najmenej 10 minút',
+    'BurnsSolution3': '3. Odstráňte z rany náramky alebo oblečenie',
+    'BurnsSolution4': '4. Po chladení prikryte ranu obväzom alebo nejakou čistou tkaninou',
+
 
     'ChemicalBurns' : 'Poleptanie',
     'ChemicalBurnsDesc': 'Poleptanie je poranenie kože, ktoré je spôsobené vystavením sa chemikáliám. Poleptanie sa prejavuje červenaním, tvorbou pľuzgierov a bolesťou. Poleptanie sa klasifikuje do troch kategórií: popáleniny prvého stupňa, popáleniny druhého stupňa a popáleniny tretieho stupňa.',
-    'ChemicalBurnsSolution': 'Na liečbu poleptaní sa odporúča odstrániť chemikáliu zo pokožky a opláchnuť postihnutú oblasť vodou. Dôležité je tiež neotierať pokožku a vyhľadať lekársku pomoc, ak je poleptanie vážne.',
+    
+    'ChemicalBurnsSolution1': '1. Pri práškových žieravinách najprv odstráňte nasucho',
+    'ChemicalBurnsSolution2': '2. Tekuté žieraviny odstraňujte 20 minút prúdom čistej vody',
+    'ChemicalBurnsSolution3': '3. Pri zasiahnutí oblečenia odstraňujte odev spolu s oplachovaním',
+    'ChemicalBurnsSolution4': '4. Ak sú zasiahnuté oči vypláchnite ich väčším množstvom vody',
+    'ChemicalBurnsSolution5': '5. Pri vypití žieraviny nevyvolávajte zvracanie, opakovane vyplachujte ústa a potom dajte postihnutému vypiť 2 dcl vody po dúškoch',
+    'ChemicalBurnsSolution6': '6. Zariaďte transport do nemocnice',
+
 
     'Fracture': 'Zlomenina',
     'FractureDesc': 'Zlomenina je poranenie kosti, ktoré je charakterizované zlomením alebo trhlinou v kosti. Zlomeniny sú často spôsobené náhlym pohybom alebo traumou. Zlomeniny sa prejavujú bolesťou, opuchom a obmedzeným pohybom.',
-    'FractureSolution': 'Na liečbu zlomenín sa odporúča imobilizovať postihnutú oblasť a vyhľadať lekársku pomoc. Postihnuté miesto by sa malo tiež zviazať elastickým obväzom a držať sa pokojne.',
+   
+    'FractureSolution1': '1. Vytvorte oporu na poranenej končatine podložením rúk pod aj nad miestom zlomeniny',
+    'FractureSolution2': '2. Znehybnite tak, aby bol znehybnený jeden kĺb pod aj nad zlomeninou',
+    'FractureSolution3': '3. Zlomenú hornú končatinu dajte do závesu z trojrohej šatky alebo znehybnite v rukáve odevu (zlomenina kľúčnej kosti sa ošetruje tak isto)',
+    'FractureSolution4': '4. Pri veľkej deformácii využite rôzne druhy obloženia na znehybnenie (vankúše, deky, ...)',
+    'FractureSolution5': '5. Zavolajte záchranku alebo choďte na pohotovosť',
 
-    'Dislocation': 'Vyklbenie',
-    'DislocationDesc': 'Vyklbenie je poranenie kĺbu, ktoré je charakterizované vypadnutím kĺbovej hlavice z kĺbovej jamky. Vyklbenia sú často spôsobené náhlym pohybom alebo pádom. Vyklbenie sa prejavuje bolesťou, opuchom a obmedzeným pohybom.',
-    'DislocationSolution': 'Na liečbu vyklbení sa odporúča aplikovať ľad na postihnuté miesto, aby sa zmiernil opuch a bolesť. Postihnuté miesto by sa malo tiež zviazať elastickým obväzom a držať sa pokojne.',
+
+    'Dislocation': 'Vykĺbenina',
+    'DislocationDesc': 'Vykĺbenina je poranenie kĺbu, ktoré je charakterizované vypadnutím kĺbovej hlavice z kĺbovej jamky. Vyklbenia sú často spôsobené náhlym pohybom alebo pádom. Vyklbenie sa prejavuje bolesťou, opuchom a obmedzeným pohybom.',
+    
+    'DislocationSolution1': '1. Uložte postihnutého do najpohodlnejšej polohy',
+    'DislocationSolution2': '2. Spevnite končatinu (podložte vankúšom)',
+    'DislocationSolution3': '3. Ak je možné, znehybnite závesom alebo obväzom',
+    'DislocationSolution4': '4. Nechajte postihnutého aby si sám podopieral vykĺbenú časť',
+    'DislocationSolution5': '5. Zariaďte prevoz do nemocnice',
+
+
 
     //'Nosebleed': 'Krvácanie z nosa',
     'NosebleedDesc': 'Krvácanie z nosa je bežný problém, ktorý sa prejavuje krvácaním z nosa. Krvácanie z nosa môže byť spôsobené suchým vzduchom, alergiami, infekciou alebo traumou. Krvácanie z nosa sa prejavuje krvácaním z nosa, bolesťou hlavy a závratmi.',
-    'NosebleedSolution': 'Na zastavenie krvácania z nosa sa odporúča skloniť hlavu dopredu a stlačiť nos krútením. Nos by sa mal stlačiť po dobu 10-15 minút, aby sa zastavilo krvácanie. Dôležité je tiež vyhnúť sa vyfukovaniu nosa a držať sa pokojne.',
+    
+    'NosebleedSolution1': '1. Posaďte postihnutého s predklonenou hlavou',
+    'NosebleedSolution2': '2. Tlačte na mäkkú časť nosa tesne pod kostenou tvrdou  časťou najmenej 10 min. bez prerušenia',
+    'NosebleedSolution3': '3. Uvoľnite odev okolo krku',
+    'NosebleedSolution4': '4. Požiadajte postihnutého, aby dýchal ústami',
+    'NosebleedSolution5': '5. Poraďte postihnutému, aby nesmrkal, nekašľal a neprehĺtal',
+    'NosebleedSolution6': '6. Po zastavení krvácania musí zostať postihnutý v kľude 4 hodiny a nepiť teplé nápoje (ak krvácanie trvá viac ako 30 min. zavolajte lekársku pomoc)',
+
 
     'Hypervent': 'Hyperventilácia',
     'HyperventDesc': 'Hyperventilácia je porucha dýchania, ktorá je charakterizovaná rýchlym alebo hlbokým dýchaním. Hyperventilácia je často spôsobená úzkosťou, stresom alebo panikou. Hyperventilácia sa prejavuje rýchlym dýchaním, závratmi a brnením v rukách a nohách.',
-    'HyperventSolution': 'Na liečbu hyperventilácie sa odporúča dýchať do papierového vrecka, aby sa zvýšila hladina oxidu uhličitého v krvi. Dôležité je tiež cvičiť relaxačné techniky a vyhľadať lekársku pomoc, ak príznaky pretrvávajú.',
+    
+    'HyperventSolution1': '1. Upokojujte dotyčnú osobu, ak ste v rušnom prostredí odveďte osobu do pokojnej miestnosti',
+    'HyperventSolution2': '2. Uvoľnite tesný odev a usaďte dotyčného do pre neho pohodlnej polohy',
+    'HyperventSolution3': '3. Pomôžte postihnutému upokojiť dýchanie (dýchajte spolu s ním)',
+
 
     'Unconscious': 'Bezvedomie',
     'UnconsciousDesc': 'Bezvedomie je stav, keď človek nie je schopný vnímať svoje okolie a reagovať na podnety. Bezvedomie je často spôsobené poranením hlavy, mozgovou príhodou alebo predávkovaním drogami. Bezvedomie sa prejavuje neodpovednosťou, plytkým dýchaním a bledou pokožkou.',
-    'UnconsciousSolution': 'Na liečbu bezvedomia sa odporúča skontrolovať dýchanie a pulz a umiestniť osobu do polohy na bok. Dôležité je tiež okamžite vyhľadať lekársku pomoc.',
+    
+    'UnconsciousSolution1': '1. Uložte postihnutého do stabilizovanej polohy',
+    'UnconsciousSolution2': '2. Privolajte záchranku (155)',
+    'UnconsciousSolution3': '3. Opakovane sledujte prítomnosť dýchania a stav vedomia',
+
 
     'Epilepsy': 'Epileptický Záchvat',
     'EpilepsyDesc': 'Epilepsia je neurologické ochorenie, ktoré je charakterizované opakujúcimi sa záchvatmi. Epilepsia je často spôsobená nezvyčajnou aktivitou mozgu. Epilepsia sa prejavuje strátou vedomia, kŕčmi a svalovými kŕčmi.',
-    'EpilepsySolution': 'Na liečbu epilepsie sa odporúča chrániť osobu pred zranením a zostať s ňou, kým záchvat neustane. Dôležité je tiež vyhľadať lekársku pomoc, ak záchvat trvá dlhšie ako päť minút.',
+    
+    'EpilepsySolution1': '1. Zabráňte tomu, aby sa postihnutý zranil (odstráňte nebezpečné predmety z jeho okolia)',
+    'EpilepsySolution2': '2. Podložte pod hlavu dotyčného mäkký materiál (bunda, vankúš,...) alebo ruky',
+    'EpilepsySolution3': '3. Po odznení kŕčov treba postihnutého prezrieť, či neutrpel nejaké zranenia',
+    'EpilepsySolution4': '4. Ak je vám dotyčná osoba neznáma alebo má záchvat po prví raz, treba volať záchranku (155)',
+
 
     'AsthmaAttack': 'Astmatický Záchvat',
     'AsthmaAttackDesc': 'Astmatický záchvat je chronický respiračný stav, ktorý je charakterizovaný zápalom dýchacích ciest. Astmatické záchvaty sú často spôsobené alergénmi, cvičením alebo stresom. Astmatické záchvaty sa prejavujú sipotom, kašľom a dýchavičnosťou.',
-    'AsthmaAttackSolution': 'Na liečbu astmatických záchvatov sa odporúča použiť záchranný inhalátor na otvorenie dýchacích ciest a posadiť sa rovno a zostať pokojný. Dôležité je tiež vyhľadať lekársku pomoc, ak sa príznaky nezlepšujú.',
+
+    'AsthmaAttackSolution1': '1. Pomôžte postihnutému použiť inhalátor',
+    'AsthmaAttackSolution2': '2. Vyzvite postihnutého aby dýchal pomaly a usaďte ho do pohodlnej polohy',
+    'AsthmaAttackSolution3': '3. Ak záchvat po pár minútach neprestane, opäť použite inhalátor',
+    'AsthmaAttackSolution4': '4. V prípade, že nič nepomáha volajte záchrannú službu',
+    'AsthmaAttackSolution5': '5. Kým čakáte kontrolujte vitálne funkcie',
 
     
 
