@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_0_0_5/functions/language_functions.dart';
 import 'package:flutter_application_0_0_5/main.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/data/data.dart';
@@ -28,13 +29,17 @@ class ResultScreen extends StatefulWidget {
 
 
 class ResultScreenState extends State<ResultScreen> {
-  
+  List<Injury> displayInjuries = [];
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    displayInjuries = context.watch<InjuryNotifier>().displayInjuries;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final locale = Provider.of<LanguageModel>(context).locale.languageCode;
-    List<Injury> displayInjuries = context.watch<InjuryNotifier>().displayInjuries;
+    String locale = Provider.of<LanguageModel>(context).locale.languageCode;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
@@ -46,7 +51,7 @@ class ResultScreenState extends State<ResultScreen> {
           ),
           style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
           onChanged: (query) {
-        context.read<InjuryNotifier>().whichInjury(query);
+        context.read<InjuryNotifier>().whichInjury(context,query);
           },
         ),
         backgroundColor: Theme.of(context).colorScheme.surface,
@@ -61,7 +66,7 @@ class ResultScreenState extends State<ResultScreen> {
             onTap: () => executeFunction(context,index),
 
             child:ListTile(
-              title: Text(displayInjuries[index].getName()),
+                title: Text(displayInjuries[index].getName(context)),
               //subtitle: Text(displayInjuries[index].getDescription()),
             ),
 

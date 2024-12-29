@@ -111,44 +111,44 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Padding(
               padding: const EdgeInsets.only(left: 23.0),
               child: Consumer<LanguageModel>(
-              builder: (context, languageModel, child) {
-                return DropdownButton<Locale>(
-                  value: languageModel.locale,
-                  items: [
-                    DropdownMenuItem(
-                    value: Locale('en'),
-                    child: Row(
-                      children: [                        
-                        Image.asset(
-                          'images/uk.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        Text('English')
-                        ],
-                      )
-                    ),
-                    DropdownMenuItem(
-                      value: Locale('sk'),
-                      child: Row(
-                        children: [
-                        Image.asset(
-                          'images/sk.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        Text('Slovak (Slovensky)')
-                        ],
-                      )
-                    ),
-                  ],
-                  onChanged: (Locale? newLocale) {
-                    if (newLocale != null) {
-                    languageModel.changeLanguage(newLocale);
-                    restoreInjuries(context);
-                    context.read<InjuryNotifier>().getResults(resultInjuries: injuries);
+                builder: (context, languageModel, child) {
+                  return DropdownButton<Locale>(
+                    value: languageModel.locale,
+                    items: [
+                      DropdownMenuItem(
+                        value: Locale('en'),
+                        child: Row(
+                          children: [                        
+                            Image.asset(
+                              'images/uk.png',
+                              width: 24,
+                              height: 24,
+                            ),
+                            const SizedBox(width: 8),
+                            Text('English')
+                          ],
+                        )
+                      ),
+                      DropdownMenuItem(
+                        value: Locale('sk'),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'images/sk.png',
+                              width: 24,
+                              height: 24,
+                            ),
+                            const SizedBox(width: 8),
+                            Text('Slovak (Slovensky)')
+                          ],
+                        )
+                      ),
+                    ],
+                    onChanged: (Locale? newLocale) {
+                      if (newLocale != null) {
+                        languageModel.changeLanguage(newLocale);
+                        restoreInjuries(context);
+                        context.read<InjuryNotifier>().getResults(resultInjuries: injuries);
                       }
                     },
                   );

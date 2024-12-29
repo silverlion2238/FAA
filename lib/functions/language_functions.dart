@@ -11,7 +11,17 @@ class LanguageData {
     if (translations[locale] != null && translations[locale]![key] != null) {
       return translations[locale]![key]!;
     } else {
-      return 'Translation not found';
+      if (translations[locale] == null) {
+        print('translations[locale]! is null');
+        print(locale);
+        print(key);
+        return 'Translation not found';
+      } else {
+        print('translations[locale]![key] is null');
+        print(locale);
+        print(key);
+        return 'Translation not found';
+      }
     }
   }
 
@@ -20,7 +30,17 @@ class LanguageData {
     if (translations[locale] != null && translations[locale]![key] != null) {
       return translations[locale]![key]!;
     } else {
-      return 'Translation not found';
+      if (translations[locale] == null) {
+        print('translations[locale]! is null');
+        print(locale);
+        print(key);
+        return 'Translation not found';
+      } else {
+        print('translations[locale]![key] is null');
+        print(locale);
+        print(key);
+        return 'Translation not found';
+      }
     }
   }
 }

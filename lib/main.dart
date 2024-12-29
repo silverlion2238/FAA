@@ -88,9 +88,9 @@ class InjuryNotifier extends ChangeNotifier {
 
   List<Injury> get displayInjuries => _displayInjuries;
 
-  void whichInjury(String query) {
+  void whichInjury(BuildContext context, String query) {
 
-    _displayInjuries = injuries.where((injury) => injury.getName().toLowerCase().contains(query.toLowerCase())).toList();
+    _displayInjuries = injuries.where((injury) => injury.getName(context).toLowerCase().contains(query.toLowerCase())).toList();
 
     notifyListeners();
 
@@ -149,6 +149,7 @@ class MyAppState extends State<MyApp> {
     return Consumer<LanguageModel>(
       builder: (context, languageModel, child) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           locale: languageModel.locale,
           localizationsDelegates: [
             GlobalMaterialLocalizations.delegate,

@@ -16,6 +16,8 @@ const Map<String, Map<String, String>> translations = {
     'ok': 'OK',
     'yes': 'Yes',
     'no': 'No',
+    'next': 'Next',
+    'back': 'Back',
 
     'primaryText': 'Primary Text(question)',
     'description': 'Description',
@@ -178,6 +180,8 @@ const Map<String, Map<String, String>> translations = {
     'ok': 'OK',
     'yes': 'Áno',
     'no': 'Nie',
+    'next': 'Ďalej',
+    'back': 'Späť',
 
     'primaryText': 'Primárny Text(otázka)',
     'description': 'Popis',
@@ -217,7 +221,9 @@ const Map<String, Map<String, String>> translations = {
     'Unresponsive': 'Bezvedomie',
     'Wheezing': 'Sipot',
 
-
+    'TypeOfPain':'Je bolesť pálivá?',
+    'Cracks?': 'Bolo počuť alebo cítiť zlomenie?',
+    'Joints?': 'Je postihnuté miesto v oblasti kĺbu?',
 
 
     'Burns': 'Popáleniny',

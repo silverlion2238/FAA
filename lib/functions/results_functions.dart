@@ -46,7 +46,11 @@ Widget functionNBleed (context, {int pageNum = 1}) {
   
   return Column(
     children: [
-      Image(image: AssetImage('images/sja/child-nosebleed.png')),
+      Image(
+        image: AssetImage('images/sja/child-nosebleed.png'),
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.height / 2,
+      ),
       SizedBox(height: 20,),
       Text(
         translations[locale]!['NosebleedSolution$pageNum']!,
@@ -66,7 +70,7 @@ Widget functionNBleed (context, {int pageNum = 1}) {
                 openSolutionPage(context, functionNBleed, pageNum: pageNum - 1);
               }
             },
-            child: Text(translations[locale]!['no']!),
+            child: Text(translations[locale]!['back']!),
           ),
           //Next button
           if (translations[locale]!['NosebleedSolution${pageNum + 1}'] != null)
@@ -75,7 +79,7 @@ Widget functionNBleed (context, {int pageNum = 1}) {
                 // Add your onPressed code here!
                 openSolutionPage(context, functionNBleed, pageNum: pageNum + 1);
               },
-              child: Text(translations[locale]!['yes']!),
+              child: Text(translations[locale]!['next']!),
             ),
         ],
       ),
@@ -88,7 +92,30 @@ Widget functionBurns(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   return Column(
     children: [
-      Image(image: AssetImage('images/sja/sja-burn-or-a-scald-poster.png')),
+      if (pageNum == 1)
+        Image(
+          image: AssetImage('images/sja/calling-for-help---male.png'),
+          height: MediaQuery.of(context).size.height / 2,
+          width: MediaQuery.of(context).size.height / 2,
+        ),
+      if (pageNum == 2)
+        Image(
+          image: AssetImage('images/sja/sja-burn-or-a-scald-poster.png'),
+          height: MediaQuery.of(context).size.height / 2,
+          width: MediaQuery.of(context).size.height / 2,
+        ),
+      if (pageNum == 3)
+        Image(
+          image: AssetImage('images/sja/step2-minor-burns-scalds-adult-first-aid.png'),
+          height: MediaQuery.of(context).size.height / 2,
+          width: MediaQuery.of(context).size.height / 2,
+        ),
+      if (pageNum == 4)
+        Image(
+          image: AssetImage('images/sja/step3-minor-burns-scalds-adult-first-aid.webp'),
+          height: MediaQuery.of(context).size.height / 2,
+          width: MediaQuery.of(context).size.height / 2,
+        ),
       SizedBox(height: 20,),
       Text(
         translations[locale]!['BurnsSolution$pageNum']!,
@@ -106,14 +133,14 @@ Widget functionBurns(context, {int pageNum = 1}) {
                 openSolutionPage(context, functionBurns, pageNum: pageNum - 1);
               }
             },
-            child: Text(translations[locale]!['no']!),
+            child: Text(translations[locale]!['back']!),
           ),
           if (translations[locale]!['BurnsSolution${pageNum + 1}'] != null)
             ElevatedButton(
               onPressed: () {
                 openSolutionPage(context, functionBurns, pageNum: pageNum + 1);
               },
-              child: Text(translations[locale]!['yes']!),
+              child: Text(translations[locale]!['next']!),
             ),
         ],
       ),
@@ -125,10 +152,42 @@ Widget functionCBurn(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   return Column(
     children: [
-    if (pageNum != 4)
-      Image(image: AssetImage('images/cool.png')),
+    if (pageNum == 1)
+      Image(
+        image: AssetImage('images/sja/step1-chemical-burns-first-aid-advice.webp'),
+        width: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2,
+      ),
+    if (pageNum == 2)
+      Image(
+        image: AssetImage('images/sja/sja-burn-or-a-scald-poster.png'),
+        width: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2,
+      ),
+    if (pageNum == 3)
+      Image(
+        image: AssetImage('images/sja/step4-chemical-burns-first-aid-advice.webp'),
+        width: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2,
+        ),
     if (pageNum == 4)
-      Image(image: AssetImage('images/sja/step2-chemical-burns-first-aid-advice.png')),
+      Image(
+        image: AssetImage('images/sja/step2-chemical-burns-first-aid-advice.png'),
+        width: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2,
+      ),
+    if (pageNum == 5)
+      Image(
+        image: AssetImage('images/sja/adult-shock.webp'),
+        width: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2,
+      ),
+    if (pageNum == 6)
+      Image(
+        image: AssetImage('images/sja/calling-for-help---male.png'),
+        width: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2,
+      ),
     SizedBox(height: 20,),
     Text(
       translations[locale]!['ChemicalBurnsSolution$pageNum']!,
@@ -146,14 +205,14 @@ Widget functionCBurn(context, {int pageNum = 1}) {
               openSolutionPage(context, functionCBurn, pageNum: pageNum - 1);
             }
           },
-          child: Text(translations[locale]!['no']!),
+          child: Text(translations[locale]!['back']!),
         ),
         if (translations[locale]!['ChemicalBurnsSolution${pageNum + 1}'] != null)
           ElevatedButton(
             onPressed: () {
               openSolutionPage(context, functionCBurn, pageNum: pageNum + 1);
             },
-            child: Text(translations[locale]!['yes']!),
+            child: Text(translations[locale]!['next']!),
           ),
         ],
       ),
@@ -161,11 +220,18 @@ Widget functionCBurn(context, {int pageNum = 1}) {
   );
 }
 
+
+
+
 Widget functionFracture(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   return Column(
     children: [
-      Image(image: AssetImage('images/f_arm.jpg')),
+      Image(
+        image: AssetImage('images/sja/step$pageNum-how-to-make-an-arm-sling.png'),
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.height / 2,
+      ),
       SizedBox(height: 20,),
       Text(
         translations[locale]!['FractureSolution$pageNum']!,
@@ -183,14 +249,14 @@ Widget functionFracture(context, {int pageNum = 1}) {
                 openSolutionPage(context, functionFracture, pageNum: pageNum - 1);
               }
             },
-            child: Text(translations[locale]!['no']!),
+            child: Text(translations[locale]!['back']!),
           ),
           if (translations[locale]!['FractureSolution${pageNum + 1}'] != null)
             ElevatedButton(
               onPressed: () {
                 openSolutionPage(context, functionFracture, pageNum: pageNum + 1);
               },
-              child: Text(translations[locale]!['yes']!),
+              child: Text(translations[locale]!['next']!),
             ),
         ],
       ),
@@ -202,10 +268,13 @@ Widget functionDislocation(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   return Column(
     children: [
-      /*
-      Image(image: AssetImage('images/dislocation.jpg')),
+      Image(
+        image: AssetImage('images/sja/elevation-sling-first-aid-advice-step2.png'),
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.height / 2,
+      ),
       SizedBox(height: 20,),
-      */
+      
       Text(
         translations[locale]!['DislocationSolution$pageNum']!,
         textAlign: TextAlign.center,
@@ -222,14 +291,14 @@ Widget functionDislocation(context, {int pageNum = 1}) {
                 openSolutionPage(context, functionDislocation, pageNum: pageNum - 1);
               }
             },
-            child: Text(translations[locale]!['no']!),
+            child: Text(translations[locale]!['back']!),
           ),
           if (translations[locale]!['DislocationSolution${pageNum + 1}'] != null)
             ElevatedButton(
               onPressed: () {
                 openSolutionPage(context, functionDislocation, pageNum: pageNum + 1);
               },
-              child: Text(translations[locale]!['yes']!),
+              child: Text(translations[locale]!['next']!),
             ),
         ],
       ),
@@ -241,10 +310,13 @@ Widget functionHypervent(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   return Column(
     children: [
-      /*
-      Image(image: AssetImage('images/hypervent.jpg')),
+      Image(
+        image: AssetImage('images/sja/step1adult-choking-first-aid-advice.png'),
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.height / 2,
+      ),
       SizedBox(height: 20,),
-      */
+      
       Text(
         translations[locale]!['HyperventSolution$pageNum']!,
         textAlign: TextAlign.center,
@@ -261,14 +333,14 @@ Widget functionHypervent(context, {int pageNum = 1}) {
                 openSolutionPage(context, functionHypervent, pageNum: pageNum - 1);
               }
             },
-            child: Text(translations[locale]!['no']!),
+            child: Text(translations[locale]!['back']!),
           ),
           if (translations[locale]!['HyperventSolution${pageNum + 1}'] != null)
             ElevatedButton(
               onPressed: () {
                 openSolutionPage(context, functionHypervent, pageNum: pageNum + 1);
               },
-              child: Text(translations[locale]!['yes']!),
+              child: Text(translations[locale]!['next']!),
             ),
         ],
       ),
@@ -280,7 +352,11 @@ Widget functionUnconsciousB(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   return Column(
     children: [
-      Image(image: AssetImage('images/stab.png')),
+      Image(
+        image: AssetImage('images/stab.png'),
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.height / 2,
+      ),
       SizedBox(height: 20,),
       Text(
         translations[locale]!['UnconsciousSolution$pageNum']!,
@@ -298,14 +374,14 @@ Widget functionUnconsciousB(context, {int pageNum = 1}) {
                 openSolutionPage(context, functionUnconsciousB, pageNum: pageNum - 1);
               }
             },
-            child: Text(translations[locale]!['no']!),
+            child: Text(translations[locale]!['back']!),
           ),
           if (translations[locale]!['UnconsciousSolution${pageNum + 1}'] != null)
             ElevatedButton(
               onPressed: () {
                 openSolutionPage(context, functionUnconsciousB, pageNum: pageNum + 1);
               },
-              child: Text(translations[locale]!['yes']!),
+              child: Text(translations[locale]!['next']!),
             ),
         ],
       ),
@@ -317,7 +393,11 @@ Widget functionEpilepsy(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   return Column(
     children: [
-      Image(image: AssetImage('images/epil.jpg')),
+      Image(
+        image: AssetImage('images/sja/step2-adult-seizures-first-aid.png'),
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.height / 2,
+      ),
       SizedBox(height: 20,),
       Text(
         translations[locale]!['EpilepsySolution$pageNum']!,
@@ -335,14 +415,14 @@ Widget functionEpilepsy(context, {int pageNum = 1}) {
                 openSolutionPage(context, functionEpilepsy, pageNum: pageNum - 1);
               }
             },
-            child: Text(translations[locale]!['no']!),
+            child: Text(translations[locale]!['back']!),
           ),
           if (translations[locale]!['EpilepsySolution${pageNum + 1}'] != null)
             ElevatedButton(
               onPressed: () {
                 openSolutionPage(context, functionEpilepsy, pageNum: pageNum + 1);
               },
-              child: Text(translations[locale]!['yes']!),
+              child: Text(translations[locale]!['next']!),
             ),
         ],
       ),
@@ -354,7 +434,11 @@ Widget functionAsthmaAtt(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   return Column(
     children: [
-      Image(image: AssetImage('images/asthma.jpg')),
+      Image(
+        image: AssetImage('images/sja/child-asthma.png'),
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.height / 2,
+      ),
       SizedBox(height: 20,),
       Text(
         translations[locale]!['AsthmaAttackSolution$pageNum']!,
@@ -372,14 +456,14 @@ Widget functionAsthmaAtt(context, {int pageNum = 1}) {
                 openSolutionPage(context, functionAsthmaAtt, pageNum: pageNum - 1);
               }
             },
-            child: Text(translations[locale]!['no']!),
+            child: Text(translations[locale]!['back']!),
           ),
           if (translations[locale]!['AsthmaAttackSolution${pageNum + 1}'] != null)
             ElevatedButton(
               onPressed: () {
                 openSolutionPage(context, functionAsthmaAtt, pageNum: pageNum + 1);
               },
-              child: Text(translations[locale]!['yes']!),
+              child: Text(translations[locale]!['next']!),
             ),
         ],
       ),

@@ -129,8 +129,10 @@ class Injury {
 
   Injury(this.name, this.description, this.solution, this.symptoms, this.result);
 
-  String getName(){
-    return name;
+  String getName(BuildContext context) {
+    final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+    // Return the translated name based on the locale
+    return LanguageData().updateTranslation(name, context);
   }
 
   String getDescription() {
@@ -195,44 +197,44 @@ class Injury {
 /* old Injuries
 List<Injury> origInjuries = [
     Injury(
-      LanguageData().translate('CommonCold'),
-      LanguageData().translate('CommonColdDesc'),
-      LanguageData().translate('CommonColdSolution'),
+      'CommonCold'),
+      'CommonColdDesc'),
+      'CommonColdSolution'),
       [Symptom.coughing, Symptom.sweating],
       functionCCold,
     ),
     Injury(
-      LanguageData().translate('MildCut'),
-      LanguageData().translate('MildCutDesc'),
-      LanguageData().translate('MildCutSolution'),
+      'MildCut'),
+      'MildCutDesc'),
+      'MildCutSolution'),
       [Symptom.bleeding, Symptom.mildCut],
       functionMCut,
     ),
     Injury(
-      LanguageData().translate('SevereCut'),
-      LanguageData().translate('SevereCutDesc'),
-      LanguageData().translate('SevereCutSolution'),
+      'SevereCut'),
+      'SevereCutDesc'),
+      'SevereCutSolution'),
       [Symptom.bleeding, Symptom.severeCut],
       functionSCut,
     ),
     Injury(
-      LanguageData().translate('Nosebleed'),
-      LanguageData().translate('NosebleedDesc'),
-      LanguageData().translate('NosebleedSolution'),
+      'Nosebleed'),
+      'NosebleedDesc'),
+      'NosebleedSolution'),
       [Symptom.bleeding],
       functionNBleed,
     ),
     Injury(
-      LanguageData().translate('Dislocation'),
-      LanguageData().translate('DislocationDesc'),
-      LanguageData().translate('DislocationSolution'),
+      'Dislocation'),
+      'DislocationDesc'),
+      'DislocationSolution'),
       [Symptom.painInInjuredArea, Symptom.cantMove, Symptom.swelling],
       functionDislocation,
     ),
     Injury(
-      LanguageData().translate('BoneFracture'),
-      LanguageData().translate('BoneFractureDesc'),
-      LanguageData().translate('BoneFractureSolution'),
+      'BoneFracture'),
+      'BoneFractureDesc'),
+      'BoneFractureSolution'),
       [Symptom.painInInjuredArea, Symptom.cantMove],
       functionFracture,
     ),
@@ -243,65 +245,65 @@ List<Injury> origInjuries = [
 // Correct Injuries
 List<Injury> origInjuries = [
   Injury(
-    LanguageData().translate('Burns'), // Popálenina
-    LanguageData().translate('BurnsDesc'), 
-    LanguageData().translate('BurnsSolution'), 
+    'Burns', // Popálenina
+    'BurnsDesc', 
+    'BurnsSolution1', 
     [Symptom.pain, Symptom.reddening, Symptom.blister], 
     functionBurns,
   ),
   Injury(
-    LanguageData().translate('ChemicalBurns'), // Poleptanie
-    LanguageData().translate('ChemicalBurnsDesc'),
-    LanguageData().translate('ChemicalBurnsSolution'),
+    'ChemicalBurns', // Poleptanie
+    'ChemicalBurnsDesc',
+    'ChemicalBurnsSolution1',
     [Symptom.pain, Symptom.reddening],
     functionCBurn,
   ),
   Injury(
-    LanguageData().translate('Fracture'), // Zlomenina
-    LanguageData().translate('FractureDesc'),
-    LanguageData().translate('FractureSolution'),
+    'Fracture', // Zlomenina
+    'FractureDesc',
+    'FractureSolution1',
     [Symptom.pain, Symptom.immobility, Symptom.crackingSound, Symptom.swelling],
     functionFracture,
   ),
   Injury(
-    LanguageData().translate('Dislocation'), // Vykĺbenina
-    LanguageData().translate('DislocationDesc'),
-    LanguageData().translate('DislocationSolution'),
+    'Dislocation', // Vykĺbenina
+    'DislocationDesc',
+    'DislocationSolution1',
     [Symptom.pain, Symptom.immobility, Symptom.swelling], 
     functionDislocation,
   ),
   Injury(
-    LanguageData().translate('Nosebleed'), // Krvácanie z nosa
-    LanguageData().translate('NosebleedDesc'),
-    LanguageData().translate('NosebleedSolution'),
+    'Nosebleed', // Krvácanie z nosa
+    'NosebleedDesc',
+    'NosebleedSolution1',
     [Symptom.nosebleed],
     functionNBleed,
   ),
   Injury(
-    LanguageData().translate('Hypervent'), // Hyperventilácia
-    LanguageData().translate('HyperventDesc'),
-    LanguageData().translate('HyperventSolution'),
+    'Hypervent', // Hyperventilácia
+    'HyperventDesc',
+    'HyperventSolution1',
     [Symptom.rBreathing, Symptom.rHeartbeat, Symptom.nausea, Symptom.numbness],
     functionHypervent,
   ),
   Injury(
-    LanguageData().translate('Unconscious'), // Bezvedomie
-    LanguageData().translate('UnconsciousDesc'),
-    LanguageData().translate('UnconsciousSolution'),
+    'Unconscious', // Bezvedomie
+    'UnconsciousDesc',
+    'UnconsciousSolution1',
     [Symptom.unresponsive], 
     functionUnconsciousB,          //<===========================    REPLACE WITH UNCONSCIOUS FUNCTION
   ),
   Injury(
-    LanguageData().translate('Epilepsy'), 
-    LanguageData().translate('EpilepsyDesc'),
-    LanguageData().translate('EpilepsySolution'),
+    'Epilepsy', 
+    'EpilepsyDesc',
+    'EpilepsySolution1',
     [Symptom.foaming, Symptom.twitching],
     functionEpilepsy,
   ),
   Injury(
-    LanguageData().translate('AsthmaAttack'), // Astmatický záchvat
-    LanguageData().translate('AsthmaAttackDesc'), 
-    LanguageData().translate('AsthmaAttackSolution'), 
+    'AsthmaAttack', // Astmatický záchvat
+    'AsthmaAttackDesc', 
+    'AsthmaAttackSolution1', 
     [Symptom.laboredBreathing, Symptom.wheezing, Symptom.slurredSpeech], 
     functionAsthmaAtt,
   ),
@@ -369,7 +371,7 @@ ThemeData redDarkTheme = ThemeData(
     onPrimary: Color.fromARGB(255, 255, 255, 255),
     secondary: Color.fromARGB(255, 255, 255, 255),
     onSecondary: Color(0xFFC2000B),
-    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    surfaceTint: Color.fromARGB(255, 255, 255, 255),
     onSurface: Color.fromARGB(255, 255, 255, 255)
     
   ),
@@ -412,7 +414,7 @@ ThemeData greenDarkTheme = ThemeData(
     onPrimary: Color.fromARGB(255, 255, 255, 255),
     secondary: Color.fromARGB(255, 255, 255, 255),
     onSecondary: Color(0xFF12491D),
-    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    surfaceTint: Color.fromARGB(255, 255, 255, 255),
     onSurface: Color.fromARGB(255, 255, 255, 255),
   ),
 );
@@ -424,15 +426,15 @@ ThemeData blueLightTheme = ThemeData(
     backgroundColor: Colors.blue[900],
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    selectedItemColor: Colors.blue[900]!,
+    selectedItemColor: Color.fromARGB(255, 13, 71, 161),
     unselectedItemColor: Color.fromARGB(255, 80, 80, 80),
   ),
   colorScheme: ColorScheme.light(
     surface: Color.fromARGB(255, 255, 255, 255),
-    primary: Colors.blue[900]!,
+    primary: Color.fromARGB(255, 13, 71, 161),
     onPrimary: Color.fromARGB(255, 255, 255, 255),
     secondary: Color.fromARGB(255, 0, 0, 0),
-    onSecondary: Colors.blue[900]!,
+    onSecondary: Color.fromARGB(255, 13, 71, 161),
     surfaceTint: Color.fromARGB(255, 255, 255, 255),
     onSurface: Color.fromARGB(255, 0, 0, 0),
   ),
@@ -442,19 +444,19 @@ ThemeData blueDarkTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.dark,
   appBarTheme: AppBarTheme(
-    backgroundColor: Colors.blue[900]!,
+    backgroundColor: Color.fromARGB(255, 13, 71, 161),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    selectedItemColor: Colors.blue[900]!,
+    selectedItemColor: Color.fromARGB(255, 13, 71, 161),
     unselectedItemColor: Color.fromARGB(255, 255, 255, 255),
   ),
   colorScheme: ColorScheme.dark(
     surface: Color.fromARGB(255, 80, 80, 80),
-    primary: Colors.blue[900]!,
+    primary: Color.fromARGB(255, 13, 71, 161),
     onPrimary: Color.fromARGB(255, 255, 255, 255),
     secondary: Color.fromARGB(255, 255, 255, 255),
-    onSecondary: Colors.blue[900]!,
-    surfaceTint: Color.fromARGB(255, 200, 200, 200),
+    onSecondary: Color.fromARGB(255, 13, 71, 161),
+    surfaceTint: Color.fromARGB(255, 255, 255, 255),
     onSurface: Color.fromARGB(255, 255, 255, 255),
   ),
 );

@@ -31,8 +31,10 @@ Function switchCase(List<Symptom> symptomList) {
 
   //special case 1
   switch (symptomList) {
-    case List<Symptom> symptoms when symptoms.contains(Symptom.pain) || symptoms.contains(Symptom.immobility):
-      return specialFunction1;
+    case List<Symptom> symptoms when symptoms.contains(Symptom.immobility) || symptoms.contains(Symptom.swelling):
+      return specialBoneFunction;
+    case List<Symptom> symptoms when symptoms.contains(Symptom.reddening):
+      return specialBurnsFunction;
     default:
       return nullFunction;
   }
