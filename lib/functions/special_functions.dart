@@ -15,7 +15,7 @@ Widget specialBoneFunction(context1, {pageNum = 0}) {
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Column(
-        children: [
+        children: [ 
           Text(
             translations[locale]!['Cracks?']!,
             textAlign: TextAlign.center,

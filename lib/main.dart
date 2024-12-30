@@ -10,6 +10,7 @@ import 'package:flutter_application_0_0_5/data/language_data.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_application_0_0_5/functions/http_functions.dart';
 import 'package:flutter_application_0_0_5/pages/main_page.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 
 void main() async {
@@ -51,11 +52,6 @@ class DataProvider with ChangeNotifier{
   }
 }
 
-
-
-//Change Notifiers
-
-//Theme Notifier
 class ThemeModel extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system; // Default to system theme
 
@@ -80,7 +76,6 @@ class ThemeNotifier extends ChangeNotifier {
     notifyListeners();
   }
 }
-
 
 //syncing displayed injuries
 class InjuryNotifier extends ChangeNotifier {
@@ -119,6 +114,7 @@ class MyAppState extends State<MyApp> {
   
   //switching tabs 
   int _selectedIndex = 2; // To keep track of the selected tab
+  FlutterTts _flutterTts = FlutterTts();
 
   void _onItemTapped(int index) {
     setState(() {
@@ -133,6 +129,7 @@ class MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     // Initialize _widgetOptions here, after the instance is created
+    initTTS();
     _widgetOptions = <Widget>[
       ChecklistScreen(toResultTab: _onItemTapped), // Now you can use _onItemTapped
       ResultScreen(),
@@ -141,6 +138,13 @@ class MyAppState extends State<MyApp> {
       SettingsPage(),
     ];
   }
+
+  void initTTS() {
+    _flutterTts.getVoices.then((voices) {
+      print(voices);
+    });
+  }
+
 
   //Material App
   @override
