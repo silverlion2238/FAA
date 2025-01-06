@@ -1,6 +1,4 @@
-import 'dart:ffi';
-import 'dart:math';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:http/http.dart' as http;
@@ -12,14 +10,15 @@ import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
 import 'package:flutter_application_0_0_5/functions/http_functions.dart';
 
+import 'dart:ffi' if (dart.library.html) 'dart:html';
 
 class ChatScreen extends StatefulWidget {
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  ChatScreenState createState() => ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
 
@@ -57,7 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
  
   void _initializeData() async {
-    tempList = await DataProvider().initializeData();
+    tempList = await ChatDataProvider().initializeData();
     userKey = tempList[0];
     conversationID = tempList[1];
   }
@@ -106,47 +105,125 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   */
 
-    void _handleSubmitted(String text,) async {
-      final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
-        _textController.clear();
+  void _handleSubmitted(String text,) async {
+    final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+      _textController.clear();
 
 
 
-      ChatMessage message = ChatMessage(
-        text: text,
-        isUser: true,
+    ChatMessage message = ChatMessage(
+      text: text,
+      isUser: true,
+    );
+    
+    setState(() {
+      _messages.insert(0, message);
+      }
+    );
+
+
+    //check internet connection
+    
+
+    // Send message to Botpress API
+    try {
+      var post = await http.post(
+        Uri.parse('https://chat.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509/messages'), // Replace with your Botpress API URL
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-user-key': userKey,
+        },
+        body: jsonEncode({
+          'payload': {
+            'text': message.text,
+            'type': 'text',
+          },
+          'conversationId': conversationID,
+        }),
       );
-      
-      setState(() {
-        _messages.insert(0, message);
+    
+
+      if (post.statusCode == 200) {
+        // Botpress API call successful
+        //print('Message sent to Botpress');
+      } else {
+        // Handle error
+        if (mounted) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Error'),
+              content: Text('Failed to send message to Botpress: ${post.statusCode}\nResponse body: ${post.body}'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('OK'),
+                ),
+              ],
+            ),
+          );
         }
-      );
+      }
 
 
-      //check internet connection
-      
 
-      // Send message to Botpress API
-      try {
-        var post = await http.post(
-          Uri.parse('https://chat.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509/messages'), // Replace with your Botpress API URL
+
+      String botReply = jsonDecode(post.body)['message']['payload']['text'];
+
+
+      while (botReply == jsonDecode(post.body)['message']['payload']['text']){
+        var response = await http.get(
+          Uri.parse('https://chat.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509/conversations/$conversationID/messages'), // Replace with your Botpress API URL
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'x-user-key': userKey,
           },
-          body: jsonEncode({
-            'payload': {
-              'text': message.text,
-              'type': 'text',
-            },
-            'conversationId': conversationID,
-          }),
         );
-      
 
-        if (post.statusCode == 200) {
-          // Botpress API call successful
-          //print('Message sent to Botpress');
+        if (response.statusCode == 200) {
+          // Parse the response and display the bot's reply
+          Map<String, dynamic> data;
+          print('Response body: ${response.body}');
+          try {
+            data = jsonDecode(response.body);
+          } catch (e) {
+            if (mounted) {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text('Error'),
+                content: Text('Error decoding response body: $e'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text('OK'),
+                  ),
+                ],
+              ),
+            );
+          }
+            return;
+          }
+
+
+          print(response.body);
+          print(response.request);
+          botReply = data['messages'][0]['payload']['text'];
+
+
+          // Check if the bot's reply is the same as the user's message
+          if (botReply == jsonDecode(post.body)['message']['payload']['text']) {
+            await Future.delayed(Duration(seconds: 1));
+          } else {
+            ChatMessage botMessage = ChatMessage(
+              text: botReply,
+              isUser: false,
+            );
+            setState(() {
+              _messages.insert(0, botMessage);
+              }
+            );
+          }
         } else {
           // Handle error
           if (mounted) {
@@ -154,7 +231,7 @@ class _ChatScreenState extends State<ChatScreen> {
               context: context,
               builder: (context) => AlertDialog(
                 title: Text('Error'),
-                content: Text('Failed to send message to Botpress: ${post.statusCode}\nResponse body: ${post.body}'),
+                content: Text('Failed to get messages from Botpress: ${response.statusCode}\nResponse body: ${response.body}'),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(context),
@@ -165,108 +242,30 @@ class _ChatScreenState extends State<ChatScreen> {
             );
           }
         }
-
-
-
-
-        String botReply = jsonDecode(post.body)['message']['payload']['text'];
-
-
-        while (botReply == jsonDecode(post.body)['message']['payload']['text']){
-          var response = await http.get(
-            Uri.parse('https://chat.botpress.cloud/17157902-f630-4a68-b45a-b126fcbff509/conversations/$conversationID/messages'), // Replace with your Botpress API URL
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-              'x-user-key': userKey,
-            },
-          );
-
-          if (response.statusCode == 200) {
-            // Parse the response and display the bot's reply
-            Map<String, dynamic> data;
-            print('Response body: ${response.body}');
-            try {
-              data = jsonDecode(response.body);
-            } catch (e) {
-              if (mounted) {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('Error'),
-                  content: Text('Error decoding response body: $e'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text('OK'),
-                    ),
-                  ],
-                ),
-              );
-            }
-              return;
-            }
-
-
-            print(response.body);
-            print(response.request);
-            botReply = data['messages'][0]['payload']['text'];
-
-
-            // Check if the bot's reply is the same as the user's message
-            if (botReply == jsonDecode(post.body)['message']['payload']['text']) {
-              await Future.delayed(Duration(seconds: 1));
-            } else {
-              ChatMessage botMessage = ChatMessage(
-                text: botReply,
-                isUser: false,
-              );
-              setState(() {
-                _messages.insert(0, botMessage);
-                }
-              );
-            }
-          } else {
-            // Handle error
-            if (mounted) {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('Error'),
-                  content: Text('Failed to get messages from Botpress: ${response.statusCode}\nResponse body: ${response.body}'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text('OK'),
-                    ),
-                  ],
-                ),
-              );
-            }
-          }
-        }
-      } catch (e) {
-        if (mounted) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Error'),
-              content: Text('Error sending message to Botpress: $e'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text('OK'),
-                ),
-              ],
-            ),
-          );
-        }
-        return;
       }
+    } catch (e) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text('Error sending message to Botpress: $e'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+      return;
     }
-  
+  }
+
   @override
   Widget build(BuildContext context) {
-    final dataProvider = Provider.of<DataProvider>(context);
+    final dataProvider = Provider.of<ChatDataProvider>(context);
     final locale = Provider.of<LanguageModel>(context).locale.languageCode;
     return Scaffold(
       body: Column(

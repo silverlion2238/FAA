@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/pages/chatbot.dart';
 import 'package:flutter_application_0_0_5/data/data.dart';
@@ -12,6 +13,8 @@ import 'package:flutter_application_0_0_5/functions/http_functions.dart';
 import 'package:flutter_application_0_0_5/pages/main_page.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
+import 'dart:ffi' if (dart.library.html) 'dart:html';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +27,8 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ThemeNotifier()),
         ChangeNotifierProvider(create: (context) => InjuryNotifier()),
         ChangeNotifierProvider(create: (context) => LanguageModel()),
-        ChangeNotifierProvider(create: (context) => DataProvider()),
+        ChangeNotifierProvider(create: (context) => ChatDataProvider()),
+        ChangeNotifierProvider(create: (context) => VoiceNotifier()),
       ],
       child: MyApp(),
     ),
@@ -35,9 +39,39 @@ void main() async {
   //await Firebase.initializeApp();
 }
 
+class VoiceNotifier extends ChangeNotifier {
+  List<Map> _voices = [];
+  Map _selectedVoice = {};
+  bool _mute = true;
 
+  List<Map> get voices => _voices;
+  Map get selectedVoice => _selectedVoice;
+  bool get mute => _mute;
 
-class DataProvider with ChangeNotifier{
+  void setVoices(List<Map> voices) {
+    _voices = voices;
+    notifyListeners();
+  }
+
+  void setSelectedVoice(Map voice) {
+    _selectedVoice = voice;
+    FlutterTtsSingleton.instance.setVoice(Map<String, String>.from(voice));
+    print('Selected voice: $voice');  
+    notifyListeners();
+  }
+
+  bool isMuted() {
+    return _mute;
+  }
+
+  void setMute(bool mute) {
+    _mute = mute;
+    FlutterTtsSingleton.instance.setVolume(mute ? 1 : 0);
+    notifyListeners();
+  }
+}
+
+class ChatDataProvider with ChangeNotifier{
   String? userKey;
   String? conversationID;
 
@@ -107,14 +141,23 @@ class MyApp extends StatefulWidget {
   MyAppState createState() => MyAppState();
 }
 
+//Flutter TTS Singleton
+class FlutterTtsSingleton {
+  static final FlutterTts _instance = FlutterTts();
+
+  FlutterTtsSingleton._privateConstructor();
+
+  static FlutterTts get instance => _instance;
+}
+
+
 //State of My App
 class MyAppState extends State<MyApp> {
   
-
-  
+  FlutterTts _flutterTts = FlutterTtsSingleton.instance;
   //switching tabs 
   int _selectedIndex = 2; // To keep track of the selected tab
-  FlutterTts _flutterTts = FlutterTts();
+  
 
   void _onItemTapped(int index) {
     setState(() {
@@ -140,8 +183,30 @@ class MyAppState extends State<MyApp> {
   }
 
   void initTTS() {
-    _flutterTts.getVoices.then((voices) {
-      print(voices);
+    _flutterTts.getVoices.then((data) {
+      if (!mounted) return;
+      try {
+        List<String> langs = translations.keys.toList();
+        List<Map> voices = List<Map>.from(data);
+        List<Map> enVoices = voices.where((data) => data['locale'].contains('en')).toList();
+        List<Map> skVoices = voices.where((data) => data['locale'].contains('sk')).toList();
+        List<Map> usableVoices = enVoices + skVoices;
+        print(usableVoices);
+        Provider.of<VoiceNotifier>(context, listen: false).setVoices(usableVoices);
+        Map currentVoice;
+        try {
+          currentVoice = usableVoices.where((voice) => voice['locale'].contains(Provider.of<LanguageModel>(context, listen: false).locale.toString())).first;
+        } catch (e) {
+          print('Voice not found');
+          print(e);
+          currentVoice = usableVoices.isNotEmpty ? usableVoices.first : {};
+        }
+        Provider.of<VoiceNotifier>(context, listen: false).setSelectedVoice(currentVoice);
+
+      } catch (e) {
+        print('Error getting voices');
+        print(e);
+      }
     });
   }
 

@@ -3,6 +3,7 @@ import 'package:flutter_application_0_0_5/data/language_data.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/functions/other_functions.dart';
+import 'package:flutter_application_0_0_5/main.dart';
 
 
 
@@ -41,9 +42,11 @@ Widget functionCCold(context) {
 
 
 Widget functionNBleed (context, {int pageNum = 1}) {
-  print(pageNum);
+
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
-  
+  //FlutterTtsSingleton.instance.setVoice(Map<String, String>.from(Provider.of<VoiceNotifier>(context, listen: false).selectedVoice));
+  FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['NosebleedSolution$pageNum']!,);
   return Column(
     children: [
       Image(
@@ -89,7 +92,10 @@ Widget functionNBleed (context, {int pageNum = 1}) {
 }
 
 Widget functionBurns(context, {int pageNum = 1}) {
+
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+  FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['BurnsSolution$pageNum']!);
   return Column(
     children: [
       if (pageNum == 1)
@@ -150,6 +156,8 @@ Widget functionBurns(context, {int pageNum = 1}) {
 
 Widget functionCBurn(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+  FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['ChemicalBurnsSolution$pageNum']!);
   return Column(
     children: [
     if (pageNum == 1)
@@ -220,11 +228,10 @@ Widget functionCBurn(context, {int pageNum = 1}) {
   );
 }
 
-
-
-
 Widget functionFracture(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+  FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['FractureSolution$pageNum']!);
   return Column(
     children: [
       Image(
@@ -266,6 +273,8 @@ Widget functionFracture(context, {int pageNum = 1}) {
 
 Widget functionDislocation(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+  FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['DislocationSolution$pageNum']!);
   return Column(
     children: [
       Image(
@@ -308,6 +317,8 @@ Widget functionDislocation(context, {int pageNum = 1}) {
 
 Widget functionHypervent(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+    FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['HyperventSolution$pageNum']!);
   return Column(
     children: [
       Image(
@@ -350,6 +361,8 @@ Widget functionHypervent(context, {int pageNum = 1}) {
 
 Widget functionUnconsciousB(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+    FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['UnconsciousSolution$pageNum']!);
   return Column(
     children: [
       Image(
@@ -391,6 +404,8 @@ Widget functionUnconsciousB(context, {int pageNum = 1}) {
 
 Widget functionEpilepsy(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+    FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['EpilepsySolution$pageNum']!);
   return Column(
     children: [
       Image(
@@ -432,6 +447,8 @@ Widget functionEpilepsy(context, {int pageNum = 1}) {
 
 Widget functionAsthmaAtt(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+    FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['AsthmaAttackSolution$pageNum']!);
   return Column(
     children: [
       Image(

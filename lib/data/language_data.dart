@@ -25,11 +25,13 @@ const Map<String, Map<String, String>> translations = {
     'placeholder2': 'placeholder2-en',
     'placeholder3': 'placeholder3-en',
 
-    'App Theme: ': 'App Theme: ',
+    'App Theme': 'App Theme: ',
     'System': 'System',
     'Light': 'Light',
     'Dark': 'Dark',
-    'Language: ': 'Language: ',
+    'Language': 'Language: ',
+    'audio' : 'Voice: ',
+    'Mute': 'Audio: ',
 
     'Solution1': 'Solution1 - en',
     'Solution2': 'Solution2 - en',
@@ -81,7 +83,7 @@ const Map<String, Map<String, String>> translations = {
     'ChemicalBurnsSolution2': '2. Rinse liquid chemicals with a stream of clean water for 20 minutes',
     'ChemicalBurnsSolution3': '3. If clothing is affected, remove it while rinsing',
     'ChemicalBurnsSolution4': '4. If eyes are affected, rinse them with plenty of water',
-    'ChemicalBurnsSolution5': '5. If a chemical is ingested, do not induce vomiting, rinse the mouth repeatedly and then give the person 2 dc of water to drink sip by sip',
+    'ChemicalBurnsSolution5': '5. If a chemical is ingested, do not induce vomiting, rinse the mouth repeatedly and then give the person 2 dl of water to drink sip by sip',
     'ChemicalBurnsSolution6': '6. Arrange transport to the hospital',
 
     'Fracture': 'Fracture',
@@ -182,6 +184,7 @@ const Map<String, Map<String, String>> translations = {
     'no': 'Nie',
     'next': 'Ďalej',
     'back': 'Späť',
+    
 
     'primaryText': 'Primárny Text(otázka)',
     'description': 'Popis',
@@ -189,11 +192,13 @@ const Map<String, Map<String, String>> translations = {
     'placeholder2': 'placeholder2-sk',
     'placeholder3': 'placeholder3-sk',
 
-    'App Theme: ': 'Svetelný režim aplikácie: ',
+    'App Theme': 'Svetelný režim aplikácie: ',
     'System': 'Systémový',
     'Light': 'Svetlý',
     'Dark': 'Tmavý',
-    'Language: ': 'Jazyk: ',
+    'Language': 'Jazyk: ',
+    'audio' : 'Hlas: ',
+    'Mute': 'Zvuk: ',
 
     'Solution1': 'Solution1 - sk',
     'Solution2': 'Solution2 - sk',
