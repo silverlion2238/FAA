@@ -4,6 +4,7 @@ import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/data/data.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
+import 'package:flutter_application_0_0_5/functions/special_functions.dart';
 
 class SolutionPage extends StatefulWidget {
 
@@ -45,6 +46,11 @@ class SolutionPageState extends State<SolutionPage> {
             Navigator.popUntil(context, (route) => route.isFirst);
             },
           ),
+          title: Text(
+            //App bar title
+            // If the function is in specialFunctions, don't show the name of the injury(beacuse there's none)
+            specialFunctions.contains(solutionFunction) ? '' : injuries.where((inj) => inj.getFunction() == solutionFunction).first.getName(context),
+          )
         ),
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: Center(

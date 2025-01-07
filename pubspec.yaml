@@ -93,7 +93,15 @@ flutter:
 
     - images/sja/step1adult-choking-first-aid-advice.png
 
+    - images/sja/step2-adult-recovery-position-first-aid.png
     - images/sja/step3-adult-recovery-position-first-aid.png
+    - images/sja/step4-adult-recovery-position-first-aid.png
+    - images/sja/step5-adult-recovery-position-first-aid.png
+    - images/sja/step6-adult-recovery-position-first-aid.png
+    - images/sja/step7-adult-recovery-position-first-aid.png
+    
+    - images/sja/cpr-step-1.png
+    - images/sja/cpr-step-2.png
 
     - images/sja/child-asthma.png
 
@@ -110,6 +118,12 @@ flutter:
     - images/epil.jpg
 
     - images/asthma.jpg
+
+    - images/check_breath.png
+    - images/angle_head.png
+    - images/sja/step2_primary_survey_first_aid.png
+
+    - images/AED_Sign_700x.webp
 
     - images/
 

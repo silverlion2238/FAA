@@ -176,7 +176,7 @@ class MyAppState extends State<MyApp> {
     _widgetOptions = <Widget>[
       ChecklistScreen(toResultTab: _onItemTapped), // Now you can use _onItemTapped
       ResultScreen(),
-      MainPage(toResultTab: _onItemTapped,),
+      MainPage(),
       ChatScreen(),
       SettingsPage(),
     ];

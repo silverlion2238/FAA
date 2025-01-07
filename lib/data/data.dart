@@ -1,4 +1,5 @@
 import 'package:flutter_application_0_0_5/functions/results_functions.dart';
+import 'package:flutter_application_0_0_5/functions/special_functions.dart';
 import 'package:flutter_application_0_0_5/functions/other_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
@@ -55,7 +56,6 @@ String toString() =>  name;
 
 // Correct Data
 enum Symptom {
-  bleeding,
   blister,
   crackingSound,
   foaming,
@@ -76,8 +76,6 @@ enum Symptom {
 
   String getName(context) {
     switch (this) {
-      case Symptom.bleeding:
-        return LanguageData().updateTranslation('Bleeding', context);
       case Symptom.blister:
         return LanguageData().updateTranslation('Blister', context);
       case Symptom.crackingSound:
@@ -134,6 +132,7 @@ class Injury {
     // Return the translated name based on the locale
     return LanguageData().updateTranslation(name, context);
   }
+
 
   String getDescription() {
     return description;
@@ -291,7 +290,21 @@ List<Injury> origInjuries = [
     'UnconsciousDesc',
     'UnconsciousSolution1',
     [Symptom.unresponsive], 
-    functionUnconsciousB,          //<===========================    REPLACE WITH UNCONSCIOUS FUNCTION
+    functionUnconscious,          //<===========================    REPLACE WITH UNCONSCIOUS FUNCTION
+  ),
+  Injury(
+    'RecPos',
+    'RecPosDesc',
+    'RecPosSolution1',
+    [],
+    functionRecPos,
+  ),
+  Injury(
+    'cpr',
+    'cprDesc',
+    'cprSolution1',
+    [],
+    functionCPR,
   ),
   Injury(
     'Epilepsy', 

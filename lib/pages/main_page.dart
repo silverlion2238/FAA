@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_0_0_5/functions/other_functions.dart';
+import 'package:flutter_application_0_0_5/functions/results_functions.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/data/data.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
 
 class MainPage extends StatelessWidget{
-  final Function(int) toResultTab;
-  const MainPage({required this.toResultTab, super.key});
+
+  
+  const MainPage({super.key});
+  
   @override
   Widget build(BuildContext context) {
+    final locale = Provider.of<LanguageModel>(context).locale.languageCode;
     return Scaffold(
 
       body: Center(
@@ -20,12 +25,15 @@ class MainPage extends StatelessWidget{
               width: 200,
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.125,),
+
+
+            //First Row
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
+                    minimumSize: WidgetStateProperty.all<Size>(Size(160, 50)),
                     backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
@@ -35,19 +43,17 @@ class MainPage extends StatelessWidget{
                     ),
                   ),
                   onPressed: () {
-                    toResultTab(3);
+                    openSolutionPage(context, functionNBleed);
                   },
-                  child: Text(
-                    'Chatbot',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
+                  child: Text(translations[locale]!['Nosebleed']!),
                 ),
+
+
                 SizedBox(width: 20),
+                
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
+                    minimumSize: WidgetStateProperty.all<Size>(Size(160, 50)),
                     backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
@@ -57,19 +63,23 @@ class MainPage extends StatelessWidget{
                     ),
                   ),
                   onPressed: () {
-                    toResultTab(0);
+                    openSolutionPage(context, functionFracture);
                   },
-                    child: Text('Search'),
+                    child: Text(translations[locale]!['Fracture']!),
                 ),
               ],
             ),
             SizedBox(height: 20),   
+
+
+
+            //Second Row
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
+                    minimumSize: WidgetStateProperty.all<Size>(Size(160, 50)),
                     backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
@@ -79,14 +89,14 @@ class MainPage extends StatelessWidget{
                     ),
                   ),
                   onPressed: () {
-                  toResultTab(1);
+                  openSolutionPage(context, functionDislocation);
                   },
-                  child: Text('Result'),
+                  child: Text(translations[locale]!['Dislocation']!),
                 ),
                 SizedBox(width: 20),
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
+                    minimumSize: WidgetStateProperty.all<Size>(Size(160, 50)),
                     backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
@@ -96,9 +106,9 @@ class MainPage extends StatelessWidget{
                     ),
                   ),
                   onPressed: () {
-                    toResultTab(4);
+                    openSolutionPage(context, functionHypervent);
                   },
-                  child: Text('Settings'),
+                  child: Text(translations[locale]!['Hypervent']!),
                 ),
               ],
             ),

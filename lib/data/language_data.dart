@@ -18,6 +18,8 @@ const Map<String, Map<String, String>> translations = {
     'no': 'No',
     'next': 'Next',
     'back': 'Back',
+    'BreathAff' : 'He\'s breathing',
+    'BreathNeg' : 'He\'s not breathing',
 
     'primaryText': 'Primary Text(question)',
     'description': 'Description',
@@ -58,6 +60,28 @@ const Map<String, Map<String, String>> translations = {
     'Twitching': 'Twitching',
     'Unresponsive': 'Unconsciousness',
     'Wheezing': 'Wheezing',
+
+
+    'TypeOfPain':'Is the pain burning?',
+    'Cracks?': 'Was a cracking sound heard or felt?',
+    'Joints?': 'Is the affected area in the joint area?',
+    'isBreathing?': 'Is the affected person breathing?',
+    'isBreathingStep1': '1. First, call out to the person several times and if they do not respond, shaking them by the shoulders is enough to determine if first aid will be needed.',
+    'isBreathingStep2': '2. Clear the affected person\'s airway by laying them on their back and tilting their head (one hand on the forehead, the other under the chin). Never support the head or neck with anything.',
+    'isBreathingStep3': '3. Spend about 10 seconds checking the breathing and watch the chest movements. In that time, there should be 2-3 normal breaths.',
+
+
+
+    'RecPos' : 'Recovery Position',
+    'RecPos1' : '1. Kneel by the casualty and straighten their legs. If they are wearing glasses, or have any bulky items in their pockets, remove them.',
+    'RecPos2' : '2. Place the arm that is nearest to you at a right angle to their body, with the elbow bent and their palm facing upwards.',
+    'RecPos3' : '3. Bring their other arm across their chest and place the back of their hand against the cheek nearest to you. Hold it there.',
+    'RecPos4' : '4. With your other hand, pull their far knee up so that their foot is flat on the floor.',
+    'RecPos5' : '5. Keeping the back of the casualty\'s hand pressed against their cheek, pull on the far leg to roll the casualty towards you on to their side. You can then adjust the top leg so that it is bent at a right angle.',
+    'RecPos6' : '6. Gently tilt the casualty\'s head back and lift their chin to make sure their airway stays open. ',
+
+
+
 
     //'Nosebleed': 'Nosebleed',
     'NosebleedDesc': 'A nosebleed is a common problem characterized by bleeding from the nose. Nosebleeds can be caused by dry air, allergies, infection, or trauma. Nosebleeds are characterized by bleeding from the nose, headache, and dizziness.',
@@ -184,6 +208,8 @@ const Map<String, Map<String, String>> translations = {
     'no': 'Nie',
     'next': 'Ďalej',
     'back': 'Späť',
+    'BreathAff' : 'Dýcha',
+    'BreathNeg' : 'Nedýcha',
     
 
     'primaryText': 'Primárny Text(otázka)',
@@ -229,7 +255,24 @@ const Map<String, Map<String, String>> translations = {
     'TypeOfPain':'Je bolesť pálivá?',
     'Cracks?': 'Bolo počuť alebo cítiť zlomenie?',
     'Joints?': 'Je postihnuté miesto v oblasti kĺbu?',
+    'isBreathing?': 'Dýchá postihnutý?',
+    'isBreathingStep1': '1. Najprv osobu niekoľkokrát hlasno oslovte a pokiaľ nereaguje, zatrasenie za ramená postačí na určenie, či bude treba poskytnúť prvú pomoc.',
+    'isBreathingStep2': '2. Uvoľnite postihnutému dýchacie cesty tak, že ho položíte na chrbát a zakloníte mu hlavu (jednou rukou na čelo, druhou pod bradu). Nikdy hlavu ani krk ničím nepodkladajte. ',
+    'isBreathingStep3': '3. Zhruba 10 sekúnd venujte kontrole dýchania a sledujte pohyby hrudníka. Za ten čas by malo dôjsťby malo dôjsť k 2-3 normálnym nádychom.',
 
+    'RecPos' : 'Stabilizovaná poloha',
+    'RecPos1' : '1. Kľaknite si pri postihnutom a narovnajte mu nohy. Ak má okuliare alebo vreckové predmety v kapsách, odstráňte ich.',
+    'RecPos2' : '2. Ruku, ktorá je vám najbližšie, položte v pravom uhle k telu, s lakťom pokrčeným a dlaňou smerujúcou nahor.',
+    'RecPos3' : '3. Vzdialenejšiu ruku postihnutého položte cez hrudník dlaňou na líce, ktoré je vám najbližšie. Držte ju tam.',
+    'RecPos4' : '4. Druhou rukou postihnutému pokrčte koleno ďalej od vás tak, aby bolo chodidlo rovno na zemi.',
+    'RecPos5' : '5. Držiac postihnutému dlaň na líci, ťahajte za pokrčenú nohu, aby ste postihnutého otočili na bok. Hornú nohu upravte tak, aby bola pokrčená v pravom uhle.',
+    'RecPos6' : '6. Jemne postihnutému nakloňte hlavu dozadu a zdvihnite mu bradu, aby mu dýchacie cesty ostali otvorené.',
+
+    'cpr' : 'KPR',
+    'cpr1' : '1. Zavolajte záchranku (155)',
+    'cpr2' : '2. Nakloňte sa kolmo nad hrudník a stláčajte ho do hĺbky 5-6 cm asi 100-120 krát za minútu(tempo ako pieseň Stayin\' Alive)',
+    'cpr3' : '3. Po každom 30 stlačení urobte 2 nádychy (ak dýchať nechcete, pokračujte len v stlačovaní)',
+    'cpr4' : '4. Pokračujte v KPR, kým sa neobjaví záchranka. Použite AED, ak je k dispozícii.',
 
     'Burns': 'Popáleniny',
     'BurnsDesc': 'Popáleniny sú poranenia kože, ktoré sú spôsobené teplom, chemikáliami, elektrinou alebo žiarením. Popáleniny sa prejavujú červenaním, tvorbou pľuzgierov a bolesťou. Popáleniny sa klasifikujú do troch kategórií: popáleniny prvého stupňa, popáleniny druhého stupňa a popáleniny tretieho stupňa.',
@@ -249,6 +292,9 @@ const Map<String, Map<String, String>> translations = {
     'ChemicalBurnsSolution4': '4. Ak sú zasiahnuté oči vypláchnite ich väčším množstvom vody',
     'ChemicalBurnsSolution5': '5. Pri vypití žieraviny nevyvolávajte zvracanie, opakovane vyplachujte ústa a potom dajte postihnutému vypiť 2 dcl vody po dúškoch',
     'ChemicalBurnsSolution6': '6. Zariaďte transport do nemocnice',
+
+    
+
 
 
     'Fracture': 'Zlomenina',
