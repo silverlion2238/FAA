@@ -68,6 +68,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
 
+    - images/single_icon_page-0001.jpg
+
     - images/sja/sja-burn-or-a-scald-poster.png
 
     - images/sja/adult-shock.webp

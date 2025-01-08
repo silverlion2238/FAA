@@ -21,7 +21,7 @@ class MainPage extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              'images/Flag_of_the_Red_Cross.svg.png',
+              'images/single_icon_page-0001.jpg',
               width: 200,
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.125,),
@@ -33,7 +33,7 @@ class MainPage extends StatelessWidget{
               children: <Widget>[
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all<Size>(Size(160, 50)),
+                    minimumSize: WidgetStateProperty.all<Size>(Size(MediaQuery.of(context).size.width * 0.4, 50)),
                     backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
@@ -53,7 +53,7 @@ class MainPage extends StatelessWidget{
                 
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all<Size>(Size(160, 50)),
+                    minimumSize: WidgetStateProperty.all<Size>(Size(MediaQuery.of(context).size.width * 0.4, 50)),
                     backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
@@ -79,7 +79,7 @@ class MainPage extends StatelessWidget{
               children: <Widget>[
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all<Size>(Size(160, 50)),
+                    minimumSize: WidgetStateProperty.all<Size>(Size(MediaQuery.of(context).size.width * 0.4, 50)),
                     backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
@@ -96,7 +96,7 @@ class MainPage extends StatelessWidget{
                 SizedBox(width: 20),
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all<Size>(Size(160, 50)),
+                    minimumSize: WidgetStateProperty.all<Size>(Size(MediaQuery.of(context).size.width * 0.4, 50)),
                     backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(

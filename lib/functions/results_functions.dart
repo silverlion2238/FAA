@@ -668,7 +668,6 @@ Widget functionAsthmaAtt(context, {int pageNum = 1}) {
   );
 }
 
-
 Widget functionRecPos(context, {int pageNum = 1}) {
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();
