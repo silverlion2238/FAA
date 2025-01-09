@@ -29,6 +29,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => LanguageModel()),
         ChangeNotifierProvider(create: (context) => ChatDataProvider()),
         ChangeNotifierProvider(create: (context) => VoiceNotifier()),
+        ChangeNotifierProvider(create: (_) => LayoutProvider()),
       ],
       child: MyApp(),
     ),
@@ -37,6 +38,17 @@ void main() async {
   //Firebase
   //WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
+}
+
+class LayoutProvider extends ChangeNotifier {
+  bool _isTwoColumnLayout = false;
+
+  bool get isTwoColumnLayout => _isTwoColumnLayout;
+
+  void setLayout(bool isTwoColumnLayout) {
+    _isTwoColumnLayout = isTwoColumnLayout;
+    notifyListeners();
+  }
 }
 
 class VoiceNotifier extends ChangeNotifier {
@@ -235,9 +247,35 @@ class MyAppState extends State<MyApp> {
           home: Scaffold(
             backgroundColor: Theme.of(context).colorScheme.surface,
             appBar: AppBar(
-              title: Text(
-                'Prvá pomoc pre školákov',
-                style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Prvá pomoc pre školákov',
+                    style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                  ),
+                  if (_selectedIndex == 0) 
+                  DropdownButton<bool>(
+                    value: Provider.of<LayoutProvider>(context).isTwoColumnLayout,
+                    items: [
+                      DropdownMenuItem(
+                        value: true,
+                        child: Icon(Icons.view_module),
+                      ),
+                      DropdownMenuItem(
+                        value: false,
+                        child: Icon(Icons.view_agenda),
+                      ),
+                    ],
+                    onChanged: (bool? newBool) {
+                      if (newBool != null) {
+                        setState(() {
+                          Provider.of<LayoutProvider>(context, listen: false).setLayout(newBool);
+                        });
+                      }
+                    },
+                  )
+                ],
               ),
               backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             ),

@@ -83,6 +83,7 @@ class ChecklistScreen extends StatefulWidget {
 
 
 class ChecklistScreenState extends State<ChecklistScreen> {
+  
 
   //opening of result page
   
@@ -90,29 +91,126 @@ class ChecklistScreenState extends State<ChecklistScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final locale = Provider.of<LanguageModel>(context).locale.languageCode;
+    final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          return CheckboxListTile(
-            title: Text(items[index].getName(context)),
-            value: selectedSymptoms.contains(items[index]),
-            onChanged: (value) {
-              if (value != null) {
-                setState(() {
-                  if (value) {
-                    selectedSymptoms.add(items[index]);
-                  } else {
-                    selectedSymptoms.remove(items[index]);
-                  }
-                });
-              }
-            },
-          );
-        },
+
+
+
+
+      body: Column(
+        children: [
+          
+      
+
+
+          Expanded(
+            child: Provider.of<LayoutProvider>(context).isTwoColumnLayout ? 
+            GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 3,
+                crossAxisSpacing: 3,
+                mainAxisSpacing: 3,
+              ),
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  
+                    child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      backgroundColor: selectedSymptoms.contains(items[index])
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                      shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                      if (selectedSymptoms.contains(items[index])) {
+                        selectedSymptoms.remove(items[index]);
+                      } else {
+                        selectedSymptoms.add(items[index]);
+                      }
+                      });
+                    },
+                    child: Text(
+                      items[index].getName(context),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                      color: selectedSymptoms.contains(items[index])
+                        ? Theme.of(context).colorScheme.onPrimary
+                        : Theme.of(context).colorScheme.onSurface,
+                      ),
+                    ),
+                    ),
+                );
+              },
+            )
+            : ListView.builder(
+              
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(1.5),
+                  child: 
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(8),
+                      
+                    ),
+                    child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      
+                      elevation: 0,
+                      backgroundColor: selectedSymptoms.contains(items[index])
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                      shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                      if (selectedSymptoms.contains(items[index])) {
+                      selectedSymptoms.remove(items[index]);
+                      } else {
+                      selectedSymptoms.add(items[index]);
+                      }
+                      });
+                    },
+                    child: Text(
+                      items[index].getName(context),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                      color: selectedSymptoms.contains(items[index])
+                      ? Theme.of(context).colorScheme.onPrimary
+                      : Theme.of(context).colorScheme.onSurface,
+                      ),
+                    ),
+                    ),
+                  )
+                );
+              },
+            ),
+          ),
+        ],
       ),
+      
+      
+
+
+
+
       floatingActionButton: FloatingActionButton(
 
         backgroundColor: Theme.of(context).colorScheme.primary,

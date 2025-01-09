@@ -210,6 +210,7 @@ const Map<String, Map<String, String>> translations = {
     'back': 'Späť',
     'BreathAff' : 'Dýcha',
     'BreathNeg' : 'Nedýcha',
+    'chooseLayout' : 'Vyberte si rozloženie',
     
 
     'primaryText': 'Primárny Text(otázka)',
