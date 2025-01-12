@@ -5,6 +5,7 @@ import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/data/data.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
+import 'package:flutter_application_0_0_5/functions/special_functions.dart';
 
 class MainPage extends StatelessWidget{
 

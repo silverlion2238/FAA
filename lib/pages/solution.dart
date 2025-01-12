@@ -43,7 +43,8 @@ class SolutionPageState extends State<SolutionPage> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-            Navigator.popUntil(context, (route) => route.isFirst);
+              FlutterTtsSingleton.instance.stop();
+              Navigator.popUntil(context, (route) => route.isFirst);
             },
           ),
           title: Text(

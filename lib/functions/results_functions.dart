@@ -288,10 +288,10 @@ Widget functionCBurn(context, {int pageNum = 1}) {
   );
 }
 
-Widget functionFracture(context, {int pageNum = 1}) {
-  final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+Widget functionFractureArm(context,{int pageNum = 1}) {
+   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();
-  FlutterTtsSingleton.instance.speak(translations[locale]!['FractureSolution$pageNum']!);
+  FlutterTtsSingleton.instance.speak(translations[locale]!['FractureSolArm$pageNum']!);
   return Column(
     children: [
       Image(
@@ -301,7 +301,7 @@ Widget functionFracture(context, {int pageNum = 1}) {
       ),
       SizedBox(height: 20,),
       Text(
-        translations[locale]!['FractureSolution$pageNum']!,
+        translations[locale]!['FractureSolArm$pageNum']!,
         textAlign: TextAlign.center,
       ),
       SizedBox(height: 20,),
@@ -323,12 +323,12 @@ Widget functionFracture(context, {int pageNum = 1}) {
               if (pageNum == 1) {
                 Navigator.popUntil(context, (route) => route.isFirst);
               } else {
-                openSolutionPage(context, functionFracture, pageNum: pageNum - 1);
+                openSolutionPage(context, functionFractureArm, pageNum: pageNum - 1);
               }
             },
             child: Text(translations[locale]!['back']!),
           ),
-          if (translations[locale]!['FractureSolution${pageNum + 1}'] != null)
+          if (translations[locale]!['FractureSolArm${pageNum + 1}'] != null)
             ElevatedButton(
             style: ButtonStyle(
               minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
@@ -341,7 +341,83 @@ Widget functionFracture(context, {int pageNum = 1}) {
               ),
             ),
               onPressed: () {
-                openSolutionPage(context, functionFracture, pageNum: pageNum + 1);
+                openSolutionPage(context, functionFractureArm, pageNum: pageNum + 1);
+              },
+              child: Text(translations[locale]!['next']!),
+            ),
+        ],
+      ),
+    ],
+  );
+}
+
+Widget functionFractureLeg(context,{int pageNum = 1}) {
+   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+  FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['FractureSolLeg$pageNum']!);
+  return Column(
+    children: [
+      if (pageNum == 1)
+      Image(
+        image: AssetImage('images/f_leg.png'),
+        width: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2,
+      ),
+    if (pageNum == 2)
+      Image(
+        image: AssetImage('images/f_legs.png'),
+        width: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2,
+      ),
+    if (pageNum == 3)
+      Image(
+        image: AssetImage('images/sja/calling-for-help---male.png'),
+        width: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2,
+        ),
+      SizedBox(height: 20,),
+      Text(
+        translations[locale]!['FractureSolLeg$pageNum']!,
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(height: 20,),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ElevatedButton(
+            style: ButtonStyle(
+              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
+              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
+                ),
+              ),
+            ),
+            onPressed: () {
+              if (pageNum == 1) {
+                Navigator.popUntil(context, (route) => route.isFirst);
+              } else {
+                openSolutionPage(context, functionFractureLeg, pageNum: pageNum - 1);
+              }
+            },
+            child: Text(translations[locale]!['back']!),
+          ),
+          if (translations[locale]!['FractureSolLeg${pageNum + 1}'] != null)
+            ElevatedButton(
+            style: ButtonStyle(
+              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
+              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
+                ),
+              ),
+            ),
+              onPressed: () {
+                openSolutionPage(context, functionFractureLeg, pageNum: pageNum + 1);
               },
               child: Text(translations[locale]!['next']!),
             ),

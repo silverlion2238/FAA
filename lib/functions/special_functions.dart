@@ -12,6 +12,8 @@ List<Function> specialFunctions = [
   specialBoneFunction,
   specialBonesFunction2,
   functionUnconsciousB,
+  functionFractureArm,
+  functionFractureLeg,
 ];
 // Function for identifying the bone injury
 
@@ -92,17 +94,6 @@ Widget specialBoneFunction(context, {pageNum = 0}) {
     ],
   );
 }
-
-
-
-
-
-
-
-
-
-
-
 // Function for identifying the type of burns
 
 Widget specialBurnsFunction(context, {pageNum = 0}) {
@@ -244,10 +235,9 @@ Widget specialBonesFunction2(context, {pageNum = 0}) {
   );
 }
 
-
-
-
 Widget functionUnconscious(context, {int pageNum = 1}) {
+
+
 
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();
@@ -367,6 +357,70 @@ Widget functionUnconscious(context, {int pageNum = 1}) {
             ),
           ],
         ),
+    ],
+  );
+}
+
+
+Widget functionFracture(context, {pageNum = 0}) {
+
+  final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+  FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.speak(translations[locale]!['FractureSolution0']!);
+  return Column(
+    children: [
+      Image(
+        image: AssetImage('images/sja/adult-shock.webp'),
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.height / 2,
+      ),
+      
+      SizedBox(height: 20,),    
+
+      Text(
+        translations[locale]!['FractureSolution0']!,
+        textAlign: TextAlign.center,
+      ),
+
+      SizedBox(height: 20,),
+
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ElevatedButton(
+            style: ButtonStyle(
+              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
+              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
+                ),
+              ),
+            ),
+            onPressed: () {
+              openSolutionPage(context, functionFractureArm);
+            },
+            child: Text(translations[locale]!['Arm']!),
+          ),
+          ElevatedButton(
+            style: ButtonStyle(
+              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
+              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
+                ),
+              ),
+            ),
+            onPressed: () { 
+              openSolutionPage(context, functionFractureLeg);
+            },
+            child: Text(translations[locale]!['Leg']!),
+          ),
+        ],
+      ),
     ],
   );
 }

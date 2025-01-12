@@ -260,11 +260,17 @@ class MyAppState extends State<MyApp> {
                     items: [
                       DropdownMenuItem(
                         value: true,
-                        child: Icon(Icons.view_module),
+                        child: Icon(
+                          Icons.view_module,
+                          color: Colors.white,
+                          ),
                       ),
                       DropdownMenuItem(
                         value: false,
-                        child: Icon(Icons.view_agenda),
+                        child: Icon(
+                          Icons.view_agenda,
+                          color: Colors.white,
+                          ),
                       ),
                     ],
                     onChanged: (bool? newBool) {

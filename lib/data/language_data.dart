@@ -20,6 +20,9 @@ const Map<String, Map<String, String>> translations = {
     'back': 'Back',
     'BreathAff' : 'He\'s breathing',
     'BreathNeg' : 'He\'s not breathing',
+    'chooseLayout' : 'Choose Layout',
+    'Arm' : 'Arm',
+    'Leg' : 'Leg',
 
     'primaryText': 'Primary Text(question)',
     'description': 'Description',
@@ -81,6 +84,12 @@ const Map<String, Map<String, String>> translations = {
     'RecPos6' : '6. Gently tilt the casualty\'s head back and lift their chin to make sure their airway stays open. ',
 
 
+    'cpr' : 'CPR',
+    'cpr1' : '1. Call an ambulance (155)',
+    'cpr2' : '2. Lean over the casualty\'s chest and press down on it to a depth of 5-6 cm about 100-120 times per minute (the tempo of the song Stayin\' Alive)',
+    'cpr3' : '3. After every 30 compressions, give 2 breaths (if you don\'t want to breathe, continue compressing only)',
+    'cpr4' : '4. Continue CPR until the ambulance arrives. Use an AED if available.',
+
 
 
     //'Nosebleed': 'Nosebleed',
@@ -110,13 +119,32 @@ const Map<String, Map<String, String>> translations = {
     'ChemicalBurnsSolution5': '5. If a chemical is ingested, do not induce vomiting, rinse the mouth repeatedly and then give the person 2 dl of water to drink sip by sip',
     'ChemicalBurnsSolution6': '6. Arrange transport to the hospital',
 
+
+    // Ak nemáte prostriedky k znehybneniu zlomenej nohy, priviažte ju o zdravú
+    'FractureSolLeg1': '1. Immobilize so that one joint below and one joint above the fracture is immobilized',
+    'FractureSolLeg2': '2. If you do not have the means to immobilize the broken leg, tie it to the healthy one',
+    'FractureSolLeg3': '3. Arrange transport to the hospital',
+
+
+    'FractureSolArm1' : '1. To immobilize the arm use an arm sling. Ask the casualty to support their arm with their other hand. Gently slide the triangular bandage underneath the arm. The point of the triangle should be underneath the elbow of the injured arm. Bring the top end of the bandage around the back of the neck.',
+    'FractureSolArm2' : '2. Fold the lower end of the bandage up over the forearm to meet the top of the bandage at the shoulder of the injured side.',
+    'FractureSolArm3' : '3. Tie the two ends of the bandage together in a reef knot above their collar bone and tuck in the free ends.',
+    'FractureSolArm4' : '4. Adjust the sling so that it supports their arm all the way to the end of their little finger.',
+    'FractureSolArm5' : '5. Make sure that the edge of the bandage by the elbow is secured by twisting the fabric and tucking it in, or using a safety pin to fasten.',
+    'FractureSolArm6' : '6. Arrange transport to the hospital. Check the circulation in their fingertips every 10 minutes. Press their nail for five seconds until it turns pale, then release to see if the colour returns within two seconds.',
+
+
+
+
+
     'Fracture': 'Fracture',
     'FractureDesc': 'A fracture is a bone injury that is characterized by a break or crack in the bone. Fractures are often caused by a sudden movement or trauma. Fractures are characterized by pain, swelling, and limited movement.',
+    'FractureSolution0': '1. Immobilize so that one joint below and one joint above the fracture is immobilized',
     'FractureSolution1': '1. Create support on the injured limb by placing hands above and below the fracture site',
     'FractureSolution2': '2. Immobilize so that one joint below and one joint above the fracture is immobilized',
     'FractureSolution3': '3. Place the broken upper limb in a sling made of a triangular scarf or immobilize it in the sleeve of clothing (a broken collarbone is treated the same way)',
     'FractureSolution4': '4. For severe deformity, use various types of padding to immobilize (pillows, blankets, ...)',
-    'FractureSolution5': '5. Call an ambulance or go to the emergency room',
+    'FractureSolution5': '5. Call an ambulance or go to the hospital',
 
     'Dislocation': 'Dislocation',
     'DislocationDesc': 'A dislocation is a joint injury that is characterized by the displacement of the joint head from the joint socket. Dislocations are often caused by a sudden movement or fall. Dislocations are characterized by pain, swelling, and limited movement.',
@@ -211,6 +239,8 @@ const Map<String, Map<String, String>> translations = {
     'BreathAff' : 'Dýcha',
     'BreathNeg' : 'Nedýcha',
     'chooseLayout' : 'Vyberte si rozloženie',
+    'Arm' : 'Ruka',
+    'Leg' : 'Noha',
     
 
     'primaryText': 'Primárny Text(otázka)',
@@ -295,12 +325,23 @@ const Map<String, Map<String, String>> translations = {
     'ChemicalBurnsSolution6': '6. Zariaďte transport do nemocnice',
 
     
+    'FractureSolLeg1': '1. Znehybnite tak, aby bol znehybnený jeden kĺb pod aj nad zlomeninou.',
+    'FractureSolLeg2': '2. Ak nemáte prostriedky k znehybneniu zlomenej nohy, priviažte ju o zdravú.',
+    'FractureSolLeg3': '3. Zavolajte záchranku alebo choďte na pohotovosť.',
+
+    'FractureSolArm1' : '1. Dajte ruku do závesu. Požiadajte postihnutého, aby si ruku podoprel druhou rukou. Jemne posuňte trojrohú šatku pod ruku. Roh šatky by mal byť pod lakťom postihnutej ruky. Vrchný koniec obväzu zaveste okolo krku.',
+    'FractureSolArm2' : '2. Spodný koniec obväzu preložte cez predlaktie, aby sa stretol s vrchným koncom obväzu na ramene postihnutej strany.',
+    'FractureSolArm3' : '3. Zviažte oba konce obväzu nad kľúčnou kosťou',
+    'FractureSolArm4' : '4. Obväz nastavte tak, aby podopieral ruku až po koniec malíčka.',
+    'FractureSolArm5' : '5. Uistite sa, že okraj obväzu pri lakťovej časti je zabezpečený zatočením rohu, alebo použitím zatváracieho špendlíka.',
+    'FractureSolArm6' : '6. Zariaďte prevoz do nemocnice. Každých 10 minút skontrolujte krvný obeh v končekoch prstov. Tlačte na nechet poraňenej ruky po dobu piatich sekúnd, až kým nezbledne, potom uvoľnite a sledujte, či sa farba vráti do dvoch sekúnd.',
+
 
 
 
     'Fracture': 'Zlomenina',
     'FractureDesc': 'Zlomenina je poranenie kosti, ktoré je charakterizované zlomením alebo trhlinou v kosti. Zlomeniny sú často spôsobené náhlym pohybom alebo traumou. Zlomeniny sa prejavujú bolesťou, opuchom a obmedzeným pohybom.',
-   
+    'FractureSolution0': '1. Nehýbte so zlomeninou pokiaľ je to možné',
     'FractureSolution1': '1. Vytvorte oporu na poranenej končatine podložením rúk pod aj nad miestom zlomeniny',
     'FractureSolution2': '2. Znehybnite tak, aby bol znehybnený jeden kĺb pod aj nad zlomeninou',
     'FractureSolution3': '3. Zlomenú hornú končatinu dajte do závesu z trojrohej šatky alebo znehybnite v rukáve odevu (zlomenina kľúčnej kosti sa ošetruje tak isto)',
