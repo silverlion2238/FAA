@@ -188,7 +188,7 @@ class MyAppState extends State<MyApp> {
     _widgetOptions = <Widget>[
       ChecklistScreen(toResultTab: _onItemTapped), // Now you can use _onItemTapped
       ResultScreen(),
-      MainPage(),
+      MainPage(toResultTab: _onItemTapped),
       ChatScreen(),
       SettingsPage(),
     ];
@@ -251,7 +251,7 @@ class MyAppState extends State<MyApp> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Prvá pomoc pre školákov',
+                    translations[languageModel.locale.languageCode]!['appTitle']!,
                     style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
                   ),
                   if (_selectedIndex == 0) 

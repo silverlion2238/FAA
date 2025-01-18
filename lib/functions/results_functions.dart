@@ -624,11 +624,18 @@ Widget functionEpilepsy(context, {int pageNum = 1}) {
   FlutterTtsSingleton.instance.speak(translations[locale]!['EpilepsySolution$pageNum']!);
   return Column(
     children: [
-      Image(
-        image: AssetImage('images/sja/step2-adult-seizures-first-aid.png'),
-        height: MediaQuery.of(context).size.height / 2,
-        width: MediaQuery.of(context).size.height / 2,
-      ),
+      if (pageNum == 1)
+        Image(
+          image: AssetImage('images/sja/calling-for-help---male.png'),
+          height: MediaQuery.of(context).size.height / 2,
+          width: MediaQuery.of(context).size.height / 2,
+        ),
+      if (pageNum != 1)
+        Image(
+          image: AssetImage('images/sja/step2-adult-seizures-first-aid.png'),
+          height: MediaQuery.of(context).size.height / 2,
+          width: MediaQuery.of(context).size.height / 2,
+        ),
       SizedBox(height: 20,),
       Text(
         translations[locale]!['EpilepsySolution$pageNum']!,
@@ -825,19 +832,25 @@ Widget functionCPR(context, {int pageNum = 1}) {
     
     if (pageNum == 2)
       Image(
-        image: AssetImage('images/sja/cpr-step-2.png'),
+        image: AssetImage('images/sja/step2_primary_survey_first_aid.png'),
         width: MediaQuery.of(context).size.height / 2,
         height: MediaQuery.of(context).size.height / 2,
       ),
     if (pageNum == 3)
       Image(
-        image: AssetImage('images/sja/cpr-step-1.png'),
+        image: AssetImage('images/AED_Sign_700x.webp'),
         width: MediaQuery.of(context).size.height / 2,
         height: MediaQuery.of(context).size.height / 2,
       ),
-    if (pageNum == 4)
+    if ([4,7].contains(pageNum))
       Image(
-        image: AssetImage('images/AED_Sign_700x.webp'),
+        image: AssetImage('images/sja/cpr-step-2.png'),
+        width: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2,
+      ),
+    if ([5,6].contains(pageNum))
+      Image(
+        image: AssetImage('images/sja/cpr-step-1.png'),
         width: MediaQuery.of(context).size.height / 2,
         height: MediaQuery.of(context).size.height / 2,
       ),

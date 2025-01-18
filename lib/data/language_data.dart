@@ -6,7 +6,7 @@ import 'package:flutter_application_0_0_5/data/data.dart';
 
 const Map<String, Map<String, String>> translations = {
   'en': {
-    'appTitle': 'My App',
+    'appTitle': 'First aid for schools',
     'search': 'Search',
     'results': 'Results',
     'settings': 'Settings',
@@ -38,6 +38,9 @@ const Map<String, Map<String, String>> translations = {
     'audio' : 'Voice: ',
     'Mute': 'Audio: ',
 
+    'RedLight': 'Light',
+    'RedDark': 'Dark',
+
     'Solution1': 'Solution1 - en',
     'Solution2': 'Solution2 - en',
     'Solution3': 'Solution3 - en',
@@ -65,14 +68,13 @@ const Map<String, Map<String, String>> translations = {
     'Wheezing': 'Wheezing',
 
 
-    'TypeOfPain':'Is the pain burning?',
+    'TypeOfPain':'Have you been splashed with acid',
     'Cracks?': 'Was a cracking sound heard or felt?',
     'Joints?': 'Is the affected area in the joint area?',
     'isBreathing?': 'Is the affected person breathing?',
-    'isBreathingStep1': '1. First, call out to the person several times and if they do not respond, shaking them by the shoulders is enough to determine if first aid will be needed.',
-    'isBreathingStep2': '2. Clear the affected person\'s airway by laying them on their back and tilting their head (one hand on the forehead, the other under the chin). Never support the head or neck with anything.',
-    'isBreathingStep3': '3. Spend about 10 seconds checking the breathing and watch the chest movements. In that time, there should be 2-3 normal breaths.',
-
+    'isBreathingStep1': '1. First, call out to the person several times and if they do not respond, gently shake them',
+    'isBreathingStep2': '2. Lay the affected person on their back and clear their airways by tilting their head',
+    'isBreathingStep3': '3. Within 10 seconds, watch for chest rise and feel their breath',
 
 
     'RecPos' : 'Recovery Position',
@@ -86,9 +88,12 @@ const Map<String, Map<String, String>> translations = {
 
     'cpr' : 'CPR',
     'cpr1' : '1. Call an ambulance (155)',
-    'cpr2' : '2. Lean over the casualty\'s chest and press down on it to a depth of 5-6 cm about 100-120 times per minute (the tempo of the song Stayin\' Alive)',
-    'cpr3' : '3. After every 30 compressions, give 2 breaths (if you don\'t want to breathe, continue compressing only)',
-    'cpr4' : '4. Continue CPR until the ambulance arrives. Use an AED if available.',
+    'cpr2' : '2. Lay the casualty flat on a firm surface',
+    'cpr3' : '3. Check if you have an AED available, if so, follow its instructions',
+    'cpr4' : '4. Press the center of the chest with the heel of your hand 30 times',
+    'cpr5' : '5. Tilt the head back and pinch the nose',
+    'cpr6' : '6. Breathe into the casualty 2 times',
+    'cpr7' : '7. Repeat until you can',
 
 
 
@@ -99,12 +104,12 @@ const Map<String, Map<String, String>> translations = {
     'NosebleedSolution3': '3. Loosen clothing around the neck',
     'NosebleedSolution4': '4. Ask the affected person to breathe through their mouth',
     'NosebleedSolution5': '5. Advise the affected person not to blow their nose, cough, or swallow',
-    'NosebleedSolution6': '6. After stopping the bleeding, the affected person should remain calm for 4 hours and avoid drinking hot beverages (if bleeding lasts more than 30 minutes, call for medical help)',
+    'NosebleedSolution6': '6. After stopping the bleeding, the affected person should remain calm for 4 hours and avoid drinking hot beverages (if bleeding lasts more than 30 minutes, call an ambulance (155) or arrange transport to the hospital)',
 
     'Burns': 'Burns',
     'BurnsDesc': 'Burns are injuries to the skin that are caused by heat, chemicals, electricity, or radiation. Burns are characterized by redness, blistering, and pain. Burns are classified into three categories: first-degree burns, second-degree burns, and third-degree burns.',
     
-    'BurnsSolution1': '1. For burns larger than the palm, arrange transport to the hospital',
+    'BurnsSolution1': '1. For burns larger than the palm, arrange transport to the hospital (155)',
     'BurnsSolution2': '2. Otherwise, immediately cool the area with cold water for at least 10 minutes',
     'BurnsSolution3': '3. Remove jewelry or clothing from the wound',
     'BurnsSolution4': '4. After cooling, cover the wound with a bandage or clean cloth',
@@ -117,21 +122,23 @@ const Map<String, Map<String, String>> translations = {
     'ChemicalBurnsSolution3': '3. If clothing is affected, remove it while rinsing',
     'ChemicalBurnsSolution4': '4. If eyes are affected, rinse them with plenty of water',
     'ChemicalBurnsSolution5': '5. If a chemical is ingested, do not induce vomiting, rinse the mouth repeatedly and then give the person 2 dl of water to drink sip by sip',
-    'ChemicalBurnsSolution6': '6. Arrange transport to the hospital',
+    'ChemicalBurnsSolution6': '6. Call an ambulance or arrange transport to the hospital (155)',
 
 
     // Ak nemáte prostriedky k znehybneniu zlomenej nohy, priviažte ju o zdravú
     'FractureSolLeg1': '1. Immobilize so that one joint below and one joint above the fracture is immobilized',
     'FractureSolLeg2': '2. If you do not have the means to immobilize the broken leg, tie it to the healthy one',
-    'FractureSolLeg3': '3. Arrange transport to the hospital',
+    'FractureSolLeg3': '3. Zavolajte záchranku alebo zariadte prenos do nemocnice (155)',
 
 
-    'FractureSolArm1' : '1. To immobilize the arm use an arm sling. Ask the casualty to support their arm with their other hand. Gently slide the triangular bandage underneath the arm. The point of the triangle should be underneath the elbow of the injured arm. Bring the top end of the bandage around the back of the neck.',
-    'FractureSolArm2' : '2. Fold the lower end of the bandage up over the forearm to meet the top of the bandage at the shoulder of the injured side.',
-    'FractureSolArm3' : '3. Tie the two ends of the bandage together in a reef knot above their collar bone and tuck in the free ends.',
-    'FractureSolArm4' : '4. Adjust the sling so that it supports their arm all the way to the end of their little finger.',
-    'FractureSolArm5' : '5. Make sure that the edge of the bandage by the elbow is secured by twisting the fabric and tucking it in, or using a safety pin to fasten.',
-    'FractureSolArm6' : '6. Arrange transport to the hospital. Check the circulation in their fingertips every 10 minutes. Press their nail for five seconds until it turns pale, then release to see if the colour returns within two seconds.',
+    'FractureSolArm1' : '1. To immobilize the arm use an arm sling. ',
+    'FractureSolArm2' : '2. Ask the casualty to support their arm with their other hand. ',
+    'FractureSolArm3' : '3. Gently slide a triangular bandage under the arm. The point of the triangle should be under the elbow of the injured arm. Bring the top end of the bandage around the back to the neck.',
+    'FractureSolArm4' : '4. Fold the lower end of the bandage up over the forearm to meet the top of the bandage at the shoulder of the injured side.',
+    'FractureSolArm5' : '5. Tie the two ends of the bandage together in a reef knot above their collar bone and tuck in the free ends.',
+    'FractureSolArm6' : '6. Adjust the sling so that it supports their arm all the way to the end of their little finger.',
+    'FractureSolArm7' : '7. Make sure that the edge of the bandage by the elbow is secured by twisting the fabric and tucking it in, or using a safety pin to fasten.',
+    'FractureSolArm8' : '8. Call the ambulance (155). Check the circulation in their fingertips every 10 minutes. Press their nail for five seconds until it turns pale, then release to see if the colour returns within two seconds.',
 
 
 
@@ -139,12 +146,12 @@ const Map<String, Map<String, String>> translations = {
 
     'Fracture': 'Fracture',
     'FractureDesc': 'A fracture is a bone injury that is characterized by a break or crack in the bone. Fractures are often caused by a sudden movement or trauma. Fractures are characterized by pain, swelling, and limited movement.',
-    'FractureSolution0': '1. Immobilize so that one joint below and one joint above the fracture is immobilized',
+    'FractureSolution0': '1. Immobilize so that one joint below and one joint above the fracture is immobilized. Where is the fracture located?',
     'FractureSolution1': '1. Create support on the injured limb by placing hands above and below the fracture site',
     'FractureSolution2': '2. Immobilize so that one joint below and one joint above the fracture is immobilized',
     'FractureSolution3': '3. Place the broken upper limb in a sling made of a triangular scarf or immobilize it in the sleeve of clothing (a broken collarbone is treated the same way)',
     'FractureSolution4': '4. For severe deformity, use various types of padding to immobilize (pillows, blankets, ...)',
-    'FractureSolution5': '5. Call an ambulance or go to the hospital',
+    'FractureSolution5': '5. Call an ambulance or go to the hospital (155)',
 
     'Dislocation': 'Dislocation',
     'DislocationDesc': 'A dislocation is a joint injury that is characterized by the displacement of the joint head from the joint socket. Dislocations are often caused by a sudden movement or fall. Dislocations are characterized by pain, swelling, and limited movement.',
@@ -171,60 +178,24 @@ const Map<String, Map<String, String>> translations = {
     'EpilepsySolution1': '1. Prevent the person from injuring themselves (remove dangerous objects from their surroundings)',
     'EpilepsySolution2': '2. Place a soft material (jacket, pillow, ...) or hands under the person\'s head',
     'EpilepsySolution3': '3. After the convulsions subside, check the person for injuries',
-    'EpilepsySolution4': '4. If the person is unknown to you or is having a seizure for the first time, call an ambulance (155)',
+    'EpilepsySolution4': '4. If the person is unknown to you or is having a seizure for the first time, call an ambulance or arrange transport to the hospital (155)',
 
     'AsthmaAttack': 'Asthma Attack',
     'AsthmaAttackDesc': 'An asthma attack is a chronic respiratory condition characterized by inflammation of the airways. Asthma attacks are often caused by allergens, exercise, or stress. Asthma attacks are characterized by wheezing, coughing, and shortness of breath.',
     'AsthmaAttackSolution1': '1. Help the affected person use their inhaler',
     'AsthmaAttackSolution2': '2. Encourage the person to breathe slowly and seat them in a comfortable position',
     'AsthmaAttackSolution3': '3. If the attack does not stop after a few minutes, use the inhaler again',
-    'AsthmaAttackSolution4': '4. If nothing helps, call an ambulance',
+    'AsthmaAttackSolution4': '4. If nothing helps, call an ambulance or arrange transport to the hospital (155)',
     'AsthmaAttackSolution5': '5. While waiting, monitor vital signs',
 
-    /*Old Data
-    'Cough': 'Cough',
-    'Sweating': 'Sweating',
-    'Bleeding': 'Bleeding',
-    'MildCut': 'Mild Cut',
-    'SevereCut': 'Severe Cut',
-    'CantMove': 'Can\'t Move',
-    'PainInArea': 'Pain in Area',
-    'Swelling': 'Swelling',
-    'Bruise': 'Bruise',
-    'Fever': 'Fever',
-
-
-    'CommonCold': 'Common Cold',
-    'CommonColdDesc': 'Common cold is a common viral infection of the nose and throat. It is caused by viruses that spread through the air when an infected person coughs or sneezes. Common cold is characterized by sore throat, sneezing, coughing, stuffy nose, and runny nose. It usually occurs in the winter months.',
-    'CommonColdSolution': 'To treat the common cold, it is recommended to take pain and fever medications that relieve sore throat and reduce fever. It is also important to drink plenty of fluids and rest.',
-
-    'MildCut': 'Mild Cut',
-    'MildCutDesc': 'A mild cut is a skin injury that has not penetrated deeper tissue. Mild cuts are often caused by sharp objects such as knives, glass, or nails. Mild cuts are characterized by pain, bleeding, and swelling.',
-    'MildCutSolution': 'To treat mild cuts, it is recommended to wash the wound with soap and water to prevent infection. The wound should be cleaned and disinfected, and then a bandage can be applied.',
-
-    'SevereCut': 'Severe Cut',
-    'SevereCutDesc': 'A severe cut is a skin injury that has penetrated deeper tissue such as muscles, tendons, or bones. Severe cuts are often caused by sharp or blunt objects such as knives, glass, or metal. Severe cuts are characterized by pain, bleeding, and swelling.',
-    'SevereCutSolution': 'To treat severe cuts, it is recommended to wash the wound with soap and water to prevent infection. The wound should be cleaned and disinfected, and then the bleeding should be stopped and the wound should be bandaged.',
-
-    'Nosebleed': 'Nosebleed',
-    'NosebleedDesc': 'A nosebleed is a common problem that is characterized by bleeding from the nose. Nosebleeds can be caused by dry air, allergies, infection, or trauma. Nosebleeds are characterized by bleeding from the nose, headache, and dizziness.',
-    'NosebleedSolution': 'To stop a nosebleed, it is recommended to tilt the head forward and pinch the nose shut. The nose should be pinched for 10-15 minutes to stop the bleeding. It is also important to avoid blowing the nose and to remain calm.',
-
-    'Sprain': 'Sprain',
-    'SprainDesc': 'A sprain is a joint injury that is characterized by a sudden twist or impact to the joint. Sprains are often caused by a sudden movement or fall. Sprains are characterized by pain, swelling, and limited movement.',
-    'SprainSolution': 'To treat sprains, it is recommended to apply ice to the affected area to reduce swelling and pain. The affected area should also be wrapped with an elastic bandage and kept still.',
-
-    'Dislocation': 'Dislocation',
-    'DislocationDesc': 'A dislocation is a joint injury that is characterized by the displacement of the joint head from the joint socket. Dislocations are often caused by a sudden movement or fall. Dislocations are characterized by pain, swelling, and limited movement.',
-    'DislocationSolution': 'To treat dislocations, it is recommended to apply ice to the affected area to reduce swelling and pain. The affected area should also be wrapped with an elastic bandage and kept still.',
-
-    'BoneFracture': 'Bone Fracture',
-    'BoneFractureDesc': 'A bone fracture is a bone injury that is characterized by a break or crack in the bone. Bone fractures are often caused by a sudden movement or trauma. Bone fractures are characterized by pain, swelling, and limited movement.',
-    'BoneFractureSolution': 'To treat bone fractures, it is recommended to stop the bleeding and immobilize the affected area. The affected area should also be wrapped with an elastic bandage and kept still.',
-    */
   },
+
+
+
+
+  // Slovak    <===============================================================================================================================>
   'sk': {
-    'appTitle': 'Moja Aplikácia',
+    'appTitle': 'Prvá pomoc pre školákov',
     'search': 'Hľadať',
     'results': 'Výsledky',
     'settings': 'Nastavenia',
@@ -257,6 +228,9 @@ const Map<String, Map<String, String>> translations = {
     'audio' : 'Hlas: ',
     'Mute': 'Zvuk: ',
 
+    'RedLight': 'Svetlý',
+    'RedDark': 'Tmavý',
+
     'Solution1': 'Solution1 - sk',
     'Solution2': 'Solution2 - sk',
     'Solution3': 'Solution3 - sk',
@@ -283,13 +257,13 @@ const Map<String, Map<String, String>> translations = {
     'Unresponsive': 'Bezvedomie',
     'Wheezing': 'Sipot',
 
-    'TypeOfPain':'Je bolesť pálivá?',
+    'TypeOfPain':'Obliali ste sa kyselinou alebo žieravinou?',
     'Cracks?': 'Bolo počuť alebo cítiť zlomenie?',
     'Joints?': 'Je postihnuté miesto v oblasti kĺbu?',
     'isBreathing?': 'Dýchá postihnutý?',
-    'isBreathingStep1': '1. Najprv osobu niekoľkokrát hlasno oslovte a pokiaľ nereaguje, zatrasenie za ramená postačí na určenie, či bude treba poskytnúť prvú pomoc.',
-    'isBreathingStep2': '2. Uvoľnite postihnutému dýchacie cesty tak, že ho položíte na chrbát a zakloníte mu hlavu (jednou rukou na čelo, druhou pod bradu). Nikdy hlavu ani krk ničím nepodkladajte. ',
-    'isBreathingStep3': '3. Zhruba 10 sekúnd venujte kontrole dýchania a sledujte pohyby hrudníka. Za ten čas by malo dôjsťby malo dôjsť k 2-3 normálnym nádychom.',
+    'isBreathingStep1': '1. Najprv niekoľkokrát oslovte osobu a ak nereaguje, jemne ju zatraste',
+    'isBreathingStep2': '2. Položte postihnutého na chrbát a uvolnite mu dýchacie cesty pomocou záklonu hlavy',
+    'isBreathingStep3': '3. V priebehu 10 sekúnd sledujte, či sa dvíha hrudník a či cítite jeho dych. Ak dýcha dajte ho do stabilizovanej polohy, inak okamžite začnite KPR.',
 
     'RecPos' : 'Stabilizovaná poloha',
     'RecPos1' : '1. Kľaknite si pri postihnutom a narovnajte mu nohy. Ak má okuliare alebo vreckové predmety v kapsách, odstráňte ich.',
@@ -301,14 +275,17 @@ const Map<String, Map<String, String>> translations = {
 
     'cpr' : 'KPR',
     'cpr1' : '1. Zavolajte záchranku (155)',
-    'cpr2' : '2. Nakloňte sa kolmo nad hrudník a stláčajte ho do hĺbky 5-6 cm asi 100-120 krát za minútu(tempo ako pieseň Stayin\' Alive)',
-    'cpr3' : '3. Po každom 30 stlačení urobte 2 nádychy (ak dýchať nechcete, pokračujte len v stlačovaní)',
-    'cpr4' : '4. Pokračujte v KPR, kým sa neobjaví záchranka. Použite AED, ak je k dispozícii.',
+    'cpr2' : '2. Uložte postihnutého rovno na tvrdú podložku',
+    'cpr3' : '3. Pozrite sa či nemáte dostupné AED, ak áno, postupujte podľa jeho pokynov',	
+    'cpr4' : '4. Stláčajte stred hrudníka hranou dlane 30-krát',
+    'cpr5' : '5. Zakloňte hlavu a upchajte nos ',
+    'cpr6' : '6. Vdýchnite do postihnutého 2x',
+    'cpr7' : '7. Opakujte kým vládzete',
 
     'Burns': 'Popáleniny',
     'BurnsDesc': 'Popáleniny sú poranenia kože, ktoré sú spôsobené teplom, chemikáliami, elektrinou alebo žiarením. Popáleniny sa prejavujú červenaním, tvorbou pľuzgierov a bolesťou. Popáleniny sa klasifikujú do troch kategórií: popáleniny prvého stupňa, popáleniny druhého stupňa a popáleniny tretieho stupňa.',
     
-    'BurnsSolution1': '1. Pri popálenine väčšej ako dlaň zariaďte odvoz do nemocnice',
+    'BurnsSolution1': '1. Pri popálenine väčšej ako dlaň zariaďte odvoz do nemocnice (155)',
     'BurnsSolution2': '2. Inak okamžite chlaďte miesto studenou vodou najmenej 10 minút',
     'BurnsSolution3': '3. Odstráňte z rany náramky alebo oblečenie',
     'BurnsSolution4': '4. Po chladení prikryte ranu obväzom alebo nejakou čistou tkaninou',
@@ -322,31 +299,34 @@ const Map<String, Map<String, String>> translations = {
     'ChemicalBurnsSolution3': '3. Pri zasiahnutí oblečenia odstraňujte odev spolu s oplachovaním',
     'ChemicalBurnsSolution4': '4. Ak sú zasiahnuté oči vypláchnite ich väčším množstvom vody',
     'ChemicalBurnsSolution5': '5. Pri vypití žieraviny nevyvolávajte zvracanie, opakovane vyplachujte ústa a potom dajte postihnutému vypiť 2 dcl vody po dúškoch',
-    'ChemicalBurnsSolution6': '6. Zariaďte transport do nemocnice',
+    'ChemicalBurnsSolution6': '6. Zavolajte záchranku alebo zariadte prenos do nemocnice (155)',
 
     
     'FractureSolLeg1': '1. Znehybnite tak, aby bol znehybnený jeden kĺb pod aj nad zlomeninou.',
     'FractureSolLeg2': '2. Ak nemáte prostriedky k znehybneniu zlomenej nohy, priviažte ju o zdravú.',
-    'FractureSolLeg3': '3. Zavolajte záchranku alebo choďte na pohotovosť.',
+    'FractureSolLeg3': '3. Zavolajte záchranku alebo zariadte prenos do nemocnice (155)',
 
-    'FractureSolArm1' : '1. Dajte ruku do závesu. Požiadajte postihnutého, aby si ruku podoprel druhou rukou. Jemne posuňte trojrohú šatku pod ruku. Roh šatky by mal byť pod lakťom postihnutej ruky. Vrchný koniec obväzu zaveste okolo krku.',
-    'FractureSolArm2' : '2. Spodný koniec obväzu preložte cez predlaktie, aby sa stretol s vrchným koncom obväzu na ramene postihnutej strany.',
-    'FractureSolArm3' : '3. Zviažte oba konce obväzu nad kľúčnou kosťou',
-    'FractureSolArm4' : '4. Obväz nastavte tak, aby podopieral ruku až po koniec malíčka.',
-    'FractureSolArm5' : '5. Uistite sa, že okraj obväzu pri lakťovej časti je zabezpečený zatočením rohu, alebo použitím zatváracieho špendlíka.',
-    'FractureSolArm6' : '6. Zariaďte prevoz do nemocnice. Každých 10 minút skontrolujte krvný obeh v končekoch prstov. Tlačte na nechet poraňenej ruky po dobu piatich sekúnd, až kým nezbledne, potom uvoľnite a sledujte, či sa farba vráti do dvoch sekúnd.',
+
+    'FractureSolArm1' : '1. Dajte ruku do závesu. ',
+    'FractureSolArm2' : '2. Požiadajte postihnutého, aby si ruku podoprel druhou rukou. ',
+    'FractureSolArm3' : '3. Jemne posuňte trojrohý obväz pod ruku. Bod trojuholníka by mal byť pod lakťom postihnutej ruky. Vrchný koniec obväzu priveďte okolo chrbta na krk.',
+    'FractureSolArm4' : '4. Spodný koniec obväzu preložte cez predlaktie, aby sa stretol s vrchným koncom obväzu na ramene postihnutej strany.',
+    'FractureSolArm5' : '5. Zviažte oba konce obväzu nad kľúčnou kosťou',
+    'FractureSolArm6' : '6. Obväz nastavte tak, aby podopieral ruku až po koniec malíčka.',
+    'FractureSolArm7' : '7. Uistite sa, že okraj obväzu pri lakťovej časti je zabezpečený zatočením rohu, alebo použitím zatváracieho špendlíka.',
+    'FractureSolArm8' : '8. Zavolajte záchranku (155). Každých 10 minút skontrolujte krvný obeh v končekoch prstov. Tlačte na nechet poraňenej ruky po dobu piatich sekúnd, až kým nezbledne, potom uvoľnite a sledujte, či sa farba vráti do dvoch sekúnd.',
 
 
 
 
     'Fracture': 'Zlomenina',
     'FractureDesc': 'Zlomenina je poranenie kosti, ktoré je charakterizované zlomením alebo trhlinou v kosti. Zlomeniny sú často spôsobené náhlym pohybom alebo traumou. Zlomeniny sa prejavujú bolesťou, opuchom a obmedzeným pohybom.',
-    'FractureSolution0': '1. Nehýbte so zlomeninou pokiaľ je to možné',
+    'FractureSolution0': '1. Nehýbte so zlomeninou pokiaľ je to možné. Kde sa zlomenina nachádza?',
     'FractureSolution1': '1. Vytvorte oporu na poranenej končatine podložením rúk pod aj nad miestom zlomeniny',
     'FractureSolution2': '2. Znehybnite tak, aby bol znehybnený jeden kĺb pod aj nad zlomeninou',
     'FractureSolution3': '3. Zlomenú hornú končatinu dajte do závesu z trojrohej šatky alebo znehybnite v rukáve odevu (zlomenina kľúčnej kosti sa ošetruje tak isto)',
     'FractureSolution4': '4. Pri veľkej deformácii využite rôzne druhy obloženia na znehybnenie (vankúše, deky, ...)',
-    'FractureSolution5': '5. Zavolajte záchranku alebo choďte na pohotovosť',
+    'FractureSolution5': '5. Zavolajte záchranku alebo zariadte prenos do nemocnice (155)',
 
 
     'Dislocation': 'Vykĺbenina',
@@ -356,7 +336,7 @@ const Map<String, Map<String, String>> translations = {
     'DislocationSolution2': '2. Spevnite končatinu (podložte vankúšom)',
     'DislocationSolution3': '3. Ak je možné, znehybnite závesom alebo obväzom',
     'DislocationSolution4': '4. Nechajte postihnutého aby si sám podopieral vykĺbenú časť',
-    'DislocationSolution5': '5. Zariaďte prevoz do nemocnice',
+    'DislocationSolution5': '5. Zavolajte záchranku alebo zariadte prenos do nemocnice (155)',
 
 
 
@@ -368,7 +348,7 @@ const Map<String, Map<String, String>> translations = {
     'NosebleedSolution3': '3. Uvoľnite odev okolo krku',
     'NosebleedSolution4': '4. Požiadajte postihnutého, aby dýchal ústami',
     'NosebleedSolution5': '5. Poraďte postihnutému, aby nesmrkal, nekašľal a neprehĺtal',
-    'NosebleedSolution6': '6. Po zastavení krvácania musí zostať postihnutý v kľude 4 hodiny a nepiť teplé nápoje (ak krvácanie trvá viac ako 30 min. zavolajte lekársku pomoc)',
+    'NosebleedSolution6': '6. Po zastavení krvácania musí zostať postihnutý v kľude 4 hodiny a nepiť teplé nápoje (ak krvácanie trvá viac ako 30 min. zavolajte záchranku alebo zariadte prenos do nemocnice.)',
 
 
     'Hypervent': 'Hyperventilácia',
@@ -393,7 +373,7 @@ const Map<String, Map<String, String>> translations = {
     'EpilepsySolution1': '1. Zabráňte tomu, aby sa postihnutý zranil (odstráňte nebezpečné predmety z jeho okolia)',
     'EpilepsySolution2': '2. Podložte pod hlavu dotyčného mäkký materiál (bunda, vankúš,...) alebo ruky',
     'EpilepsySolution3': '3. Po odznení kŕčov treba postihnutého prezrieť, či neutrpel nejaké zranenia',
-    'EpilepsySolution4': '4. Ak je vám dotyčná osoba neznáma alebo má záchvat po prví raz, treba volať záchranku (155)',
+    'EpilepsySolution4': '4. Ak je vám dotyčná osoba neznáma alebo má záchvat po prví raz, zavolajte záchranku alebo zariadte prenos do nemocnice. (155)',
 
 
     'AsthmaAttack': 'Astmatický Záchvat',
@@ -402,52 +382,7 @@ const Map<String, Map<String, String>> translations = {
     'AsthmaAttackSolution1': '1. Pomôžte postihnutému použiť inhalátor',
     'AsthmaAttackSolution2': '2. Vyzvite postihnutého aby dýchal pomaly a usaďte ho do pohodlnej polohy',
     'AsthmaAttackSolution3': '3. Ak záchvat po pár minútach neprestane, opäť použite inhalátor',
-    'AsthmaAttackSolution4': '4. V prípade, že nič nepomáha volajte záchrannú službu',
+    'AsthmaAttackSolution4': '4. V prípade, že nič nepomáha zavolajte záchranku alebo zariadte prenos do nemocnice (155)',
     'AsthmaAttackSolution5': '5. Kým čakáte kontrolujte vitálne funkcie',
-
-    
-
-
-
-    /*Old Data
-    'Cough': 'Kašeľ',
-    'Sweating': 'Potenie',
-    'Bleeding': 'Krvácanie',
-    'MildCut': 'Plytká rana',
-    'SevereCut': 'Hlboká rana',
-    'CantMove': 'Znemožnený pohyb',
-    'PainInArea': 'Bolesť v oblasti poranenia',
-    'Swelling': 'Opuch',
-    'Bruise': 'Modrina',
-    'Fever': 'Horúčka',
-
-    'CommonCold': 'Nádcha',
-    'CommonColdDesc': 'Nádcha je bežný vírusový infekčný ochorenie nosohltanu. Je spôsobená vírusmi, ktoré sa šíria vzduchom, keď chorý kýcha alebo kašle. Nádcha sa prejavuje bolesťou v hrdle, kýchaním, kašľom, upchatým nosom a výtokom z nosa. Väčšinou sa prejavuje v zimných mesiacoch.',
-    'CommonColdSolution': 'Na liečbu nádchy sa odporúča užívať lieky proti bolesti a horúčke, ktoré zmiernia bolesť v hrdle a znížia horúčku. Dôležité je tiež piť veľa tekutín a odpočívať.',
-
-    'MildCut': 'Plytká rana',
-    'MildCutDesc': 'Plytká rana je poranenie kože, ktoré nezasiahlo hlbšie tkanivo. Plytké rany sú často spôsobené ostrými predmetmi, ako sú nože, sklo alebo nôžky. Plytké rany sa prejavujú bolesťou, krvácaním a opuchom.',
-    'MildCutSolution': 'Na liečbu plytkých rán sa odporúča umyť ranu mydlom a vodou, aby sa zabránilo infekcii. Rana by sa mala vyčistiť a dezinfikovať a následne sa na ňu môže aplikovať náplasť.',
-
-    'SevereCut': 'Hlboká rana',
-    'SevereCutDesc': 'Hlboká rana je poranenie kože, ktoré zasiahlo hlbšie tkanivo, ako sú svaly, šľachy alebo kosti. Hlboké rany sú často spôsobené ostrými alebo tupými predmetmi, ako sú nože, sklo alebo kov. Hlboké rany sa prejavujú bolesťou, krvácaním a opuchom.',
-    'SevereCutSolution': 'Na liečbu hlbokých rán sa odporúča umyť ranu mydlom a vodou, aby sa zabránilo infekcii. Rana by sa mala vyčistiť a dezinfikovať a následne by sa mala zastaviť krvácanie a rana by sa mala zabandážovať.',
-
-    'Nosebleed': 'Krvácanie z nosa',
-    'NosebleedDesc': 'Krvácanie z nosa je bežný problém, ktorý sa prejavuje krvácaním z nosa. Krvácanie z nosa môže byť spôsobené suchým vzduchom, alergiami, infekciou alebo traumou. Krvácanie z nosa sa prejavuje krvácaním z nosa, bolesťou hlavy a závratmi.',
-    'NosebleedSolution': 'Na zastavenie krvácania z nosa sa odporúča skloniť hlavu dopredu a stlačiť nos krútením. Nos by sa mal stlačiť po dobu 10-15 minút, aby sa zastavilo krvácanie. Dôležité je tiež vyhnúť sa vyfukovaniu nosa a držať sa pokojne.',
-
-    'Sprain': 'Výron',
-    'SprainDesc': 'Výron je poranenie kĺbu, ktoré sa prejavuje náhlym ťahom alebo nárazom kĺbu. Výrony sú často spôsobené náhlym pohybom alebo pádom. Výron sa prejavuje bolesťou, opuchom a obmedzeným pohybom.',
-    'SprainSolution': 'Na liečbu výronov sa odporúča aplikovať ľad na postihnuté miesto, aby sa zmiernil opuch a bolesť. Postihnuté miesto by sa malo tiež zviazať elastickým obväzom a držať sa pokojne.',
-
-    'Dislocation': 'Vyklbenie',
-    'DislocationDesc': 'Vyklbenie je poranenie kĺbu, ktoré sa prejavuje vypadnutím kĺbovej hlavice z kĺbovej jamky. Vyklbenia sú často spôsobené náhlym pohybom alebo pádom. Vyklbenie sa prejavuje bolesťou, opuchom a obmedzeným pohybom.',
-    'DislocationSolution': 'Na liečbu vyklbení sa odporúča aplikovať ľad na postihnuté miesto, aby sa zmiernil opuch a bolesť. Postihnuté miesto by sa malo tiež zviazať elastickým obväzom a držať sa pokojne.',
-
-    'BoneFracture': 'Zlomenina kosti',
-    'BoneFractureDesc': 'Zlomenina kosti je poranenie kosti, ktoré sa prejavuje zlomením alebo trhlinou v kosti. Zlomeniny kostí sú často spôsobené náhlym pohybom alebo traumou. Zlomenina kosti sa prejavuje bolesťou, opuchom a obmedzeným pohybom.',
-    'BoneFractureSolution': 'Na liečbu zlomenín kostí sa odporúča zastaviť krvácanie a znehybniť postihnuté miesto. Postihnuté miesto by sa malo tiež zviazať elastickým obväzom a držať sa pokojne.',
-    */
   },
 };

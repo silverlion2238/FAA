@@ -223,6 +223,7 @@ class ChatScreenState extends State<ChatScreen> {
               _messages.insert(0, botMessage);
               }
             );
+            FlutterTtsSingleton.instance.speak(botReply);
           }
         } else {
           // Handle error

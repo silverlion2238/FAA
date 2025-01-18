@@ -45,9 +45,9 @@ class ResultScreenState extends State<ResultScreen> {
       appBar: AppBar(
         title: TextField(
           decoration: InputDecoration(
-        hintText: 'Search...',
-        //border: InputBorder.none,
-        hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+            hintText: 'Search...',
+            //border: InputBorder.none,
+            hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
           ),
           style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
           onChanged: (query) {

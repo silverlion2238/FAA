@@ -361,7 +361,6 @@ Widget functionUnconscious(context, {int pageNum = 1}) {
   );
 }
 
-
 Widget functionFracture(context, {pageNum = 0}) {
 
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
