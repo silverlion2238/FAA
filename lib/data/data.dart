@@ -328,6 +328,28 @@ void restoreInjuries(context) {
     injuries = origInjuries;
   }
 
+//injuries functions lengths
+
+Map<String, int> injuriesFunctionsLength = {
+  'functionBurns': 4,
+  'functionCBurn': 6,
+  'functionFracture': 1,
+  'functionDislocation': 5,
+  'functionNBleed': 6,
+  'functionHypervent': 3,
+  'functionUnconscious': 3,
+  'functionRecPos': 6,
+  'functionCPR': 7,
+  'functionEpilepsy': 4,
+  'functionAsthmaAtt': 5,
+  'specialBoneFunction': 1,
+  'specialBoneFunction2': 1,
+  'specialBurnsFunction': 1,
+  'functionUnconsciousB': 3,
+  'functionFractureArm': 8,
+  'functionFractureLeg': 3,
+  };
+
 
 
 
@@ -342,6 +364,12 @@ ThemeData redLightTheme = ThemeData(
 
   appBarTheme: AppBarTheme(
     backgroundColor: Color(0xFFC2000B),
+  ),
+
+  dropdownMenuTheme: DropdownMenuThemeData(
+    menuStyle: MenuStyle(
+      backgroundColor: WidgetStateProperty.all(Color(0xFFC2000B)),
+    ),
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -370,6 +398,12 @@ ThemeData redDarkTheme = ThemeData(
   appBarTheme: AppBarTheme(
     //backgroundColor: Color.fromARGB(255, 71, 4, 4),
     backgroundColor: Color(0xFFC2000B),
+  ),
+
+  dropdownMenuTheme: DropdownMenuThemeData(
+    menuStyle: MenuStyle(
+      backgroundColor: WidgetStateProperty.all(Color(0xFFC2000B)),
+    ),
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(

@@ -26,47 +26,57 @@ class _SettingsPageState extends State<SettingsPage> {
         children: <Widget>[
           
           // Theme selection title
-          ListTile(
-            title: Text(translations[locale]!['App Theme']!),
-          ),
-
-          // Theme selection
-          Consumer<ThemeModel>(
-            builder: (context, themeModel, child) {
-              return Column(
+          SizedBox(
+            width: double.infinity,
+            child: ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RadioListTile<String>(
-                    title: Text(translations[locale]?['System'] ?? 'System'),
-                    value: 'system',
-                    groupValue: themeModel.themeMode.toString(),
-                    onChanged: (String? value) {
-                      themeModel.toggleTheme(ThemeMode.system);
-                    },
+                  Text(translations[locale]?['App Theme'] ?? 'App Theme: '),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 23.0),
+                    child: Consumer<ThemeModel>(
+                      builder: (context, themeModel, child) {
+                        return DropdownButton<ThemeMode>(
+                          value: themeModel.themeMode,
+                          items: [
+                            DropdownMenuItem(
+                              value: ThemeMode.system,
+                              child: Text(translations[locale]?['System'] ?? 'System'),
+                            ),
+                            DropdownMenuItem(
+                              value: ThemeMode.light,
+                              child: Text(translations[locale]?['RedLight'] ?? 'Red Light'),
+                            ),
+                            DropdownMenuItem(
+                              value: ThemeMode.dark,
+                              child: Text(translations[locale]?['RedDark'] ?? 'Red Dark'),
+                            ),
+                          ],
+                          onChanged: (ThemeMode? newValue) {
+                            if (newValue != null) {
+                              themeModel.toggleTheme(newValue);
+                            }
+                          },
+                        );
+                      },
+                    ),
                   ),
-                  RadioListTile<String>(
-                    title: Text(translations[locale]?['RedLight'] ?? 'Red Light'),
-                    value: 'red_light',
-                    groupValue: themeModel.themeMode.toString(),
-                    onChanged: (String? value) {
-                      themeModel.toggleTheme(ThemeMode.light);
-                      Provider.of<ThemeNotifier>(context, listen: false).setTheme(redLightTheme, redDarkTheme);
-                    },
-                  ),
-                  RadioListTile<String>(
-                    title: Text(translations[locale]?['RedDark'] ?? 'Red Dark'),
-                    value: 'red_dark',
-                    groupValue: themeModel.themeMode.toString(),
-                    onChanged: (String? value) {
-                      themeModel.toggleTheme(ThemeMode.dark);
-                      Provider.of<ThemeNotifier>(context, listen: false).setTheme(redLightTheme, redDarkTheme);
-                    },
-                  ),
-                ],
-              );
-            }
+                ]
+              ),
+            ),
           ),
 
           
+           Divider(
+            indent: 32.0,
+            endIndent: 32.0,
+            color: Theme.of(context).colorScheme.onSurface.withAlpha(100),
+            thickness: 1,
+          ),
+          
+
           // Language selection title
           SizedBox(
             width: double.infinity,

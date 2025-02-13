@@ -210,55 +210,72 @@ class ChecklistScreenState extends State<ChecklistScreen> {
 // Decision tree for result search
 
           List<Injury>possibleInjuries = whichInjury(context, selectedSymptoms);
+          List<Injury>otherPossibleIjuries = [];
 
           if (possibleInjuries.isEmpty) {
+            for (Symptom symptom in selectedSymptoms) {
+              otherPossibleIjuries += whichInjury(context, selectedSymptoms.where((symptomTemp) => symptomTemp != symptom).toList());
+              //otherPossibleIjuries.addAll(injuries.where((injury) => injury.symptoms.contains(symptom)));
+            }
+
+            if (otherPossibleIjuries.isNotEmpty) {
+              showDialog(
+                context: context, 
+                builder: (context) => AlertDialog(
+                  title: Text(translations[locale]!['wrongInput']!),
+                  content: Text(translations[locale]!['unclearResults']!),
+                  actions: [
+                    for (Injury injury in otherPossibleIjuries) 
+                    TextButton(
+                      onPressed: () => openSolutionPage(context, injury.getFunction()), 
+                      child: Text(
+                        injury.getName(context),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                        )
+                      )
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context), 
+                      child: Text(
+                        translations[locale]!['back']!,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                        )
+                      )
+                    ),
+                  ],
+                )
+              );
+            } else {
 
             //Wrong Input Error
-            showDialog(
-              context: context, 
-              builder: (context) => AlertDialog(
-                title: Text(translations[locale]!['wrongInput']!),
-                content: Text(translations[locale]!['noResults']!),
-                actions: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: Text(translations[locale]!['ok']!)),
-                ],
-              )
-            );
-
-
-
-
+              showDialog(
+                context: context, 
+                builder: (context) => AlertDialog(
+                  title: Text(translations[locale]!['wrongInput']!),
+                  content: Text(translations[locale]!['noResults']!),
+                  actions: [
+                    TextButton(onPressed: () => Navigator.pop(context), child: Text(translations[locale]!['ok']!)),
+                  ],
+                )
+              );
+            }
           // Only one option = skip
           } else if (possibleInjuries.length == 1) {
-            
-
-            Function resultFunction = possibleInjuries[0].getFunction();
-            
-            
+            Function resultFunction = possibleInjuries[0].getFunction();           
             openSolutionPage(context,resultFunction);
-
-
-
-
-
           } else {
             Function functionBuffer = switchCase(selectedSymptoms);
             //search for special cases
-            if (functionBuffer != nullFunction) {
-              
-              
+            if (functionBuffer != nullFunction) {              
               //Correct function execution
               openSolutionPage(context,functionBuffer);
-
-
             } else {
-              
-
               //regular search
               widget.toResultTab(1);
               context.read<InjuryNotifier>().getResults(resultInjuries: possibleInjuries);
               //Pass data to result.dart
-
             }
           }
         },

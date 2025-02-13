@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_0_0_5/pages/chatbot.dart';
 import 'package:flutter_application_0_0_5/data/data.dart';
@@ -12,7 +13,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_application_0_0_5/functions/http_functions.dart';
 import 'package:flutter_application_0_0_5/pages/main_page.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-
+import 'package:diacritic/diacritic.dart';
 import 'dart:ffi' if (dart.library.html) 'dart:html';
 
 
@@ -39,6 +40,8 @@ void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
 }
+
+//Providers
 
 class LayoutProvider extends ChangeNotifier {
   bool _isTwoColumnLayout = false;
@@ -123,15 +126,16 @@ class ThemeNotifier extends ChangeNotifier {
   }
 }
 
-//syncing displayed injuries
 class InjuryNotifier extends ChangeNotifier {
   List<Injury> _displayInjuries = injuries;
 
   List<Injury> get displayInjuries => _displayInjuries;
 
-  void whichInjury(BuildContext context, String query) {
+  void searchInjury(BuildContext context, String query) {
 
-    _displayInjuries = injuries.where((injury) => injury.getName(context).toLowerCase().contains(query.toLowerCase())).toList();
+    _displayInjuries = injuries.where(
+      (injury) => removeDiacritics(injury.getName(context).toLowerCase()).contains(removeDiacritics(query.toLowerCase()))
+      ).toList();
 
     notifyListeners();
 
@@ -146,12 +150,15 @@ class InjuryNotifier extends ChangeNotifier {
   }
 }
 
-//My App
-class MyApp extends StatefulWidget {  
+class AppScrollBehavior extends MaterialScrollBehavior {
   @override
-  
-  MyAppState createState() => MyAppState();
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }
+
 
 //Flutter TTS Singleton
 class FlutterTtsSingleton {
@@ -163,6 +170,13 @@ class FlutterTtsSingleton {
 }
 
 
+//My App
+class MyApp extends StatefulWidget {  
+  @override
+  
+  MyAppState createState() => MyAppState();
+}
+
 //State of My App
 class MyAppState extends State<MyApp> {
   
@@ -171,24 +185,28 @@ class MyAppState extends State<MyApp> {
   int _selectedIndex = 2; // To keep track of the selected tab
   
 
-  void _onItemTapped(int index) {
+  void _switchPage(int index) {
+    print('Switching to page $index');
     setState(() {
       _selectedIndex = index;
     });
+    _pageController.animateToPage(index, duration: Duration(microseconds: 500), curve: Curves.ease);
   }
 
-  //passing _onItemTapped function
-  late List<Widget> _widgetOptions;
+  PageController _pageController = PageController(initialPage: 2);
+
+  //passing _switchPage function
+  late List<Widget> _appPages;
 
   @override
   void initState() {
     super.initState();
-    // Initialize _widgetOptions here, after the instance is created
+    // Initialize _appPages here, after the instance is created
     initTTS();
-    _widgetOptions = <Widget>[
-      ChecklistScreen(toResultTab: _onItemTapped), // Now you can use _onItemTapped
+    _appPages = <Widget>[
+      ChecklistScreen(toResultTab: _switchPage), // Now you can use _switchPage
       ResultScreen(),
-      MainPage(toResultTab: _onItemTapped),
+      MainPage(toResultTab: _switchPage),
       ChatScreen(),
       SettingsPage(),
     ];
@@ -226,10 +244,10 @@ class MyAppState extends State<MyApp> {
   //Material App
   @override
   Widget build(BuildContext context) {
-    
     return Consumer<LanguageModel>(
       builder: (context, languageModel, child) {
         return MaterialApp(
+          scrollBehavior: AppScrollBehavior(),
           debugShowCheckedModeBanner: false,
           locale: languageModel.locale,
           localizationsDelegates: [
@@ -257,6 +275,7 @@ class MyAppState extends State<MyApp> {
                   if (_selectedIndex == 0) 
                   DropdownButton<bool>(
                     value: Provider.of<LayoutProvider>(context).isTwoColumnLayout,
+                    dropdownColor: Color(0xFFC2000B),
                     items: [
                       DropdownMenuItem(
                         value: true,
@@ -285,32 +304,41 @@ class MyAppState extends State<MyApp> {
               ),
               backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             ),
-            body: _widgetOptions.elementAt(_selectedIndex),
+            body: PageView(
+              controller: _pageController,
+              scrollDirection: Axis.horizontal,
+              onPageChanged: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+              },
+              children: _appPages,
+            ),
             bottomNavigationBar: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: Icon(Icons.search), //, color: Theme.of(context).appBarTheme.foregroundColor
-                  label: 'Search',
+                  label: translations[languageModel.locale.languageCode]!['search']??'Search',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.more_horiz),
-                  label: 'Results',
+                  label: translations[languageModel.locale.languageCode]!['results']??'Results',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
-                  label: 'Main',
+                  label: translations[languageModel.locale.languageCode]!['home']??'Home',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.chat),
-                  label: 'Chatbot',
+                  label: translations[languageModel.locale.languageCode]!['chatbot']??'Chatbot',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
-                  label: 'Settings',
+                  label: translations[languageModel.locale.languageCode]!['settings']??'Settings',
                 ),
               ],
               currentIndex: _selectedIndex,
-              onTap: _onItemTapped,
+              onTap: _switchPage,
               selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
               unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
             ),

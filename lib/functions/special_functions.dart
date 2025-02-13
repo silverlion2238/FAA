@@ -237,7 +237,7 @@ Widget specialBonesFunction2(context, {pageNum = 0}) {
 
 Widget functionUnconscious(context, {int pageNum = 1}) {
 
-
+  pageNum++;
 
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();

@@ -51,7 +51,7 @@ class ResultScreenState extends State<ResultScreen> {
           ),
           style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
           onChanged: (query) {
-        context.read<InjuryNotifier>().whichInjury(context,query);
+            context.read<InjuryNotifier>().searchInjury(context,query);
           },
         ),
         backgroundColor: Theme.of(context).colorScheme.surface,

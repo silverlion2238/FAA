@@ -17,9 +17,7 @@ class MainPage extends StatelessWidget{
   Widget build(BuildContext context) {
     final locale = Provider.of<LanguageModel>(context).locale.languageCode;
     return Scaffold(
-
       body: Center(
-        
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -39,7 +37,7 @@ class MainPage extends StatelessWidget{
             ElevatedButton(
               style: ButtonStyle(
                 minimumSize: WidgetStateProperty.all<Size>(Size(MediaQuery.of(context).size.width * 0.9, 50)),
-                backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.onSurface),
+                backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -59,7 +57,7 @@ class MainPage extends StatelessWidget{
             ElevatedButton(
               style: ButtonStyle(
                 minimumSize: WidgetStateProperty.all<Size>(Size(MediaQuery.of(context).size.width * 0.9, 50)),
-                backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.onSurface),
+                backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -83,7 +81,7 @@ class MainPage extends StatelessWidget{
             ElevatedButton(
               style: ButtonStyle(
                 minimumSize: WidgetStateProperty.all<Size>(Size(MediaQuery.of(context).size.width * 0.9, 50)),
-                backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.onSurface),
+                backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),

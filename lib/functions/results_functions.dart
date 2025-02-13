@@ -41,8 +41,9 @@ Widget functionCCold(context) {
 
 
 
-Widget functionNBleed (context, {int pageNum = 1}) {
 
+Widget functionNBleed (context, {int pageNum = 1}) {
+  pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   //FlutterTtsSingleton.instance.setVoice(Map<String, String>.from(Provider.of<VoiceNotifier>(context, listen: false).selectedVoice));
   FlutterTtsSingleton.instance.stop();
@@ -112,7 +113,7 @@ Widget functionNBleed (context, {int pageNum = 1}) {
 }
 
 Widget functionBurns(context, {int pageNum = 1}) {
-
+  pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['BurnsSolution$pageNum']!);
@@ -195,6 +196,7 @@ Widget functionBurns(context, {int pageNum = 1}) {
 }
 
 Widget functionCBurn(context, {int pageNum = 1}) {
+  pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['ChemicalBurnsSolution$pageNum']!);
@@ -289,7 +291,8 @@ Widget functionCBurn(context, {int pageNum = 1}) {
 }
 
 Widget functionFractureArm(context,{int pageNum = 1}) {
-   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+  pageNum++;
+  final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['FractureSolArm$pageNum']!);
   return Column(
@@ -352,7 +355,8 @@ Widget functionFractureArm(context,{int pageNum = 1}) {
 }
 
 Widget functionFractureLeg(context,{int pageNum = 1}) {
-   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+  pageNum++;
+  final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['FractureSolLeg$pageNum']!);
   return Column(
@@ -428,6 +432,7 @@ Widget functionFractureLeg(context,{int pageNum = 1}) {
 }
 
 Widget functionDislocation(context, {int pageNum = 1}) {
+  pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['DislocationSolution$pageNum']!);
@@ -492,6 +497,7 @@ Widget functionDislocation(context, {int pageNum = 1}) {
 }
 
 Widget functionHypervent(context, {int pageNum = 1}) {
+  pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
     FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['HyperventSolution$pageNum']!);
@@ -556,6 +562,7 @@ Widget functionHypervent(context, {int pageNum = 1}) {
 }
 
 Widget functionUnconsciousB(context, {int pageNum = 1}) {
+  pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
     FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['UnconsciousSolution$pageNum']!);
@@ -619,6 +626,7 @@ Widget functionUnconsciousB(context, {int pageNum = 1}) {
 }
 
 Widget functionEpilepsy(context, {int pageNum = 1}) {
+  pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
     FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['EpilepsySolution$pageNum']!);
@@ -689,8 +697,9 @@ Widget functionEpilepsy(context, {int pageNum = 1}) {
 }
 
 Widget functionAsthmaAtt(context, {int pageNum = 1}) {
+  pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
-    FlutterTtsSingleton.instance.stop();
+  FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['AsthmaAttackSolution$pageNum']!);
   return Column(
     children: [
@@ -752,6 +761,7 @@ Widget functionAsthmaAtt(context, {int pageNum = 1}) {
 }
 
 Widget functionRecPos(context, {int pageNum = 1}) {
+  pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['RecPos$pageNum']!);
@@ -816,6 +826,7 @@ Widget functionRecPos(context, {int pageNum = 1}) {
 }
 
 Widget functionCPR(context, {int pageNum = 1}) {
+  pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
   FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['cpr$pageNum']!);
