@@ -145,9 +145,7 @@ class ChatScreenState extends State<ChatScreen> {
 
       if (post.statusCode == 200) {
         // Botpress API call successful
-        //print('Message sent to Botpress');
       } else {
-        // Handle error
         if (mounted) {
           showDialog(
             context: context,
@@ -316,7 +314,10 @@ class ChatScreenState extends State<ChatScreen> {
                   }
                 },
                 decoration:
-                    InputDecoration.collapsed(hintText: "Send a message"),
+                    InputDecoration.collapsed(
+                      hintText: translations[locale]!['sendMessage'] ?? "Send a message",
+                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withAlpha(150),),
+                    ),
               ),
             ),
             Container(

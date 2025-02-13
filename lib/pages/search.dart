@@ -18,7 +18,8 @@ List<Symptom> selectedSymptoms = [];
 //functions
 List<Injury> whichInjury(BuildContext context, List<Symptom> appearedSymptoms) {  
   return injuries.where((injuryTemp) {
-    return appearedSymptoms.every((symptomTemp) => injuryTemp.symptoms.contains(symptomTemp));
+    return appearedSymptoms.every((symptomTemp) => 
+      injuryTemp.symptoms.contains(symptomTemp));
   }).toList();
 }
 

@@ -102,13 +102,13 @@ class ChatDataProvider with ChangeNotifier{
 }
 
 class ThemeModel extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system; // Default to system theme
+  ThemeMode _themeMode = ThemeMode.system;
 
   ThemeMode get themeMode => _themeMode;
 
   void toggleTheme(ThemeMode newThemeMode) {
     _themeMode = newThemeMode;
-    notifyListeners(); // Notify listeners to rebuild
+    notifyListeners();
   }
 }
 
@@ -259,7 +259,7 @@ class MyAppState extends State<MyApp> {
             Locale('en'),
             Locale('sk'),
           ],
-          themeMode: Provider.of<ThemeModel>(context).themeMode, // Get theme from provider
+          themeMode: Provider.of<ThemeModel>(context).themeMode, 
           theme: Provider.of<ThemeNotifier>(context).currentLightTheme,
           darkTheme: Provider.of<ThemeNotifier>(context).currentDarkTheme,
           home: Scaffold(

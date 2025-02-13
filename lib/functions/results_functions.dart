@@ -39,13 +39,23 @@ Widget functionCCold(context) {
 }
 */
 
-
+ButtonStyle functionButtonStyle(BuildContext context) {
+  return ButtonStyle(
+    minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
+    backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
+    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
+      ),
+    ),
+  );
+}
 
 
 Widget functionNBleed (context, {int pageNum = 1}) {
   pageNum++;
   final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
-  //FlutterTtsSingleton.instance.setVoice(Map<String, String>.from(Provider.of<VoiceNotifier>(context, listen: false).selectedVoice));
   FlutterTtsSingleton.instance.stop();
   FlutterTtsSingleton.instance.speak(translations[locale]!['NosebleedSolution$pageNum']!,);
   return Column(
@@ -64,20 +74,9 @@ Widget functionNBleed (context, {int pageNum = 1}) {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          //Previous button
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
-              // Add your onPressed code here!
               if (pageNum == 1) {
                 Navigator.popUntil(context, (route) => route.isFirst);
               } else {
@@ -86,30 +85,18 @@ Widget functionNBleed (context, {int pageNum = 1}) {
             },
             child: Text(translations[locale]!['back']!),
           ),
-          //Next button
           if (translations[locale]!['NosebleedSolution${pageNum + 1}'] != null)
             ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
-              onPressed: () {
-                // Add your onPressed code here!
-                openSolutionPage(context, functionNBleed, pageNum: pageNum + 1);
-              },
-              child: Text(translations[locale]!['next']!),
-            ),
+            style: functionButtonStyle(context),
+            onPressed: () {
+              openSolutionPage(context, functionNBleed, pageNum: pageNum + 1);
+            },
+            child: Text(translations[locale]!['next']!),
+          ),
         ],
       ),
     ],
   );
-
 }
 
 Widget functionBurns(context, {int pageNum = 1}) {
@@ -153,16 +140,7 @@ Widget functionBurns(context, {int pageNum = 1}) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               if (pageNum == 1) {
                 Navigator.popUntil(context, (route) => route.isFirst);
@@ -174,16 +152,7 @@ Widget functionBurns(context, {int pageNum = 1}) {
           ),
           if (translations[locale]!['BurnsSolution${pageNum + 1}'] != null)
             ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
               onPressed: () {
                 openSolutionPage(context, functionBurns, pageNum: pageNum + 1);
               },
@@ -248,16 +217,7 @@ Widget functionCBurn(context, {int pageNum = 1}) {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
           onPressed: () {
             if (pageNum == 1) {
               Navigator.popUntil(context, (route) => route.isFirst);
@@ -269,16 +229,7 @@ Widget functionCBurn(context, {int pageNum = 1}) {
         ),
         if (translations[locale]!['ChemicalBurnsSolution${pageNum + 1}'] != null)
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               openSolutionPage(context, functionCBurn, pageNum: pageNum + 1);
             },
@@ -312,16 +263,7 @@ Widget functionFractureArm(context,{int pageNum = 1}) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               if (pageNum == 1) {
                 Navigator.popUntil(context, (route) => route.isFirst);
@@ -333,16 +275,7 @@ Widget functionFractureArm(context,{int pageNum = 1}) {
           ),
           if (translations[locale]!['FractureSolArm${pageNum + 1}'] != null)
             ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
               onPressed: () {
                 openSolutionPage(context, functionFractureArm, pageNum: pageNum + 1);
               },
@@ -389,16 +322,7 @@ Widget functionFractureLeg(context,{int pageNum = 1}) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               if (pageNum == 1) {
                 Navigator.popUntil(context, (route) => route.isFirst);
@@ -410,16 +334,7 @@ Widget functionFractureLeg(context,{int pageNum = 1}) {
           ),
           if (translations[locale]!['FractureSolLeg${pageNum + 1}'] != null)
             ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
               onPressed: () {
                 openSolutionPage(context, functionFractureLeg, pageNum: pageNum + 1);
               },
@@ -454,16 +369,7 @@ Widget functionDislocation(context, {int pageNum = 1}) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               if (pageNum == 1) {
                 Navigator.popUntil(context, (route) => route.isFirst);
@@ -475,16 +381,7 @@ Widget functionDislocation(context, {int pageNum = 1}) {
           ),
           if (translations[locale]!['DislocationSolution${pageNum + 1}'] != null)
             ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
               onPressed: () {
                 openSolutionPage(context, functionDislocation, pageNum: pageNum + 1);
               },
@@ -519,16 +416,7 @@ Widget functionHypervent(context, {int pageNum = 1}) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               if (pageNum == 1) {
                 Navigator.popUntil(context, (route) => route.isFirst);
@@ -540,16 +428,7 @@ Widget functionHypervent(context, {int pageNum = 1}) {
           ),
           if (translations[locale]!['HyperventSolution${pageNum + 1}'] != null)
             ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
               onPressed: () {
                 openSolutionPage(context, functionHypervent, pageNum: pageNum + 1);
               },
@@ -583,16 +462,7 @@ Widget functionUnconsciousB(context, {int pageNum = 1}) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               if (pageNum == 1) {
                 Navigator.popUntil(context, (route) => route.isFirst);
@@ -604,16 +474,7 @@ Widget functionUnconsciousB(context, {int pageNum = 1}) {
           ),
           if (translations[locale]!['UnconsciousSolution${pageNum + 1}'] != null)
             ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
               onPressed: () {
                 openSolutionPage(context, functionUnconsciousB, pageNum: pageNum + 1);
               },
@@ -654,16 +515,7 @@ Widget functionEpilepsy(context, {int pageNum = 1}) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               if (pageNum == 1) {
                 Navigator.popUntil(context, (route) => route.isFirst);
@@ -675,16 +527,7 @@ Widget functionEpilepsy(context, {int pageNum = 1}) {
           ),
           if (translations[locale]!['EpilepsySolution${pageNum + 1}'] != null)
             ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
               onPressed: () {
                 openSolutionPage(context, functionEpilepsy, pageNum: pageNum + 1);
               },
@@ -718,16 +561,7 @@ Widget functionAsthmaAtt(context, {int pageNum = 1}) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               if (pageNum == 1) {
                 Navigator.popUntil(context, (route) => route.isFirst);
@@ -739,16 +573,7 @@ Widget functionAsthmaAtt(context, {int pageNum = 1}) {
           ),
           if (translations[locale]!['AsthmaAttackSolution${pageNum + 1}'] != null)
             ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
               onPressed: () {
                 openSolutionPage(context, functionAsthmaAtt, pageNum: pageNum + 1);
               },
@@ -783,16 +608,7 @@ Widget functionRecPos(context, {int pageNum = 1}) {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
           onPressed: () {
             if (pageNum == 1) {
               Navigator.popUntil(context, (route) => route.isFirst);
@@ -804,16 +620,7 @@ Widget functionRecPos(context, {int pageNum = 1}) {
         ),
         if (translations[locale]!['RecPos${pageNum + 1}'] != null)
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               openSolutionPage(context, functionRecPos, pageNum: pageNum + 1);
             },
@@ -875,16 +682,7 @@ Widget functionCPR(context, {int pageNum = 1}) {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
           onPressed: () {
             if (pageNum == 1) {
               Navigator.popUntil(context, (route) => route.isFirst);
@@ -896,16 +694,7 @@ Widget functionCPR(context, {int pageNum = 1}) {
         ),
         if (translations[locale]!['cpr${pageNum + 1}'] != null)
           ElevatedButton(
-            style: ButtonStyle(
-              minimumSize: WidgetStateProperty.all<Size>(Size(120, 50)),
-              backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.surfaceTint),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
-                ),
-              ),
-            ),
+            style: functionButtonStyle(context),
             onPressed: () {
               openSolutionPage(context, functionCPR, pageNum: pageNum + 1);
             },
