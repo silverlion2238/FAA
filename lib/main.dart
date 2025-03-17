@@ -29,6 +29,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => InjuryNotifier()),
         ChangeNotifierProvider(create: (context) => LanguageModel()),
         ChangeNotifierProvider(create: (context) => ChatDataProvider()),
+        ChangeNotifierProvider(create: (_) => ChatMessagesProvider()),
         ChangeNotifierProvider(create: (context) => VoiceNotifier()),
         ChangeNotifierProvider(create: (_) => LayoutProvider()),
       ],
@@ -87,22 +88,58 @@ class VoiceNotifier extends ChangeNotifier {
 }
 
 class ChatDataProvider with ChangeNotifier{
-  String? userKey;
-  String? conversationID;
+  String _userKey = '';
+  String _conversationID = '';
 
+  String get userKey => _userKey;
+  String get conversationID => _conversationID; 
 
-
-  Future<List<String?>> initializeData() async {
-    userKey = await createUser();
-    conversationID = await createConversation(userKey);
+  void initializeData() async {
+    if (_userKey.isNotEmpty && _conversationID.isNotEmpty) {
+      print('last userKey used: $_userKey');
+      return;
+    }
+    _userKey = await createUser();
+    _conversationID = await createConversation(_userKey);
     notifyListeners();
-    return [userKey,conversationID]; // Update widgets that depend on this data
-
+    print('_userKey: $_userKey');
+    print('_conversationID: $_conversationID');
+    return;
+  }
+  void createNewConversation(context) async {
+    _conversationID = await createConversation(_userKey);
+    notifyListeners();
+    print('new _conversationID: $_conversationID');
+    Provider.of<ChatMessagesProvider>(context, listen: false).clearMessages();
+    return;
   }
 }
 
+class ChatMessagesProvider with ChangeNotifier{
+  List<ChatMessage> _messages = <ChatMessage>[];
+
+  List<ChatMessage> get messages => _messages;
+
+  void addMessage(ChatMessage message) {
+    _messages.insert(0, message);
+    notifyListeners();
+  }
+
+  void changeMessageAt(int index, ChatMessage message) {
+    _messages[index] = message;
+    notifyListeners();
+  }
+
+  void clearMessages() {
+    _messages.clear();
+    notifyListeners();
+  }
+}
+
+
+
 class ThemeModel extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.light;
 
   ThemeMode get themeMode => _themeMode;
 
@@ -153,10 +190,10 @@ class InjuryNotifier extends ChangeNotifier {
 class AppScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        PointerDeviceKind.trackpad,
-      };
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+    PointerDeviceKind.trackpad,
+  };
 }
 
 
@@ -201,6 +238,9 @@ class MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    
+    Provider.of<ChatDataProvider>(context, listen: false).initializeData();
+
     // Initialize _appPages here, after the instance is created
     initTTS();
     _appPages = <Widget>[
@@ -271,6 +311,20 @@ class MyAppState extends State<MyApp> {
                   Text(
                     translations[languageModel.locale.languageCode]!['appTitle']!,
                     style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                  ),
+                  if (_selectedIndex == 3)
+                  IconButton(
+                    icon: Icon(
+                      Icons.refresh,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    onPressed: () {
+                      Provider.of<ChatDataProvider>(context, listen: false).createNewConversation(context);
+                      setState(() {
+
+                      });
+                      print('changed pages');
+                    },
                   ),
                   if (_selectedIndex == 0) 
                   DropdownButton<bool>(

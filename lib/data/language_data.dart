@@ -26,6 +26,8 @@ const Map<String, Map<String, String>> translations = {
     'chooseLayout' : 'Choose Layout',
     'Arm' : 'Arm',
     'Leg' : 'Leg',
+    'you' : 'You',
+    'AI' : 'Chatbot', 
 
     'primaryText': 'Primary Text(question)',
     'description': 'Description',
@@ -218,6 +220,8 @@ const Map<String, Map<String, String>> translations = {
     'chooseLayout' : 'Vyberte si rozloženie',
     'Arm' : 'Ruka',
     'Leg' : 'Noha',
+    'you' : 'Vy',
+    'AI' : 'Chatbot',
     
 
     'primaryText': 'Primárny Text(otázka)',
