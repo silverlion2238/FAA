@@ -14,6 +14,7 @@ import 'package:flutter_application_0_0_5/data/language_data.dart';
 import 'package:flutter_application_0_0_5/functions/http_functions.dart';
 
 import 'dart:ffi' if (dart.library.html) 'dart:html';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ChatScreen extends StatefulWidget {
 
@@ -44,6 +45,18 @@ class ChatScreenState extends State<ChatScreen> {
             backgroundColor: Theme.of(context).colorScheme.surface,
             addButtonStyle: chatbotButtonStyle(context),
             recordButtonStyle: chatbotButtonStyle(context),
+            submitButtonStyle: chatbotButtonStyle(context),
+            cancelButtonStyle: chatbotButtonStyle(context),
+            closeButtonStyle: chatbotButtonStyle(context),
+            closeMenuButtonStyle: chatbotButtonStyle(context),
+            cameraButtonStyle: chatbotButtonStyle(context),
+            galleryButtonStyle: chatbotButtonStyle(context),
+            attachFileButtonStyle: chatbotButtonStyle(context),
+            actionButtonBarDecoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            
             chatInputStyle: ChatInputStyle(
               backgroundColor: Theme.of(context).colorScheme.surface,
               hintText: translations[locale]?['Type a message'] ?? 'Type a message',
@@ -57,7 +70,7 @@ class ChatScreenState extends State<ChatScreen> {
           provider: GeminiProvider(
             model: GenerativeModel(
               model: 'gemini-1.5-flash',  
-              apiKey: 'AIzaSyDTfOaFnF9b0SBlHUbAIdgkh9ioYhBGBsQ',
+              apiKey: dotenv.env['API_KEY'] ?? '',
             ),
             chatGenerationConfig: GenerationConfig(
               temperature: 0,

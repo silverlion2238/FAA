@@ -15,12 +15,18 @@ import 'package:flutter_application_0_0_5/pages/main_page.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:diacritic/diacritic.dart';
 import 'dart:ffi' if (dart.library.html) 'dart:html';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  
+  try {
+    await dotenv.load(fileName: ".env");
+    print('API KEY: ${dotenv.env['API_KEY']}');
+  } catch (e) {
+    print('Error loading .env file: $e');
+  }
+
   runApp(
     MultiProvider(
       providers: [
