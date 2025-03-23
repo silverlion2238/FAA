@@ -15,12 +15,18 @@ import 'package:flutter_application_0_0_5/pages/main_page.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:diacritic/diacritic.dart';
 import 'dart:ffi' if (dart.library.html) 'dart:html';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  
+  try {
+    await dotenv.load(fileName: ".env");
+    print('API KEY: ${dotenv.env['API_KEY']}');
+  } catch (e) {
+    print('Error loading .env file: $e');
+  }
+
   runApp(
     MultiProvider(
       providers: [
@@ -102,7 +108,7 @@ class ChatDataProvider with ChangeNotifier{
 }
 
 class ThemeModel extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.light;
 
   ThemeMode get themeMode => _themeMode;
 
@@ -186,7 +192,6 @@ class MyAppState extends State<MyApp> {
   
 
   void _switchPage(int index) {
-    print('Switching to page $index');
     setState(() {
       _selectedIndex = index;
     });
@@ -227,8 +232,7 @@ class MyAppState extends State<MyApp> {
         try {
           currentVoice = usableVoices.where((voice) => voice['locale'].contains(Provider.of<LanguageModel>(context, listen: false).locale.toString())).first;
         } catch (e) {
-          print('Voice not found');
-          print(e);
+          Provider.of<VoiceNotifier>(context, listen: false).setMute(false);
           currentVoice = usableVoices.isNotEmpty ? usableVoices.first : {};
         }
         Provider.of<VoiceNotifier>(context, listen: false).setSelectedVoice(currentVoice);
