@@ -36,36 +36,39 @@ class ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
-    return Scaffold(
-      body: LlmChatView(
-        style: LlmChatViewStyle(
-          backgroundColor: Theme.of(context).colorScheme.surface,
-          addButtonStyle: chatbotButtonStyle(context),
-          recordButtonStyle: chatbotButtonStyle(context),
-          chatInputStyle: ChatInputStyle(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: LlmChatView(
+          style: LlmChatViewStyle(
             backgroundColor: Theme.of(context).colorScheme.surface,
-            hintText: translations[locale]?['Type a message'] ?? 'Type a message',
-            textStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
-            decoration: BoxDecoration(
-              border: Border.all(),
-              borderRadius: BorderRadius.circular(10),
-            ),                
-          )
-        ),
-        provider: GeminiProvider(
-          model: GenerativeModel(
-            model: 'gemini-1.5-flash',  
-            apiKey: 'AIzaSyDTfOaFnF9b0SBlHUbAIdgkh9ioYhBGBsQ',
+            addButtonStyle: chatbotButtonStyle(context),
+            recordButtonStyle: chatbotButtonStyle(context),
+            chatInputStyle: ChatInputStyle(
+              backgroundColor: Theme.of(context).colorScheme.surface,
+              hintText: translations[locale]?['Type a message'] ?? 'Type a message',
+              textStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              decoration: BoxDecoration(
+                border: Border.all(),
+                borderRadius: BorderRadius.circular(10),
+              ),                
+            )
           ),
-          chatGenerationConfig: GenerationConfig(
-            temperature: 0,
-            topK: 40,
-            topP: 0.95,
-            maxOutputTokens: 8192,
-            responseMimeType: 'text/plain',
+          provider: GeminiProvider(
+            model: GenerativeModel(
+              model: 'gemini-1.5-flash',  
+              apiKey: 'AIzaSyDTfOaFnF9b0SBlHUbAIdgkh9ioYhBGBsQ',
+            ),
+            chatGenerationConfig: GenerationConfig(
+              temperature: 0,
+              topK: 40,
+              topP: 0.95,
+              maxOutputTokens: 8192,
+              responseMimeType: 'text/plain',
+            ),
           ),
-        ),
-      ),
+        )
+      )
     );
   }
 }

@@ -102,7 +102,7 @@ class ChatDataProvider with ChangeNotifier{
 }
 
 class ThemeModel extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.light;
 
   ThemeMode get themeMode => _themeMode;
 
@@ -186,7 +186,6 @@ class MyAppState extends State<MyApp> {
   
 
   void _switchPage(int index) {
-    print('Switching to page $index');
     setState(() {
       _selectedIndex = index;
     });
@@ -227,8 +226,7 @@ class MyAppState extends State<MyApp> {
         try {
           currentVoice = usableVoices.where((voice) => voice['locale'].contains(Provider.of<LanguageModel>(context, listen: false).locale.toString())).first;
         } catch (e) {
-          print('Voice not found');
-          print(e);
+          Provider.of<VoiceNotifier>(context, listen: false).setMute(false);
           currentVoice = usableVoices.isNotEmpty ? usableVoices.first : {};
         }
         Provider.of<VoiceNotifier>(context, listen: false).setSelectedVoice(currentVoice);

@@ -24,73 +24,118 @@ class _SettingsPageState extends State<SettingsPage> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       body:ListView(
         children: <Widget>[
-          
-          // Theme selection title
+
+          // Title Personalization
           SizedBox(
             width: double.infinity,
-            child: ListTile(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(translations[locale]?['App Theme'] ?? 'App Theme: '),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 12.0, left: 12.0),
+              child: Text(
+              translations[locale]?['Personalization'] ?? 'Personalization',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            )
+          ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(left: 23.0),
-                    child: Consumer<ThemeModel>(
-                      builder: (context, themeModel, child) {
-                        return DropdownButton<ThemeMode>(
-                          value: themeModel.themeMode,
-                          items: [
-                            DropdownMenuItem(
-                              value: ThemeMode.system,
-                              child: Text(translations[locale]?['System'] ?? 'System'),
-                            ),
-                            DropdownMenuItem(
-                              value: ThemeMode.light,
-                              child: Text(translations[locale]?['RedLight'] ?? 'Red Light'),
-                            ),
-                            DropdownMenuItem(
-                              value: ThemeMode.dark,
-                              child: Text(translations[locale]?['RedDark'] ?? 'Red Dark'),
-                            ),
-                          ],
-                          onChanged: (ThemeMode? newValue) {
-                            if (newValue != null) {
-                              themeModel.toggleTheme(newValue);
-                            }
-                          },
-                        );
-                      },
+
+          SizedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ListTile(
+                    title: Text(translations[locale]?['App Theme'] ?? 'App Theme: '),
+                    subtitle: Text(
+                      translations[locale]?['ThemeSetDesc'] ?? 'Set the theme of the application',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface.withAlpha(200),
+                        fontSize: 13.0,
+                      ),
                     ),
                   ),
-                ]
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Consumer<ThemeModel>(
+                    builder: (context, themeModel, child) {
+                      return DropdownButton<ThemeMode>(
+                        alignment: Alignment.centerRight,
+                        underline: Container(),
+                        value: themeModel.themeMode,
+                        items: [
+                          DropdownMenuItem(
+                            value: ThemeMode.system,
+                            child: Text(translations[locale]?['System'] ?? 'System'),
+                          ),
+                          DropdownMenuItem(
+                            value: ThemeMode.light,
+                            child: Text(translations[locale]?['RedLight'] ?? 'Red Light'),
+                          ),
+                          DropdownMenuItem(
+                            value: ThemeMode.dark,
+                            child: Text(translations[locale]?['RedDark'] ?? 'Red Dark'),
+                          ),
+                        ],
+                        onChanged: (ThemeMode? newValue) {
+                          if (newValue != null) {
+                            themeModel.toggleTheme(newValue);
+                          }
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
-
+          // Theme selection title
           
-           Divider(
-            indent: 32.0,
-            endIndent: 32.0,
-            color: Theme.of(context).colorScheme.onSurface.withAlpha(100),
-            thickness: 1,
-          ),
-          
-
-          // Language selection title
+          // Title Language
           SizedBox(
             width: double.infinity,
-            child: ListTile(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(translations[locale]?['Language'] ?? 'Language: '),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 12.0, left: 12.0),
+              child: Text(
+              translations[locale]?['Language'] ?? 'Language',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            )
+          ),
+          
+          
 
-                  Padding(
-                    padding: const EdgeInsets.only(left: 23.0),
+          
+          // Language selection
+
+          SizedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ListTile(
+                    title: Text(translations[locale]?['Text'] ?? 'Text'),
+                      subtitle: Text(
+                        translations[locale]?['LangSetDesc'] ?? 'Set the theme of the application',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface.withAlpha(200),
+                          fontSize: 13.0,
+                        ),
+                      ),
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: Consumer<LanguageModel>(
                       builder: (context, languageModel, child) {
                         return DropdownButton<Locale>(
+                          alignment: Alignment.centerRight,                        
+                          underline: Container(),
                           value: languageModel.locale,
                           items: [
                             DropdownMenuItem(
@@ -117,7 +162,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                     height: 24,
                                   ),
                                   const SizedBox(width: 8),
-                                  Text('Slovak (Slovensky)')
+                                  Text('Slovenský')
                                 ],
                               )
                             ),
@@ -133,25 +178,37 @@ class _SettingsPageState extends State<SettingsPage> {
                       },
                     ),
                   ),
-                ]
-              ),
+              ],
             ),
           ),
+          // Theme selection title
 
-            // Divider
-          Divider(
-            indent: 32.0,
-            endIndent: 32.0,
-            color: Theme.of(context).colorScheme.onSurface.withAlpha(100),
-            thickness: 1,
+          SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 12.0, left: 12.0),
+              child: Text(
+              translations[locale]?['audio'] ?? 'Audio',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            )
           ),
-          
 
           // Mute switch
           Consumer<VoiceNotifier>(
             builder: (context, voiceNotifier, child) {
               return SwitchListTile(
-                title: Text(translations[locale]?['Mute'] ?? 'Mute'),
+                title: Text(translations[locale]?['Mute'] ?? 'Narrator'),
+                subtitle: Text(
+                  translations[locale]?['MuteDesc'] ?? 'Turn off the narrator',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface.withAlpha(200),
+                    fontSize: 13.0,
+                  ),
+                ),
                 value: voiceNotifier.isMuted(), 
                 onChanged: (bool value) {
                   voiceNotifier.setMute(value); 
@@ -160,44 +217,83 @@ class _SettingsPageState extends State<SettingsPage> {
             },
           ),
             
-          
 
-          
+
+
           SizedBox(
-            width: double.infinity,
-            child: ListTile(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(translations[locale]?['audio'] ?? 'audio'),
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 23.0),
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width*0.5,
+                  child: ListTile(
+                    title: Text(
+                      translations[locale]?['Voice'] ?? 'Voice',
+                        style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface.withAlpha(
+                          Provider.of<VoiceNotifier>(context).isMuted() ? 255 : 123,
+                        ),
+                      ),
+                    ),
+                    subtitle: Text(
+                      translations[locale]?['LangSetDesc'] ?? 'Set the theme of the application',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface.withAlpha(
+                          Provider.of<VoiceNotifier>(context).isMuted() ? 200 : 100,
+                        ),
+                        fontSize: 13.0,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width*0.5,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: Consumer<LanguageModel>(
                       builder: (context, languageModel, child) {
                         return Consumer<VoiceNotifier>(
                           builder: (context, voiceNotifier, child) {
                             return DropdownButton<Map>(
+                              alignment: Alignment.centerRight,
+                              isExpanded: true,
+                              underline: Container(),
                               value: voiceNotifier.selectedVoice.isNotEmpty ? voiceNotifier.selectedVoice : null,
                               items: voiceNotifier.voices.map((voice) {
-                                return DropdownMenuItem<Map>(
-                                  value: voice,
-                                  child: Row(
-                                    children: [
-                                      if (voice['locale'].contains('en')) Image.asset('images/uk.png', width: 24, height: 24) else Image.asset('images/sk.png', width: 24, height: 24),
-                                      const SizedBox(width: 8),
-                                      Text(voice['name']),
-                                    ]
+                              return DropdownMenuItem<Map>(
+                                value: voice,
+                                child: Row(
+                                children: [
+                                    if (voice['locale'].contains('en')) 
+                                    Image.asset(
+                                      'images/uk.png', 
+                                      width: 24,
+                                      height: 24,
+                                      color: Provider.of<VoiceNotifier>(context).isMuted() ? null : Theme.of(context).colorScheme.surface,
+                                      colorBlendMode: Provider.of<VoiceNotifier>(context).isMuted() ? null : BlendMode.saturation,
+                                    )
+                                    else 
+                                    Image.asset(
+                                      'images/sk.png', 
+                                      width: 24, 
+                                      height: 24,
+                                      color: Provider.of<VoiceNotifier>(context).isMuted() ? null : Theme.of(context).colorScheme.surface,
+                                      colorBlendMode: Provider.of<VoiceNotifier>(context).isMuted() ? null : BlendMode.saturation,
+                                    ),
+                                  const SizedBox(width: 8),
+                                  Flexible(
+                                  child: Text(voice['name']),
                                   ),
-                                );
+                                ]
+                                ),
+                              );
                               }).toList(),
-                              onChanged: (Map? newVoice) {
-                                
-                                if (newVoice != null) {
-                                  voiceNotifier.setSelectedVoice(newVoice);
-                                }
-                                FlutterTtsSingleton.instance.speak(newVoice?['name']);
-                                //print(Provider.of<VoiceNotifier>(context, listen: false).selectedVoice);
+                              onChanged: !Provider.of<VoiceNotifier>(context).isMuted() ? null : (Map? newVoice) {
+                              if (newVoice != null) {
+                                voiceNotifier.setSelectedVoice(newVoice);
+                              }
+                              FlutterTtsSingleton.instance.speak(newVoice?['name']);
                               },
                             );
                           },
@@ -205,8 +301,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       },
                     ),
                   ),
-                ]
-              ),
+                )
+              ],
             ),
           ),
         ],
