@@ -11,7 +11,6 @@ import 'package:flutter_application_0_0_5/data/data.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
-import 'package:flutter_application_0_0_5/functions/http_functions.dart';
 
 import 'dart:ffi' if (dart.library.html) 'dart:html';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

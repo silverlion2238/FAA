@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_application_0_0_5/models/language_model.dart';
 import 'package:flutter_application_0_0_5/data/language_data.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_application_0_0_5/functions/http_functions.dart';
 import 'package:flutter_application_0_0_5/pages/main_page.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:diacritic/diacritic.dart';
@@ -34,7 +33,6 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ThemeNotifier()),
         ChangeNotifierProvider(create: (context) => InjuryNotifier()),
         ChangeNotifierProvider(create: (context) => LanguageModel()),
-        ChangeNotifierProvider(create: (context) => ChatDataProvider()),
         ChangeNotifierProvider(create: (context) => VoiceNotifier()),
         ChangeNotifierProvider(create: (_) => LayoutProvider()),
       ],
@@ -92,20 +90,7 @@ class VoiceNotifier extends ChangeNotifier {
   }
 }
 
-class ChatDataProvider with ChangeNotifier{
-  String? userKey;
-  String? conversationID;
 
-
-
-  Future<List<String?>> initializeData() async {
-    userKey = await createUser();
-    conversationID = await createConversation(userKey);
-    notifyListeners();
-    return [userKey,conversationID]; // Update widgets that depend on this data
-
-  }
-}
 
 class ThemeModel extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.light;
