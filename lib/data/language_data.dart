@@ -12,7 +12,7 @@ const Map<String, Map<String, String>> translations = {
     'settings': 'Settings',
     'chatbot': 'Chatbot',
     'home': 'Home',
-    'wrongInput': 'Wrong Input',
+    'wrongInput': 'Wrong input',
     'noResults': 'Cannot evaluate.',
     'unclearResults': 'Cannot evaluate. Maybe you meant this:',
     'sendMessage': 'Message',
@@ -26,6 +26,10 @@ const Map<String, Map<String, String>> translations = {
     'chooseLayout' : 'Choose Layout',
     'Arm' : 'Arm',
     'Leg' : 'Leg',
+    'Warn' : 'Warning',
+    
+    'AIwarnDesc': 'The chatbot is a tool that can help you with first aid. The information it provides, does not replace professional medical help. In case of emergency, always contact the emergency services (112 or 155) or medical help.',
+
 
     'primaryText': 'Primary Text(question)',
     'description': 'Description',
@@ -212,7 +216,7 @@ const Map<String, Map<String, String>> translations = {
     'settings': 'Nastavenia',
     'chatbot': 'Chatbot',
     'home': 'Domov',
-    'wrongInput': 'Nesprávny Vstup',
+    'wrongInput': 'Nesprávny vstup',
     'noResults': 'Neviem vyhodnotiť.',
     'unclearResults': 'Neviem vyhodnotiť. Možno ste mysleli toto:',
     'sendMessage': 'Správa',
@@ -226,7 +230,9 @@ const Map<String, Map<String, String>> translations = {
     'chooseLayout' : 'Vyberte si rozloženie',
     'Arm' : 'Ruka',
     'Leg' : 'Noha',
-    
+    'Warn' : 'Varovanie',
+
+    'AIwarnDesc': 'Chatbot je nástroj, ktorý vám môže pomôcť s prvou pomocou. Tieto informácie ale nenahrádzajú odbornú lekársku pomoc. V prípade núdze vždy kontaktujte záchrannú službu (112 alebo 155) alebo vyhľadajte lekársku pomoc.',
 
     'primaryText': 'Primárny Text(otázka)',
     'description': 'Popis',

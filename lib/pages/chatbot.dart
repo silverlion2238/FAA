@@ -36,6 +36,33 @@ class ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = Provider.of<LanguageModel>(context, listen: false).locale.languageCode;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!Provider.of<LanguageModel>(context, listen: false).hasShownWarning) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(translations[locale]?['Warn'] ?? 'Warning'),
+          content: Text(
+          translations[locale]?['AIwarnDesc'] ?? 'Warning',
+          textAlign: TextAlign.justify,
+          ),
+          actions: <Widget>[
+          TextButton(
+            child: Text(translations[locale]?['ok'] ?? 'OK'),
+            onPressed: () {
+            Provider.of<LanguageModel>(context, listen: false).setHasShownWarning(true);
+            Navigator.of(context).pop();
+            },
+          ),
+          ],
+        );
+        },
+      );
+      }
+    });
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -70,6 +97,7 @@ class ChatScreenState extends State<ChatScreen> {
             model: GenerativeModel(
               model: 'gemini-1.5-flash',  
               apiKey: dotenv.env['API_KEY'] ?? '',
+              systemInstruction: Content.system('Tvojou úlohou je pomáhať pri vykonávaní prvej pomoci. Podľa toho čo ti uživateľ povie skús zistiť ako pomôcť zranenému. Snaž sa byť čo najstručnejší. Ak si si istý, vytvor krátky prehľadný návod, ktorý by krok za krokom popisoval ako pomôcť zranenému. Keď bude v postupe spomínané volanie záchrannej služby spomeň číslo 112 alebo 155.'),
             ),
             chatGenerationConfig: GenerationConfig(
               temperature: 0,
