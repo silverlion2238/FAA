@@ -28,8 +28,8 @@ const Map<String, Map<String, String>> translations = {
     'Leg' : 'Leg',
     'Warn' : 'Warning',
     
-    'AIwarnDesc': 'The chatbot is a tool that can help you with first aid. The information it provides, does not replace professional medical help. In case of emergency, always contact the emergency services (112 or 155) or medical help.',
-
+    'AIMedWarnDesc': 'The chatbot is a tool that can help you with first aid. The information it provides, does not replace professional medical help. In case of emergency, always contact the emergency services (112 or 155) or seek medical help.',
+    'AIGenWarnDesc': 'Artificial Intelligence (AI) is designed to process and generate information based on input data. Therefore, it is crucial that you do not send any confidential or sensitive information, such as personal data, passwords, financial information, or other information that could be misused.',
 
     'primaryText': 'Primary Text(question)',
     'description': 'Description',
@@ -232,7 +232,9 @@ const Map<String, Map<String, String>> translations = {
     'Leg' : 'Noha',
     'Warn' : 'Varovanie',
 
-    'AIwarnDesc': 'Chatbot je nástroj, ktorý vám môže pomôcť s prvou pomocou. Tieto informácie ale nenahrádzajú odbornú lekársku pomoc. V prípade núdze vždy kontaktujte záchrannú službu (112 alebo 155) alebo vyhľadajte lekársku pomoc.',
+    'AIMedWarnDesc': 'Umelá inteligencia (AI) je nástroj, ktorý Vám môže pomôcť s prvou pomocou. Informácie, ktoré Vám poskytne ale nenahrádzajú odbornú lekársku pomoc. V prípade núdze vždy kontaktujte záchrannú službu (112 alebo 155) alebo vyhľadajte lekársku pomoc.',
+    'AIGenWarnDesc': 'AI je navrhnutá tak, aby spracovávala a generovala informácie na základe vstupných dát. Preto je dôležité, aby ste pri komunikácii neposielali žiadne dôverné alebo citlivé informácie, ako sú osobné údaje, heslá, finančné informácie alebo iné informácie, ktoré by mohli byť zneužité.',
+
 
     'primaryText': 'Primárny Text(otázka)',
     'description': 'Popis',

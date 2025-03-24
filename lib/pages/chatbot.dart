@@ -44,9 +44,19 @@ class ChatScreenState extends State<ChatScreen> {
         builder: (BuildContext context) {
         return AlertDialog(
           title: Text(translations[locale]?['Warn'] ?? 'Warning'),
-          content: Text(
-          translations[locale]?['AIwarnDesc'] ?? 'Warning',
-          textAlign: TextAlign.justify,
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children:  [
+              Text(
+                translations[locale]?['AIMedWarnDesc'] ?? 'Warning',
+                textAlign: TextAlign.justify,
+              ),
+              SizedBox(height: 10),
+              Text(
+                translations[locale]?['AIGenWarnDesc'] ?? 'Warning',
+                textAlign: TextAlign.justify,
+              )
+            ],
           ),
           actions: <Widget>[
           TextButton(
