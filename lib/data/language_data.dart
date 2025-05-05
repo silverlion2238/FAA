@@ -48,6 +48,7 @@ const Map<String, Map<String, String>> translations = {
     'Voice' : 'Voice',
     'Text' : 'Text',
     'TTS' : 'Text to Speech',
+    'Model' : 'Model',
 
     'RedLight': 'Light',
     'RedDark': 'Dark',
@@ -55,6 +56,7 @@ const Map<String, Map<String, String>> translations = {
     'LangSetDesc': 'Set the language of the application',
     'ThemeSetDesc': 'Set the theme of the application',
     'MuteDesc': 'Turn on/off the narrator',
+    'ModelDesc': 'Set the LLM model of the AI',
 
     'Solution1': 'Solution1 - en',
     'Solution2': 'Solution2 - en',
@@ -253,6 +255,7 @@ const Map<String, Map<String, String>> translations = {
     'Voice' : 'Hlas',
     'Text' : 'Text',
     'TTS' : 'Text na reč',
+    'Model' : 'Model',
 
     'RedLight': 'Svetlý',
     'RedDark': 'Tmavý',
@@ -260,6 +263,7 @@ const Map<String, Map<String, String>> translations = {
     'LangSetDesc': 'Nastavte jazyk aplikácie',
     'ThemeSetDesc': 'Nastavte svetlý alebo tmavý režim aplikácie',
     'MuteDesc': 'Zapnite/vypnite rozprávača',
+    'ModelDesc': 'Vyberte LLM model',
 
     'Solution1': 'Solution1 - sk',
     'Solution2': 'Solution2 - sk',

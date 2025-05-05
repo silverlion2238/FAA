@@ -35,6 +35,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => LanguageModel()),
         ChangeNotifierProvider(create: (context) => VoiceNotifier()),
         ChangeNotifierProvider(create: (_) => LayoutProvider()),
+        ChangeNotifierProvider(create: (_) => AIModel(),)
       ],
       child: MyApp(),
     ),
@@ -54,6 +55,16 @@ class LayoutProvider extends ChangeNotifier {
 
   void setLayout(bool isTwoColumnLayout) {
     _isTwoColumnLayout = isTwoColumnLayout;
+    notifyListeners();
+  }
+}
+
+class AIModel extends ChangeNotifier {
+  String _model = aiModels[0];
+  String get model => _model;
+
+  void setModel(String newModel) {
+    _model = newModel;
     notifyListeners();
   }
 }

@@ -121,7 +121,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: ListTile(
                     title: Text(translations[locale]?['Text'] ?? 'Text'),
                       subtitle: Text(
-                        translations[locale]?['LangSetDesc'] ?? 'Set the theme of the application',
+                        translations[locale]?['LangSetDesc'] ?? 'Set the language of the application',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.onSurface.withAlpha(200),
                           fontSize: 13.0,
@@ -248,7 +248,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width*0.5,
+                  width: MediaQuery.of(context).size.width > 530 ? 265 : MediaQuery.of(context).size.width * 0.5,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: Consumer<LanguageModel>(
@@ -264,30 +264,33 @@ class _SettingsPageState extends State<SettingsPage> {
                               return DropdownMenuItem<Map>(
                                 value: voice,
                                 child: Row(
-                                children: [
-                                    if (voice['locale'].contains('en')) 
-                                    Image.asset(
-                                      'images/uk.png', 
-                                      width: 24,
-                                      height: 24,
-                                      color: Provider.of<VoiceNotifier>(context).isMuted() ? null : Theme.of(context).colorScheme.surface,
-                                      colorBlendMode: Provider.of<VoiceNotifier>(context).isMuted() ? null : BlendMode.saturation,
-                                    )
-                                    else 
-                                    Image.asset(
-                                      'images/sk.png', 
-                                      width: 24, 
-                                      height: 24,
-                                      color: Provider.of<VoiceNotifier>(context).isMuted() ? null : Theme.of(context).colorScheme.surface,
-                                      colorBlendMode: Provider.of<VoiceNotifier>(context).isMuted() ? null : BlendMode.saturation,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                                  children: [
+                                      if (voice['locale'].contains('en')) 
+                                      Image.asset(
+                                        'images/uk.png', 
+                                        width: 24,
+                                        height: 24,
+                                        color: Provider.of<VoiceNotifier>(context).isMuted() ? null : Theme.of(context).colorScheme.surface,
+                                        colorBlendMode: Provider.of<VoiceNotifier>(context).isMuted() ? null : BlendMode.saturation,
+                                      )
+                                      else 
+                                      Image.asset(
+                                        'images/sk.png', 
+                                        width: 24, 
+                                        height: 24,
+                                        color: Provider.of<VoiceNotifier>(context).isMuted() ? null : Theme.of(context).colorScheme.surface,
+                                        colorBlendMode: Provider.of<VoiceNotifier>(context).isMuted() ? null : BlendMode.saturation,
+                                      ),
+                                    const SizedBox(width: 8),
+                                    Flexible(
+                                      child: Text(voice['name']),
                                     ),
-                                  const SizedBox(width: 8),
-                                  Flexible(
-                                  child: Text(voice['name']),
+                                  ]
                                   ),
-                                ]
-                                ),
-                              );
+                                );
                               }).toList(),
                               onChanged: !Provider.of<VoiceNotifier>(context).isMuted() ? null : (Map? newVoice) {
                               if (newVoice != null) {
@@ -302,6 +305,71 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                 )
+
+
+              ],
+            ),
+          ),
+
+
+          // Title AI
+
+          SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 12.0, left: 12.0),
+              child: Text(
+              translations[locale]?['AI'] ?? 'AI',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            )
+          ),
+
+          // AI model selection
+
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ListTile(
+                    title: Text(translations[locale]?['Model'] ?? 'Model '),
+                    subtitle: Text(
+                      translations[locale]?['ModelDesc'] ?? 'Set the LLM model of the AI',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface.withAlpha(200),
+                        fontSize: 13.0,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Consumer<AIModel>(
+                    builder: (context, aiModel, child) {
+                      return DropdownButton<String>(
+                        alignment: Alignment.centerRight,
+                        underline: Container(),
+                        value: aiModel.model,
+                        items: aiModels.map((model) {
+                          return DropdownMenuItem<String>(
+                            value: model,
+                            child: Text(model),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          if (newValue != null) {
+                            aiModel.setModel(newValue);
+                          }
+                        },
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           ),

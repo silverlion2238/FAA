@@ -105,7 +105,7 @@ class ChatScreenState extends State<ChatScreen> {
           ),
           provider: GeminiProvider(
             model: GenerativeModel(
-              model: 'gemini-1.5-flash',  
+              model: 'gemini-2.0-flash',
               apiKey: dotenv.env['API_KEY'] ?? '',
               systemInstruction: Content.system('Tvojou úlohou je pomáhať pri vykonávaní prvej pomoci. Podľa toho čo ti uživateľ povie skús zistiť ako pomôcť zranenému. Snaž sa byť čo najstručnejší. Ak si si istý, vytvor krátky prehľadný návod, ktorý by krok za krokom popisoval ako pomôcť zranenému. Keď bude v postupe spomínané volanie záchrannej služby spomeň číslo 112 alebo 155.'),
             ),
